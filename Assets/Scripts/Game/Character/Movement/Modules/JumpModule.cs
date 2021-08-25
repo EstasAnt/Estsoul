@@ -43,7 +43,6 @@ namespace Character.Movement.Modules {
         {
             if (_GroundedData.MainGrounded)
                 _UsedAirJump = false;
-            Debug.LogError($"Ground jumping: {_GroundJumping}");
         }
 
         private bool _GroundJumping = false;
@@ -63,7 +62,6 @@ namespace Character.Movement.Modules {
         {
             if (!_Parameters.AllowAirJump || _GroundedData.Grounded || _UsedAirJump) 
                 return false;
-            Debug.LogError("Air jump");
             _UsedAirJump = true;
             behaviour.StopCoroutine(AirJumpRoutine());
             behaviour.StartCoroutine(AirJumpRoutine());
@@ -111,7 +109,6 @@ namespace Character.Movement.Modules {
         {
             yield return new WaitUntil(() => !_GroundJumping);
             yield return new WaitForFixedUpdate();
-            Debug.LogError("Starting air jump routine");
             yield return JumpRoutine(_Parameters.AirJumpSpeed, _Parameters.AirJumpFixedUpdates);
         }
         
