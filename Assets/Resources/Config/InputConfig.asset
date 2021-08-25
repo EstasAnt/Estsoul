@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f720b609e1d2f46a2cc81da0510b54, type: 3}
+  m_Name: InputConfig
+  m_EditorClassIdentifier: 
+  _InputKits:
+  - Id: 0
+    Horizontal: Horizontal0
+    Vertical: Vertical0
+    HorizontalRight: 
+    VerticalRight: 
+    Attack1: 323
+    Attack2: 324
+    Jump: 32
+    ThrowOutWeapon: 99
+    ThrowOutVehicle: 120
+    Select: 32
+    Back: 0
+  - Id: 1
+    Horizontal: Horizontal1
+    Vertical: Vertical1
+    HorizontalRight: Horizontal1Right
+    VerticalRight: Vertical1Right
+    Attack1: 355
+    Attack2: 351
+    Jump: 354
+    ThrowOutWeapon: 353
+    ThrowOutVehicle: 352
+    Select: 350
+    Back: 0
+  - Id: 2
+    Horizontal: Horizontal2
+    Vertical: Vertical2
+    HorizontalRight: Horizontal2Right
+    VerticalRight: Vertical2Right
+    Attack1: 375
+    Attack2: 374
+    Jump: 374
+    ThrowOutWeapon: 373
+    ThrowOutVehicle: 372
+    Select: 370
+    Back: 0
+  - Id: 3
+    Horizontal: Horizontal3
+    Vertical: Vertical3
+    HorizontalRight: 
+    VerticalRight: 
+    Attack1: 392
+    Attack2: 391
+    Jump: 390
+    ThrowOutWeapon: 393
+    ThrowOutVehicle: 395
+    Select: 390
+    Back: 0
+  - Id: 4
+    Horizontal: Horizontal4
+    Vertical: Vertical4
+    HorizontalRight: 
+    VerticalRight: 
+    Attack1: 412
+    Attack2: 411
+    Jump: 410
+    ThrowOutWeapon: 413
+    ThrowOutVehicle: 415
+    Select: 410
+    Back: 0
