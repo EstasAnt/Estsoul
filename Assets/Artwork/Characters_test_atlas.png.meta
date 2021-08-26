@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: 118c5c9c87f97a84b87e702539515f55
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7289641861995129092
+    second: Characters_test_atlas_0
+  - first:
+      213: -5607093982714639226
+    second: Characters_test_atlas_1
+  - first:
+      213: 4125775688093969578
+    second: Characters_test_atlas_2
+  - first:
+      213: -7824180805586322629
+    second: Characters_test_atlas_3
+  - first:
+      213: 2917625109503316598
+    second: Characters_test_atlas_4
+  - first:
+      213: 5514499165848778935
+    second: Characters_test_atlas_5
+  - first:
+      213: -7407880498977524332
+    second: Characters_test_atlas_6
+  - first:
+      213: 5001099514944641577
+    second: Characters_test_atlas_7
+  - first:
+      213: 8351205028671364899
+    second: Characters_test_atlas_8
+  - first:
+      213: 77003237773445057
+    second: Characters_test_atlas_9
+  - first:
+      213: -5424945692285137182
+    second: Characters_test_atlas_10
+  - first:
+      213: 5980031881005854268
+    second: Characters_test_atlas_11
+  - first:
+      213: -4389447815748809730
+    second: Characters_test_atlas_12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Characters_test_atlas_0
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 3901
+        width: 1247
+        height: 1275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf696f3495df5da90800000000000000
+      internalID: -7289641861995129092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_1
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 4009
+        width: 960
+        height: 960
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68c401afab99f22b0800000000000000
+      internalID: -5607093982714639226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_2
+      rect:
+        serializedVersion: 2
+        x: 2551
+        y: 4431
+        width: 344
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaca8c70123b14930800000000000000
+      internalID: 4125775688093969578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_3
+      rect:
+        serializedVersion: 2
+        x: 3278
+        y: 3927
+        width: 1161
+        height: 1183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3bf898f20dea6390800000000000000
+      internalID: -7824180805586322629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_4
+      rect:
+        serializedVersion: 2
+        x: 4686
+        y: 2893
+        width: 1774
+        height: 2202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67294bf249c7d7820800000000000000
+      internalID: 2917625109503316598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_5
+      rect:
+        serializedVersion: 2
+        x: 6749
+        y: 3299
+        width: 1280
+        height: 1512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b8ba9636cf678c40800000000000000
+      internalID: 5514499165848778935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_6
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 2817
+        width: 1101
+        height: 960
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 495b6ef4febe13990800000000000000
+      internalID: -7407880498977524332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_7
+      rect:
+        serializedVersion: 2
+        x: 1492
+        y: 2475
+        width: 867
+        height: 1268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92a57aa0389776540800000000000000
+      internalID: 5001099514944641577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_8
+      rect:
+        serializedVersion: 2
+        x: 2782
+        y: 2552
+        width: 1383
+        height: 1289
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32f996c1ab075e370800000000000000
+      internalID: 8351205028671364899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1066
+        width: 3687
+        height: 1293
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c78a0a6902911100800000000000000
+      internalID: 77003237773445057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_10
+      rect:
+        serializedVersion: 2
+        x: 3936
+        y: 993
+        width: 1779
+        height: 1580
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee0f8da2a8b6b4b0800000000000000
+      internalID: -5424945692285137182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_11
+      rect:
+        serializedVersion: 2
+        x: 5933
+        y: 639
+        width: 2812
+        height: 1972
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e6ddcef475df250800000000000000
+      internalID: 5980031881005854268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Characters_test_atlas_12
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 53
+        width: 2676
+        height: 944
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efb8d26c77c8513c0800000000000000
+      internalID: -4389447815748809730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
