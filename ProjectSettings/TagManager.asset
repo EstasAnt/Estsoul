@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: RM1 foreground2
+    uniqueID: 3458557213
+    locked: 0
+  - name: RM1 foreground1
+    uniqueID: 3441183921
+    locked: 0
+  - name: RM1  sunctuary
+    uniqueID: 3688968545
+    locked: 0
+  - name: RM1 doors
+    uniqueID: 543496173
+    locked: 0
