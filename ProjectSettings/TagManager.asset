@@ -53,3 +53,6 @@ TagManager:
   - name: RM1 doors
     uniqueID: 543496173
     locked: 0
+  - name: Character
+    uniqueID: 1169222831
+    locked: 0
