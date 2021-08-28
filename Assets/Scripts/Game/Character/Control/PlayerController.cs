@@ -30,7 +30,7 @@ namespace Character.Control {
             _Camera = Camera.main;
             _AimProvider = PlayerActions.Device == null
                 ? (IAimProvider) new MouseAim(_Camera)
-                : new JoystickAim(_WeaponController.NearArmShoulder, _MovementController, PlayerActions);
+                : new JoystickAim(_WeaponController.Owner.transform, _MovementController, PlayerActions);
             //_AimProvider = new JoystickAim(_WeaponController.NearArmShoulder, _MovementController, PlayerActions);
         }
 

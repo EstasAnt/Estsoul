@@ -1,0 +1,17 @@
+Plyvaka.png
+size:249,301
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:2,112,202,187
+flower
+bounds:180,169,52,63
+spike
+bounds:2,3,74,23
+stem_1
+bounds:129,2,118,203
+rotate:180
+stem_2
+bounds:22,28,121,188
+rotate:270

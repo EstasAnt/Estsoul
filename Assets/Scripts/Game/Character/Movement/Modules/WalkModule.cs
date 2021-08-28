@@ -1,6 +1,10 @@
 ﻿using Core.Audio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Game.Character.Melee;
+using Tools.BehaviourTree;
 using UnityDI;
 using UnityEngine;
 
@@ -15,11 +19,15 @@ namespace Character.Movement.Modules {
         private WallSlideData _WallSlideData;
         private WalkData _WalkData;
 
+        private CharacterAnimationController _characterAnimation;
+        
         private WalkParameters _Parameters;
         private float _TargetXVelocity = 0f;
         public float Horizontal => _WalkData.Horizontal;
         public float Vertical => _WalkData.Vertical;
 
+        
+        
         public WalkModule(WalkParameters parameters) : base() {
             this._Parameters = parameters;
         }
@@ -32,7 +40,15 @@ namespace Character.Movement.Modules {
             _WalkData.Direction = 1;
         }
 
-        public override void FixedUpdate() {
+        public override void Initialize(Blackboard bb)
+        {
+            base.Initialize(bb);
+            _characterAnimation = CommonData.MovementController
+                .GetComponentInChildren<CharacterAnimationController>();
+        }
+
+        public override void FixedUpdate()
+        {
             var xVelocity = CommonData.ObjRigidbody.velocity.x;
             var xLocalvelocity = xVelocity;
             var attachedRb = CommonData.MovementController.AttachedToRB;
@@ -52,6 +68,15 @@ namespace Character.Movement.Modules {
         public override void Update() {
             SetDirection();
             _TargetXVelocity = 0f;
+            
+            if (_StopAnimatorStateNames != null && _StopAnimatorStateNames.Count > 0)
+            {
+                if (_StopAnimatorStateNames.Any(_ => _characterAnimation.CurrentAnimationState.IsName(_)))
+                {
+                    SetHorizontal(0);
+                }
+            }
+            
             if (_WalkData.Horizontal > 0.15f) {
                 _TargetXVelocity = _Parameters.Speed;
                 ProcessRunSound(true);
@@ -102,6 +127,26 @@ namespace Character.Movement.Modules {
             var newDir = _WalkData.Horizontal > 0 ? 1 : -1;
             CommonData.MovementController.ChangeDirection(newDir);
         }
+
+        private List<string> _StopAnimatorStateNames;
+        
+        public void SetStopAnimatorStateNames(List<string> stateNames)
+        {
+            _StopAnimatorStateNames = stateNames;
+        }
+        
+        // private int _MovementBlocks;
+        // public void AddMovementBlock(MonoBehaviour behaviour, float blockTime)
+        // {
+        //     behaviour.StartCoroutine(AddMovementBlockRoutine(blockTime));
+        // }
+        //
+        // private IEnumerator AddMovementBlockRoutine(float blockTime)
+        // {
+        //     _MovementBlocks++;
+        //     yield return new WaitForSeconds(blockTime);
+        //     _MovementBlocks--;
+        // }
     }
 
     [Serializable]

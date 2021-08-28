@@ -42,12 +42,15 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
     }
 
     private void Awake() {
-        ContainerHolder.Container.BuildUp(this);
         Collider = gameObject.GetComponentInChildren<Collider2D>();
+    }
+
+    private void Start()
+    {
+        ContainerHolder.Container.BuildUp(this);
         if (UseHealth) {
             MaxHealth = StartHealth;
             Health = MaxHealth;
         }
     }
-
 }

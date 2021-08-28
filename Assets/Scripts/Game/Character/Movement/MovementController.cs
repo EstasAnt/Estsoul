@@ -67,6 +67,8 @@ namespace Character.Movement {
         public float TimeFallingDown => _GroundCheckModule.TimeFallingDown;
         public float TimeNotFallingDown => _GroundCheckModule.TimeNotFallingDown;
 
+        public bool DoubleJump => _JumpModule.DoubleJump;
+
         public float OverridedAirAcceleration { get; set; }
         public bool OverrideAirAcceleration { get; set; }
 
@@ -96,7 +98,6 @@ namespace Character.Movement {
         private void Start() {
             InitializeModules();
             SetupBlackboard();
-            SetupCommon();
             _WalkData = _Blackboard.Get<WalkData>();
             _MovementModules.ForEach(_ => _.Start());
         }
@@ -125,10 +126,6 @@ namespace Character.Movement {
 
         private void SetupBlackboard() {
             _Blackboard = new Blackboard();
-            _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
-        }
-
-        private void SetupCommon() {
             var commonData = _Blackboard.Get<CommonData>();
             commonData.ObjRigidbody = Rigidbody;
             commonData.ObjTransform = this.transform;
@@ -136,8 +133,9 @@ namespace Character.Movement {
             commonData.GroundCollider = GroundCollider;
             commonData.MovementController = this;
             commonData.WeaponController = Owner.WeaponController;
+            _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
         }
-        
+
         private bool _JumpHold;
 
         private void Update() {
@@ -234,6 +232,16 @@ namespace Character.Movement {
         public void ReleaseJump() {
             OnReleaseJump?.Invoke();
         }
+
+        public void SetDontMoveAnimationStateNames(List<string> stateNames)
+        {
+            _WalkModule.SetStopAnimatorStateNames(stateNames);
+        }
+        
+        // public void AddMovementBlock(float blockTime)
+        // {
+        //     _WalkModule.AddMovementBlock(this, blockTime);
+        // }
 
     }
 }

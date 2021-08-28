@@ -27,6 +27,8 @@ namespace Character.Movement.Modules {
             _Parameters = parameters;
         }
 
+        public bool DoubleJump  => _UsedAirJump;
+
         public override void Start() {
             ContainerHolder.Container.BuildUp(this);
             _WallSlideData = BB.Get<WallSlideData>();
