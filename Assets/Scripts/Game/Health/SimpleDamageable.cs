@@ -15,6 +15,8 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
     public float StartHealth;
     public bool UseHealth = false;
 
+    public float DestroyAfterKillTime;
+    
     public Collider2D Collider { get; set; }
 
     public float Health { get; set; }
@@ -38,9 +40,15 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
 
     public void Kill(Damage damage) {
         OnKill?.Invoke(this, damage);
-        Destroy(gameObject);
+        StartCoroutine(DestroyRoutine());
     }
 
+    private IEnumerator DestroyRoutine()
+    {
+        yield return new WaitForSeconds(DestroyAfterKillTime);
+        Destroy(gameObject);
+    }
+    
     private void Awake() {
         Collider = gameObject.GetComponentInChildren<Collider2D>();
     }

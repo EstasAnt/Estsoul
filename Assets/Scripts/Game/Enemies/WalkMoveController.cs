@@ -15,7 +15,7 @@ namespace Game.Movement.Enemies
         [SerializeField]
         private GroundCheckParameters GroundCheckParameters;
         
-        public override float Horizontal { get; }
+        public override float Horizontal => _WalkModule.Horizontal;
         
         private WalkModule _WalkModule;
         private GroundCheckModule _GroundCheckModule;
@@ -24,6 +24,9 @@ namespace Game.Movement.Enemies
             var modules = new List<MovementModule>();
             _WalkModule = new WalkModule(WalkParameters);
             _GroundCheckModule = new GroundCheckModule(GroundCheckParameters);
+            
+            modules.Add(_GroundCheckModule);
+            modules.Add(_WalkModule);
             return modules;
         }
 

@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 5351722546917410909}
   - component: {fileID: 2020110826}
   - component: {fileID: 5789178776078476723}
+  - component: {fileID: 7928669000389052086}
   m_Layer: 0
   m_Name: ZombieFrog
   m_TagString: Untagged
@@ -120,7 +121,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 7
-  m_Material: {fileID: 6200000, guid: ad90c64c6dc0ac8449c6821d625501ee, type: 2}
+  m_Material: {fileID: 6200000, guid: acf51b9d652162f4a9adbab3c3f3011f, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -139,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 30
   UseHealth: 1
+  DestroyAfterKillTime: 3
 --- !u!114 &5789178776078476723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +157,7 @@ MonoBehaviour:
   GroundCollider: {fileID: 168483162777669786}
   BodyCollider: {fileID: 5582079349977127634}
   WalkParameters:
-    Speed: 5
+    Speed: 3
     GroundAcceleration: 20
     AirAcceleration: 10
     RunSoundEffectName: 
@@ -168,6 +170,24 @@ MonoBehaviour:
     - {fileID: 2529501890831782146}
     - {fileID: 8555701358859872913}
     - {fileID: 8209877821708704670}
+--- !u!114 &7928669000389052086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988885561372186135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e4f91fc549b4ff4c8c293d34a343f55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementPointsData:
+    MovementPoints:
+    - PointTransform: {fileID: 0}
+      WaitTime: 3
+    - PointTransform: {fileID: 0}
+      WaitTime: 3
 --- !u!1 &3988885562107687490
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,8 +201,9 @@ GameObject:
   - component: {fileID: 3988885562107687486}
   - component: {fileID: 3988885562107687489}
   - component: {fileID: 3988885562107687488}
+  - component: {fileID: 5654230597559992909}
   m_Layer: 0
-  m_Name: Spine Mecanim GameObject (Zombiefrog)
+  m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,6 +331,18 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!114 &5654230597559992909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988885562107687490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a5939263264de49ffea2d811ca5bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8611454451384384984
 GameObject:
   m_ObjectHideFlags: 0
