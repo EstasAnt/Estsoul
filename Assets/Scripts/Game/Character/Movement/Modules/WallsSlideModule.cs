@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Character.Movement.Modules {
+namespace Game.Movement.Modules {
     public class WallsSlideModule : MovementModule {
         public bool WallSliding => _WallSlideData.WallSliding;
         public bool WallRun => _WallSlideData.WallRun;
@@ -35,7 +35,7 @@ namespace Character.Movement.Modules {
                 newDir = -1;
             else if (_WallSlideData.RightTouch)
                 newDir = 1;
-            CommonData.MovementController.ChangeDirection(newDir);
+            // CommonData.MovementController.ChangeDirection(newDir);
         }
     }
 }

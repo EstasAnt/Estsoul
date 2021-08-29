@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Character.Movement.Modules;
 using UnityEngine;
 
-namespace Character.Movement.Modules {
+namespace Game.Movement.Modules {
     public class PushingModule : MovementModule {
 
         public bool Pushing => Mathf.Abs(_CommonData.MovementController.Velocity.x) > 0.1f && _GroundedData.Grounded && (_Parameters.RightSensor.IsTouching || _Parameters.LeftSensor.IsTouching);

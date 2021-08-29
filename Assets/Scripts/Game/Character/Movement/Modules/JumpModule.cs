@@ -6,7 +6,7 @@ using Tools.VisualEffects;
 using UnityDI;
 using UnityEngine;
 
-namespace Character.Movement.Modules {
+namespace Game.Movement.Modules {
     public class JumpModule : MovementModule {
 
         [Dependency]
@@ -87,7 +87,7 @@ namespace Character.Movement.Modules {
             if (_Parameters.JumpAudioEffectNames.IsNullOrEmpty())
                 return;
             var randIndex = UnityEngine.Random.Range(0, _Parameters.JumpAudioEffectNames.Count);
-            _AudioService.PlaySound3D(_Parameters.JumpAudioEffectNames[randIndex], false, false, CommonData.MovementController.transform.position);
+            _AudioService.PlaySound3D(_Parameters.JumpAudioEffectNames[randIndex], false, false, CommonData.ObjTransform.position);
         }
 
         private IEnumerator JumpRoutine(float jumpVelocity, int fixedUpdatesCount) {

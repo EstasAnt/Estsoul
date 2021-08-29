@@ -4,6 +4,7 @@ using Character.Movement;
 using Character.Shooting;
 using UnityEngine;
 using Core.Services.Game;
+using Game.Movement;
 using InControl;
 
 namespace Character.Control {

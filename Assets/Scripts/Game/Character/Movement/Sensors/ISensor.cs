@@ -1,4 +1,4 @@
-﻿namespace Character.Movement
+﻿namespace Game.Movement.Modules
 {
     public interface ISensor
     {

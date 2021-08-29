@@ -1,5 +1,4 @@
-﻿namespace Character.Movement.Modules
-{
+﻿namespace Game.Movement.Modules {
     public class JumpData : BlackboardData
     {
         public bool Jump;

@@ -12,6 +12,7 @@ using UnityDI;
 using Core.Services.Game;
 using System;
 using Core.Audio;
+using Game.Movement;
 using KlimLib.ResourceLoader;
 using Tools.VisualEffects;
 

@@ -1,4 +1,5 @@
 ﻿using Character.Shooting;
+using Game.Movement;
 using UnityEngine;
 
 namespace Character.Movement.Modules
@@ -9,7 +10,6 @@ namespace Character.Movement.Modules
         public Rigidbody2D ObjRigidbody;
         public Collider2D BodyCollider;
         public Collider2D GroundCollider;
-        public MovementController MovementController;
-        public WeaponController WeaponController;
+        public MovementControllerBase MovementController;
     }
 }

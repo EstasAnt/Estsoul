@@ -3,15 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Character.Control;
+using Character.Movement;
 using Character.Movement.Modules;
 using Character.Shooting;
 using Core.Services.Game;
+using Game.Movement.Modules;
 using Tools.BehaviourTree;
 using UnityEditor;
 using UnityEngine;
 
-namespace Character.Movement {
-    public class MovementController : MonoBehaviour, IVelocityInheritor {
+namespace Game.Movement {
+    public class MovementController : MovementControllerBase, IVelocityInheritor {
         [SerializeField]
         private WalkParameters WalkParameters;
         [SerializeField]
@@ -28,11 +30,7 @@ namespace Character.Movement {
         private JumpParameters JumpParameters;
         [SerializeField]
         private OneWayPlatformParameters OneWayPlatformParameters;
-
-        public Collider2D GroundCollider;
-        public Collider2D BodyCollider;
-
-        private List<MovementModule> _MovementModules;
+        
         private WalkModule _WalkModule;
         private GroundCheckModule _GroundCheckModule;
         private WallsCheckModule _WallsCheckModule;
@@ -41,20 +39,10 @@ namespace Character.Movement {
         private LedgeHangModule _LedgeHangModule;
         private PushingModule _PushingModule;
         private OneWayPlatformModule _OneWayPlatformModule;
-
-        private Blackboard _Blackboard;
-
-
-        private WalkData _WalkData;
+        
 
         public CharacterUnit Owner { get; private set; }
-        public Rigidbody2D Rigidbody { get; private set; }
-        //public Collider2D Collider { get; private set; }
 
-        public Vector2 Velocity => Rigidbody.velocity;
-        public Vector2 LocalVelocity { get; private set; }
-
-        public float Horizontal => _WalkModule.Horizontal;
         public bool IsGrounded => _GroundCheckModule.IsGrounded;
         public bool IsMainGrounded => _GroundCheckModule.IsMainGrounded;
         public float MinDistanceToGround => _GroundCheckModule.MinDistanceToGround;
@@ -69,21 +57,17 @@ namespace Character.Movement {
 
         public bool DoubleJump => _JumpModule.DoubleJump;
 
-        public float OverridedAirAcceleration { get; set; }
-        public bool OverrideAirAcceleration { get; set; }
-
-        public Rigidbody2D AttachedToRB { get; set; }
-        public bool CanDetach { get; set; }
-
         public event Action OnPressJump;
         public event Action OnHoldJump;
         public event Action OnReleaseJump;
 
         public PhysicsMaterial2D BodyColliderDefaultPhysicsMaterial { get; private set; }
 
-        private void Awake() {
+        public override float Horizontal => _WalkModule.Horizontal;
+
+        protected override void Awake() {
+            base.Awake();
             Owner = GetComponent<CharacterUnit>();
-            Rigidbody = GetComponent<Rigidbody2D>();
             BodyColliderDefaultPhysicsMaterial = BodyCollider.sharedMaterial;
             GroundCheckParameters.GroundSensors.ForEach(_ => {
                 _.AddExtentionCollider(GroundCollider);
@@ -95,15 +79,8 @@ namespace Character.Movement {
             });
         }
 
-        private void Start() {
-            InitializeModules();
-            SetupBlackboard();
-            _WalkData = _Blackboard.Get<WalkData>();
-            _MovementModules.ForEach(_ => _.Start());
-        }
-
-        private void InitializeModules() {
-            _MovementModules = new List<MovementModule>();
+        protected override List<MovementModule> CreateModules() {
+            var modules = new List<MovementModule>();
 
             _WalkModule = new WalkModule(WalkParameters);
             _GroundCheckModule = new GroundCheckModule(GroundCheckParameters);
@@ -114,17 +91,18 @@ namespace Character.Movement {
             _PushingModule = new PushingModule(PushingParameters);
             _OneWayPlatformModule = new OneWayPlatformModule(OneWayPlatformParameters);
 
-            _MovementModules.Add(_GroundCheckModule);
-            _MovementModules.Add(_WallsCheckModule);
-            _MovementModules.Add(_WalkModule);
-            _MovementModules.Add(_LedgeHangModule);
-            _MovementModules.Add(_WallsSlideModule);
-            _MovementModules.Add(_JumpModule);
-            _MovementModules.Add(_PushingModule);
-            _MovementModules.Add(_OneWayPlatformModule);
+            modules.Add(_GroundCheckModule);
+            modules.Add(_WallsCheckModule);
+            modules.Add(_WalkModule);
+            modules.Add(_LedgeHangModule);
+            modules.Add(_WallsSlideModule);
+            modules.Add(_JumpModule);
+            modules.Add(_PushingModule);
+            modules.Add(_OneWayPlatformModule);
+            return modules;
         }
 
-        private void SetupBlackboard() {
+        protected override void SetupBlackboard() {
             _Blackboard = new Blackboard();
             var commonData = _Blackboard.Get<CommonData>();
             commonData.ObjRigidbody = Rigidbody;
@@ -132,48 +110,30 @@ namespace Character.Movement {
             commonData.BodyCollider = BodyCollider;
             commonData.GroundCollider = GroundCollider;
             commonData.MovementController = this;
-            commonData.WeaponController = Owner.WeaponController;
             _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
         }
 
         private bool _JumpHold;
 
-        private void Update() {
-            _MovementModules.ForEach(_ => _.Update());
-            LocalVelocity = Velocity;
-            if (!AttachedToRB) {
-                AttachedToRB = null;
-                CanDetach = true;
-            } else {
-                LocalVelocity -= AttachedToRB.velocity;
-            }
+        protected override void Update() {
+            base.Update();
         }
 
-        private void LateUpdate() {
-            _MovementModules.ForEach(_ => _.LateUpdate());
+        protected override void LateUpdate() {
+            base.LateUpdate();
             _JumpHold = false;
         }
 
-        private void FixedUpdate() {
+        protected override void FixedUpdate() {
+            base.FixedUpdate();
             _MovementModules.ForEach(_ => _.FixedUpdate());
         }
 
-        private void OnCollisionEnter2D(Collision2D collision) {
-            _MovementModules.ForEach(_ => _.OnCollisionEnter2D(collision));
-            // if(CanDetach && AttachedToRB && Layers.Masks.LayerInMask(Layers.Masks.GroundAndPlatform, collision.gameObject.layer)) {
-            //     AttachedToRB = null;
-            // }
-        }
-
-        private void OnCollisionExit2D(Collision2D collision) {
-            _MovementModules.ForEach(_ => _.OnCollisionExit2D(collision));
-        }
-
-        public void SetHorizontal(float hor) {
+        public override void SetHorizontal(float hor) {
             _WalkModule.SetHorizontal(hor);
         }
 
-        public void SetVertical(float vertical) {
+        public override void SetVertical(float vertical) {
             _WalkModule.SetVertical(vertical);
         }
 
@@ -192,15 +152,6 @@ namespace Character.Movement {
             if (Owner.WeaponController.HasVehicle && Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
                 return false;
             return _JumpModule.WallJump(this);
-        }
-
-        public void ChangeDirection(int newDir) {
-            if (_WalkData.Direction == newDir) //_WalkData.Direction == newDir
-                return;
-            _WalkData.Direction = newDir;
-            var localScale = WalkParameters.IkTransform.localScale;
-            var newLocalScale = new Vector3(newDir * Mathf.Abs(localScale.x), localScale.y, localScale.z);
-            WalkParameters.IkTransform.localScale = newLocalScale;
         }
 
         public bool FallDownPlatform() {
@@ -238,10 +189,10 @@ namespace Character.Movement {
             _WalkModule.SetStopAnimatorStateNames(stateNames);
         }
         
-        // public void AddMovementBlock(float blockTime)
-        // {
-        //     _WalkModule.AddMovementBlock(this, blockTime);
-        // }
+        public void SetCanLegeHang(bool val)
+        {
+            _LedgeHangModule.CanLedgeHang = val;
+        }
 
     }
 }

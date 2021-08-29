@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Character.Movement;
 using Character.Shooting;
 using Game.Character.Shooting;
+using Game.Movement;
 using KlimLib.SignalBus;
 using UnityEngine;
 using UnityDI;

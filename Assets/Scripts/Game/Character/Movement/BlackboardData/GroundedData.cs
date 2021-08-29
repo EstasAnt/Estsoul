@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Character.Movement.Modules {
+namespace Game.Movement.Modules {
     public class GroundedData : BlackboardData {
         public bool Grounded;
         public bool MainGrounded;

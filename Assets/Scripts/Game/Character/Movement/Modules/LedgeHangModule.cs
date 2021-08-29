@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Game.Movement.Modules;
 using UnityEngine;
 
 namespace Character.Movement.Modules {
@@ -14,6 +15,8 @@ namespace Character.Movement.Modules {
 
         private float _StartGravityScale;
 
+        public bool CanLedgeHang { get; set; }
+        
         public LedgeHangModule(LedgeHangParameters parameters) {
             _Parameters = parameters;
         }
@@ -26,7 +29,7 @@ namespace Character.Movement.Modules {
         }
 
         public override void Update() {
-            if (CommonData.MovementController.Owner.WeaponController.HasVehicle && CommonData.MovementController.Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
+            if(!CanLedgeHang)
                 return;
             var timeSinceLastJump = Time.time - _JumpData.LastWallJumpTime;
             _WallSlideData.LedgeHanging = !_GroundedData.MainGrounded &&
@@ -56,7 +59,7 @@ namespace Character.Movement.Modules {
                 newDir = -1;
             else if (_WallSlideData.RightTouch)
                 newDir = 1;
-            CommonData.MovementController.ChangeDirection(newDir);
+            // CommonData.MovementController.ChangeDirection(newDir);
         }
     }
 

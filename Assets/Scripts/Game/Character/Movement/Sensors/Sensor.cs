@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Character.Movement {
+namespace Game.Movement.Modules {
     public class Sensor : MonoBehaviour, ISensor {
         [SerializeField]
         private float _Radius;

@@ -1,29 +1,30 @@
 Master of Cult.png
-size:486,483
+size:502,516
 filter:Linear,Linear
 pma:true
 scale:0.2
 body
-bounds:306,30,102,97
+bounds:360,105,102,97
 hand down
-bounds:402,46,93,82
-rotate:270
-hand up
-bounds:2,2,107,195
+bounds:351,10,93,82
 rotate:90
+hand up
+bounds:393,319,107,195
 legs
-bounds:198,125,215,163
-rotate:180
+bounds:2,4,215,163
+rotate:90
 mask
-bounds:303,290,114,191
+bounds:167,105,114,191
+rotate:90
 r_hand
-bounds:2,146,57,41
+bounds:435,62,57,41
 Слой 127
-bounds:2,188,302,293
-offsets:0,0,389,293
+bounds:2,221,389,293
 Слой 68
-bounds:198,33,95,91
+bounds:258,8,95,91
+rotate:90
 Слой 69
-bounds:83,81,113,106
+bounds:393,204,113,106
+rotate:90
 Слой4
-bounds:375,197,89,101
+bounds:167,2,89,101

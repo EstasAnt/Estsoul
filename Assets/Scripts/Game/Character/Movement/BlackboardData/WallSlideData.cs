@@ -1,5 +1,4 @@
-﻿namespace Character.Movement.Modules
-{
+﻿namespace Game.Movement.Modules {
     public class WallSlideData : BlackboardData
     {
         public bool LeftTouch;

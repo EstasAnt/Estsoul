@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.Movement.Modules;
 using UnityEngine;
 
-namespace Character.Movement.Modules {
+namespace Game.Movement.Modules {
     public class OneWayPlatformModule : MovementModule {
 
         private GroundedData _GroundedData;

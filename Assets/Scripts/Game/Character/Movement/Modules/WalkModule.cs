@@ -8,7 +8,7 @@ using Tools.BehaviourTree;
 using UnityDI;
 using UnityEngine;
 
-namespace Character.Movement.Modules {
+namespace Game.Movement.Modules {
     public class WalkModule : MovementModule {
         [Dependency]
         private readonly AudioService _AudioService;
@@ -125,7 +125,7 @@ namespace Character.Movement.Modules {
             if (_WalkData.Horizontal == 0)
                 return;
             var newDir = _WalkData.Horizontal > 0 ? 1 : -1;
-            CommonData.MovementController.ChangeDirection(newDir);
+            ChangeDirection(newDir);
         }
 
         private List<string> _StopAnimatorStateNames;
@@ -133,6 +133,15 @@ namespace Character.Movement.Modules {
         public void SetStopAnimatorStateNames(List<string> stateNames)
         {
             _StopAnimatorStateNames = stateNames;
+        }
+        
+        public void ChangeDirection(int newDir) {
+            if (_WalkData.Direction == newDir) //_WalkData.Direction == newDir
+                return;
+            _WalkData.Direction = newDir;
+            var localScale = CommonData.MovementController.Root.localScale;
+            var newLocalScale = new Vector3(newDir * Mathf.Abs(localScale.x), localScale.y, localScale.z);
+            CommonData.MovementController.Root.localScale = newLocalScale;
         }
         
         // private int _MovementBlocks;
@@ -154,7 +163,6 @@ namespace Character.Movement.Modules {
         public float Speed = 1f;
         public float GroundAcceleration = 1f;
         public float AirAcceleration = 1f;
-        public Transform IkTransform;
         public string RunSoundEffectName;
     }
 }

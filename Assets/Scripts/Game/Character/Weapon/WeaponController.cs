@@ -53,6 +53,7 @@ namespace Character.Shooting {
         }
 
         private void Update() {
+            Owner.MovementController.SetCanLegeHang(!HasVehicle || Vehicle.InputProcessor.CurrentMagazine > 0);
             if(MainWeapon == null) {
                 //MeleeAttack?.InputProcessor.Process();
             }

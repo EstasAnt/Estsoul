@@ -212,11 +212,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 436e178aee27eea438925b8d3ffa09c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Root: {fileID: 4518479416629902151}
+  GroundCollider: {fileID: 8950727422667795683}
+  BodyCollider: {fileID: 2425413470185177007}
   WalkParameters:
     Speed: 10
     GroundAcceleration: 20
     AirAcceleration: 10
-    IkTransform: {fileID: 4518479416629902151}
     RunSoundEffectName: 
   GroundCheckParameters:
     GroundSensors:
@@ -256,8 +258,6 @@ MonoBehaviour:
     JumpAudioEffectNames: []
   OneWayPlatformParameters:
     PlatformIgnoreCollisionTime: 1
-  GroundCollider: {fileID: 8950727422667795683}
-  BodyCollider: {fileID: 2425413470185177007}
 --- !u!114 &2425413470185177000
 MonoBehaviour:
   m_ObjectHideFlags: 0

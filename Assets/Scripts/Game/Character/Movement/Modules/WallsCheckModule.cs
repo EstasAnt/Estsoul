@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Character.Movement.Modules
-{
+namespace Game.Movement.Modules {
     public class WallsCheckModule : MovementModule
     {
         private WallSlideData _WallSlideData;
