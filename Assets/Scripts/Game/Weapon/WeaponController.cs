@@ -29,7 +29,7 @@ namespace Character.Shooting {
         public event Action<Weapon> OnVehicleThrowed;
 
         public CharacterUnit Owner { get; private set; }
-        public WeaponPicker WeaponPicker { get; private set; }
+        // public WeaponPicker WeaponPicker { get; private set; }
 
         public Vector2 AimPosition { get; private set; }
 
@@ -40,15 +40,15 @@ namespace Character.Shooting {
 
         private void Awake() {
             Owner = GetComponent<CharacterUnit>();
-            WeaponPicker = GetComponentInChildren<WeaponPicker>();
+            // WeaponPicker = GetComponentInChildren<WeaponPicker>();
         }
 
         private void Start() {
             ContainerHolder.Container.BuildUp(this);
-            MainWeapon?.PickableItem.PickUp(Owner);
+            // MainWeapon?.PickableItem.PickUp(Owner);
             MainWeapon?.PickUp(Owner);
             //TryPickUpWeapon(MeleeAttack);
-            Vehicle?.PickableItem.PickUp(Owner);
+            // Vehicle?.PickableItem.PickUp(Owner);
             Vehicle?.PickUp(Owner);
         }
 
@@ -65,10 +65,6 @@ namespace Character.Shooting {
         }
 
         public void SetAimPosition(Vector2 position) {
-            SetWeaponedHandPosition(position);
-        }
-
-        public void SetWeaponedHandPosition(Vector2 position) {
             AimPosition = position;
         }
 
@@ -86,19 +82,7 @@ namespace Character.Shooting {
 
         public void ThrowOutMainWeapon() {
             if (!HasMainWeapon) return;
-                ThrowOutMainWeapon(MainWeapon.Stats.MaxThrowStartSpeed, -360f);
-        }
-
-        public void ThrowOutMainWeapon(float startSpeed, float angularVel) {
-            if (!HasMainWeapon) return;
-            Vector2 dir = (AimPosition - MainWeapon.WeaponView.ShootTransform.position.ToVector2());
-            dir.Normalize();
-            ThrowOutMainWeapon(dir * startSpeed, angularVel);
-        }
-
-        public void ThrowOutMainWeapon(Vector2 startSpeed, float angularVel) {
-            if (!HasMainWeapon) return;
-            MainWeapon.ThrowOut(Owner, startSpeed, angularVel);
+            MainWeapon.ThrowOut(Owner);
             var weapon = MainWeapon;
             MainWeapon = null;
             PlaySound(ThrowSound);
@@ -119,7 +103,7 @@ namespace Character.Shooting {
 
         public void ThrowOutVehicle(Vector2 startSpeed, float angularVel) {
             if (!HasVehicle) return;
-            Vehicle.ThrowOut(Owner, startSpeed, angularVel);
+            Vehicle.ThrowOut(Owner);
             var vehicle = Vehicle;
             Vehicle = null;
             PlaySound(ThrowSound);
@@ -167,7 +151,7 @@ namespace Character.Shooting {
         }
 
         private void OnDestroy() {
-            ThrowOutMainWeapon(Owner.Rigidbody2D.velocity, UnityEngine.Random.Range(-360f, 360f));
+            ThrowOutMainWeapon();
             ThrowOutVehicle();
         }
     }

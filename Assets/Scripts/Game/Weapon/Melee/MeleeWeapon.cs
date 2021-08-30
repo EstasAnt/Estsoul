@@ -3,6 +3,7 @@ using System.Linq;
 using Character.Shooting;
 using Com.LuisPedroFonseca.ProCamera2D;
 using Game.Character.Shooting;
+using Game.Weapons;
 using KlimLib.SignalBus;
 using UnityDI;
 using UnityEngine;
@@ -33,7 +34,7 @@ namespace Game.Character.Melee
             GetComponentsInChildren(Attacks);
         }
 
-        public override bool PickUp(CharacterUnit owner)
+        public override bool PickUp(IWeaponHolder owner)
         {
             var pickedUp = base.PickUp(owner);
             if(pickedUp)

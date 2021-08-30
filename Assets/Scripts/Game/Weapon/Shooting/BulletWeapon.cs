@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Tools;
 using System.Collections.Generic;
+using Game.Weapons;
 using Tools.VisualEffects;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ namespace Character.Shooting
             data.Position = WeaponView.ShootTransform.position;
 
             Vector3 shootRotEuler;
-            var directionVector = PickableItem.Owner.WeaponController.AimPosition - WeaponView.ShootTransform.position.ToVector2();
+            var directionVector = Owner.WeaponController.AimPosition - WeaponView.ShootTransform.position.ToVector2();
             shootRotEuler = Quaternion.LookRotation(directionVector).eulerAngles;
             if (_Stats.DispersionAngle != 0) {
                 shootRotEuler = new Vector3(shootRotEuler.x + RandomDispersionAngle, shootRotEuler.y, shootRotEuler.z);

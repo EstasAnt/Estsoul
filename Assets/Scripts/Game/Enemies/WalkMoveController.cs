@@ -18,10 +18,14 @@ namespace Game.Movement.Enemies
         
         public override float Horizontal => _WalkModule.Horizontal;
         
+        public override float Direction => _WalkModule.Direction;
+        
         private WalkModule _WalkModule;
         private GroundCheckModule _GroundCheckModule;
 
         private IDamageable _Damageable;
+
+        public override bool CanMove => true;
 
         protected override void Awake()
         {
@@ -74,6 +78,11 @@ namespace Game.Movement.Enemies
         public override void SetVertical(float vertical)
         {
             _WalkModule.SetVertical(vertical);
+        }
+        
+        public override void SetDontMoveAnimationStateNames(List<string> stateNames)
+        {
+            _WalkModule.SetStopAnimatorStateNames(stateNames);
         }
     }
 }

@@ -13,10 +13,11 @@ using Core.Services.Game;
 using System;
 using Core.Audio;
 using Game.Movement;
+using Game.Weapons;
 using KlimLib.ResourceLoader;
 using Tools.VisualEffects;
 
-public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
+public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder {
     [Dependency]
     private readonly SignalBus _SignalBus;
     [Dependency]
@@ -25,6 +26,9 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
     private readonly IResourceLoaderService _ResourceLoader;
 
     public MovementController MovementController { get; private set; }
+
+    public byte Id => OwnerId;
+    MovementControllerBase IWeaponHolder.MovementController => MovementController;
     public WeaponController WeaponController { get; private set; }
 
     public DamageBuffer DamageBuffer { get; private set; }
@@ -107,5 +111,3 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
         PlayeHitSound(DeathAudioEffects);
     }
 }
-
-public interface IWeaponPicker { }

@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Character.Control;
-using Character.Movement;
+﻿using System.Collections.Generic;
 using Character.Movement.Modules;
-using Character.Shooting;
-using Core.Services.Game;
 using Game.Movement.Modules;
 using Tools.BehaviourTree;
-using UnityEditor;
 using UnityEngine;
 
 namespace Game.Movement {
@@ -48,7 +40,6 @@ namespace Game.Movement {
         public float MinDistanceToGround => _GroundCheckModule.MinDistanceToGround;
         public bool FallingDown => _GroundCheckModule.FallingDown;
         public bool WallSliding => _WallsSlideModule.WallSliding;
-        public float Direction => _WalkModule.Direction;
         public bool WallRun => _WallsSlideModule.WallRun;
         public bool LedgeHang => _LedgeHangModule.LedgeHang;
         public bool Pushing => _PushingModule.Pushing;
@@ -58,14 +49,13 @@ namespace Game.Movement {
         public bool DoubleJump => _JumpModule.DoubleJump;
 
         public float MaxSpeed => WalkParameters.Speed;
-        
-        public event Action OnPressJump;
-        public event Action OnHoldJump;
-        public event Action OnReleaseJump;
 
         public PhysicsMaterial2D BodyColliderDefaultPhysicsMaterial { get; private set; }
 
         public override float Horizontal => _WalkModule.Horizontal;
+        public override float Direction => _WalkModule.Direction;
+
+        public override bool CanMove => !_LedgeHangModule.LedgeHang;
 
         protected override void Awake() {
             base.Awake();
@@ -115,8 +105,6 @@ namespace Game.Movement {
             _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
         }
 
-        private bool _JumpHold;
-
         protected override void Update() {
             base.Update();
         }
@@ -160,33 +148,7 @@ namespace Game.Movement {
             return _OneWayPlatformModule.FallDownPlatform();
         }
 
-        public void SubscribeWeaponOnEvents(Weapon weapon) {
-            OnHoldJump += weapon.InputProcessor.ProcessHold;
-            OnPressJump += weapon.InputProcessor.ProcessPress;
-            OnReleaseJump += weapon.InputProcessor.ProcessRelease;
-        }
-
-        public void UnSubscribeWeaponOnEvents(Weapon weapon) {
-            OnHoldJump -= weapon.InputProcessor.ProcessHold;
-            OnPressJump -= weapon.InputProcessor.ProcessPress;
-            OnReleaseJump -= weapon.InputProcessor.ProcessRelease;
-        }
-
-        public bool ProcessHoldJump() {
-            _JumpHold = true;
-            OnHoldJump?.Invoke();
-            return false;
-        }
-
-        public void PressJump() {
-            OnPressJump?.Invoke();
-        }
-
-        public void ReleaseJump() {
-            OnReleaseJump?.Invoke();
-        }
-
-        public void SetDontMoveAnimationStateNames(List<string> stateNames)
+        public override void SetDontMoveAnimationStateNames(List<string> stateNames)
         {
             _WalkModule.SetStopAnimatorStateNames(stateNames);
         }

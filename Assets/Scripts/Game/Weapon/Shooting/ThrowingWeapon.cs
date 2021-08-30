@@ -2,6 +2,8 @@
 using Character.Health;
 using System.Collections;
 using System.Threading;
+using Game.Weapons;
+using Items;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +37,7 @@ namespace Character.Shooting {
             return data;
         }
 
-        public override bool PickUp(CharacterUnit owner) {
+        public override bool PickUp(IWeaponHolder owner) {
             var pickedUp = base.PickUp(owner);
             InputProcessor.SetMagazine(1);
             return pickedUp;
@@ -50,24 +52,24 @@ namespace Character.Shooting {
             var projectile = GetProjectile();
             var data = GetProjectileData();
             projectile.Setup(data);
-            PickableItem.Owner.WeaponController.ThrowOutMainWeapon(data.StartVelocity, -720f);
+            Owner.WeaponController.ThrowOutMainWeapon();
             projectile.Play();
-            PickableItem.CanPickUp = false;
+            // PickableItem.CanPickUp = false;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (_Stats.CanPickedUp)
-            {
-                StartCoroutine(PickUpItem());
-            }
-        }
-
-        IEnumerator PickUpItem()
-        {
-            yield return new WaitForSeconds(1);
-            PickableItem.CanPickUp = true;
-        }
+        // private void OnCollisionEnter2D(Collision2D collision)
+        // {
+        //     if (_Stats.CanPickedUp)
+        //     {
+        //         StartCoroutine(PickUpItem());
+        //     }
+        // }
+        //
+        // IEnumerator PickUpItem()
+        // {
+        //     yield return new WaitForSeconds(1);
+        //     PickableItem.CanPickUp = true;
+        // }
 
     }
 }

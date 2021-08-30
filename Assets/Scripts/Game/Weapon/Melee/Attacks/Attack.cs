@@ -41,7 +41,7 @@ namespace Game.Character.Melee
 
             if (CharacterAddForce != Vector2.zero)
             {
-                var mc = Weapon?.PickableItem?.Owner?.MovementController;
+                var mc = Weapon?.Owner?.MovementController;
                 if (mc != null)
                 {
                     if (StopWhileAttack)
@@ -82,7 +82,7 @@ namespace Game.Character.Melee
 
         private Damage GetDamage(IDamageable dmgbl)
         {
-            var instigator = Weapon.PickableItem.Owner.OwnerId;
+            var instigator = Weapon.Owner.Id;
             var amount = Weapon.Stats.Damage;
             return new Damage(instigator, dmgbl, amount);
         }

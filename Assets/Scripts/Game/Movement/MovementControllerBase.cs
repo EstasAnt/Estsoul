@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Character.Health;
-using Character.Movement.Modules;
+using Character.Shooting;
 using Tools.BehaviourTree;
 using UnityEngine;
 
@@ -28,9 +27,16 @@ namespace Game.Movement
         
         public abstract float Horizontal { get; }
 
+        public abstract float Direction { get; }
+        
         public float OverridedAirAcceleration { get; set; }
         public bool OverrideAirAcceleration { get; set; }
         
+        public event Action OnPressJump;
+        public event Action OnHoldJump;
+        public event Action OnReleaseJump;
+        
+        public abstract bool CanMove { get;  }
         
         protected virtual void Awake()
         {
@@ -76,7 +82,9 @@ namespace Game.Movement
             //     AttachedToRB = null;
             // }
         }
-        
+
+        public abstract void SetDontMoveAnimationStateNames(List<string> stateNames);
+
         protected virtual void OnCollisionExit2D(Collision2D collision) {
             _MovementModules.ForEach(_ => _.OnCollisionExit2D(collision));
         }
@@ -91,5 +99,33 @@ namespace Game.Movement
         public abstract void SetHorizontal(float hor);
         
         public abstract void SetVertical(float hor);
+        
+        protected bool _JumpHold;
+        
+        public bool ProcessHoldJump() {
+            _JumpHold = true;
+            OnHoldJump?.Invoke();
+            return false;
+        }
+
+        public void PressJump() {
+            OnPressJump?.Invoke();
+        }
+
+        public void ReleaseJump() {
+            OnReleaseJump?.Invoke();
+        }
+        
+        public void SubscribeWeaponOnEvents(Weapon weapon) {
+            OnHoldJump += weapon.InputProcessor.ProcessHold;
+            OnPressJump += weapon.InputProcessor.ProcessPress;
+            OnReleaseJump += weapon.InputProcessor.ProcessRelease;
+        }
+
+        public void UnSubscribeWeaponOnEvents(Weapon weapon) {
+            OnHoldJump -= weapon.InputProcessor.ProcessHold;
+            OnPressJump -= weapon.InputProcessor.ProcessPress;
+            OnReleaseJump -= weapon.InputProcessor.ProcessRelease;
+        }
     }
 }

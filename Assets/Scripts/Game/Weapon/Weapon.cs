@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using Character.CloseCombat;
 using Character.Health;
 using Core.Audio;
+using Game.Weapons;
 using Items;
 using UnityDI;
 using UnityEngine;
@@ -14,8 +15,10 @@ namespace Character.Shooting {
         public virtual WeaponReactionType WeaponReaction => WeaponReactionType.Fire;
 
         public WeaponView WeaponView { get; protected set; }
-        public PickableItem PickableItem { get; protected set; }
+        // public PickableItem PickableItem { get; protected set; }
 
+        public IWeaponHolder Owner { get; protected set; }
+        
         public abstract WeaponInputProcessor InputProcessor { get; }
 
         [SerializeField]
@@ -48,33 +51,37 @@ namespace Character.Shooting {
 
         protected virtual bool UseThrowForce => true;
 
-        protected virtual void Awake() {
-            PickableItem = GetComponent<PickableItem>();
+        protected virtual void Awake()
+        {
+            WeaponView = GetComponent<WeaponView>();
+            // PickableItem = GetComponent<PickableItem>();
         }
 
         protected virtual void Start() {
             ContainerHolder.Container.BuildUp(GetType(), this);
-            WeaponView = PickableItem?.ItemView as WeaponView;
             WeaponsInfoContainer.AddWeapon(this);
         }
 
-        public virtual bool PickUp(CharacterUnit owner) {
-            var pickedUp = false;
-            if (PickableItem != null)
-                pickedUp = PickableItem.PickUp(owner);
+        public virtual bool PickUp(IWeaponHolder owner)
+        {
+            // var pickedUp = false;
+            // if (PickableItem != null)
+            //     pickedUp = PickableItem.PickUp(owner);
             // else
             //     pickedUp = this is MeleeAttack;
-            if (pickedUp) {
-                if (WeaponReaction == WeaponReactionType.Fire)
-                    owner?.WeaponController?.SubscribeWeaponOnEvents(this);
-                else if (WeaponReaction == WeaponReactionType.Jump)
-                    owner?.MovementController?.SubscribeWeaponOnEvents(this);
-                OnEquip();
-            }
-            return pickedUp;
+            // if (pickedUp) {
+            if (WeaponReaction == WeaponReactionType.Fire)
+                owner?.WeaponController?.SubscribeWeaponOnEvents(this);
+            else if (WeaponReaction == WeaponReactionType.Jump)
+                owner?.MovementController?.SubscribeWeaponOnEvents(this);
+            OnEquip();
+            Owner = owner;
+            return true;
+            // }
+            // return pickedUp;
         }
 
-        public virtual void ThrowOut(CharacterUnit owner, Vector2? startVelocity = null, float? angularVel = null) {
+        public virtual void ThrowOut(IWeaponHolder owner) {
             switch (WeaponReaction) {
                 case WeaponReactionType.Fire:
                     owner?.WeaponController?.UnSubscribeWeaponOnEvents(this);
@@ -83,12 +90,13 @@ namespace Character.Shooting {
                     owner?.MovementController?.UnSubscribeWeaponOnEvents(this);
                     break;
             }
+            Owner = null;
             OnLose();
-            PickableItem.ThrowOut(startVelocity, angularVel);
+            // PickableItem.ThrowOut(startVelocity, angularVel);
         }
 
         protected virtual Damage GetDamage() {
-            return new Damage(PickableItem.Owner?.OwnerId, null, _Stats.Damage);
+            return new Damage(Owner?.Id, null, _Stats.Damage);
         }
 
         protected virtual void Enable() {

@@ -33,14 +33,14 @@ namespace Character.Shooting {
                 var data = GetProjectileData();
                 projectile.Setup(data);
                 projectile.Play();
-                if (!PickableItem.Owner.MovementController.LedgeHang)
+                if (Owner.MovementController.CanMove)
                     AddRecoil(data.Rotation * -Vector3.forward);
             }
         }
 
         private void AddRecoil(Vector2 direction) {
             direction.y *= 0.6f;
-            PickableItem.Owner.Rigidbody2D.AddForce(direction * Stats.RecoilForce);
+            Owner.MovementController.Rigidbody.AddForce(direction * Stats.RecoilForce);
         }
     }
 }

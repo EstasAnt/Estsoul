@@ -21,7 +21,8 @@ namespace RC.UI.Markers {
         }
 
         public override bool GetVisibility() {
-            return _Weapon.PickableItem.Owner == null;
+            // return _Weapon.PickableItem.Owner == null;
+            return true;
         }
 
         protected override void RefreshData(ItemMarkerData data) {
