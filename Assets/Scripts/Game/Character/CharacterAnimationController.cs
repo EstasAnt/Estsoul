@@ -38,6 +38,8 @@ public class CharacterAnimationController : MonoBehaviour {
         Animator.SetTrigger(signal.AnimationTriggerName);
     }
 
+    private float SpeedForAnimator => Mathf.Clamp(Mathf.InverseLerp(0.3f, _MovementController.MaxSpeed, Mathf.Abs(_MovementController.Velocity.x)), 0.3f, 1f);
+    
     private void Update()
     {
         if (_MovementController == null || Animator == null) return;
@@ -49,7 +51,8 @@ public class CharacterAnimationController : MonoBehaviour {
         // Animator.SetBool("WallRun", _MovementController.WallRun);
         // Animator.SetBool("WallSliding", _MovementController.WallSliding);
         // Animator.SetBool("LedgeHang", _MovementController.LedgeHang);
-        Animator.SetFloat("Speed", Mathf.Abs(_MovementController.LocalVelocity.x / 50f));
+        Animator.SetFloat("Speed", Mathf.Abs(_MovementController.Velocity.x));
+        Animator.SetFloat("SpeedForWalkAnimation", SpeedForAnimator);
         // Animator.SetBool("Pushing", _MovementController.Pushing);
         // Animator.SetFloat("TimeFallingDown", _MovementController.TimeFallingDown);
         // Animator.SetFloat("TimeNotFallingDown", _MovementController.TimeNotFallingDown);

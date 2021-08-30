@@ -57,6 +57,8 @@ namespace Game.Movement {
 
         public bool DoubleJump => _JumpModule.DoubleJump;
 
+        public float MaxSpeed => WalkParameters.Speed;
+        
         public event Action OnPressJump;
         public event Action OnHoldJump;
         public event Action OnReleaseJump;
