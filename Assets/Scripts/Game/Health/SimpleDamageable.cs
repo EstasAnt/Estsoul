@@ -17,8 +17,6 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
 
     public float DestroyAfterKillTime;
 
-    public bool DisablePhysicsAfterDeath = true;
-    
     public Collider2D Collider { get; set; }
 
     public float Health { get; set; }
@@ -39,15 +37,12 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
         OnDamage?.Invoke(this, damage);
     }
 
-    public void Kill(Damage damage) {
+    public void Kill(Damage damage)
+    {
         Dead = true;
-        if (DisablePhysicsAfterDeath)
-        {
-            var rb = GetComponent<Rigidbody2D>();
-            Destroy(rb);
-            var collliders = GetComponentsInChildren<Collider2D>();
-            collliders.ForEach(_ => Destroy(_));
-        }
+
+        gameObject.layer = LayerMask.NameToLayer(Layers.Names.Corpse);
+
         OnKill?.Invoke(this, damage);
         StartCoroutine(DestroyRoutine());
     }
