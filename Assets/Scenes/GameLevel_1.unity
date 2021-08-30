@@ -31936,20 +31936,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieFrog
       objectReference: {fileID: 0}
+    - target: {fileID: 3988885561372186135, guid: e0c133a45a9006849be85304d7aced34,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3988885562107687487, guid: e0c133a45a9006849be85304d7aced34,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7928669000389052086, guid: e0c133a45a9006849be85304d7aced34,
-        type: 3}
-      propertyPath: MovementPointsData.MovementPoints.Array.data[0].WaitTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7928669000389052086, guid: e0c133a45a9006849be85304d7aced34,
-        type: 3}
-      propertyPath: MovementPointsData.MovementPoints.Array.data[1].WaitTime
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7928669000389052086, guid: e0c133a45a9006849be85304d7aced34,
         type: 3}
@@ -32039,6 +32034,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cactus
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268067837255259871, guid: 2e6c027a5f35e8545841b7a0e40f9e06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8268067837255259871, guid: 2e6c027a5f35e8545841b7a0e40f9e06,
         type: 3}

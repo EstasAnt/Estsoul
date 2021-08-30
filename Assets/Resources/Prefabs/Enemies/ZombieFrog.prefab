@@ -140,7 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 30
   UseHealth: 1
-  DestroyAfterKillTime: 3
+  DestroyAfterKillTime: 5
+  DisableColliderAfterDeath: 1
 --- !u!114 &5789178776078476723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2121506709
-  m_SortingLayer: 6
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &3988885562107687489

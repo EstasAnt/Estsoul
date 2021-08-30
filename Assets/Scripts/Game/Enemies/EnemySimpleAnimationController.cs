@@ -10,24 +10,24 @@ namespace Game.Movement.Enemies
         private MovementControllerBase _MovementController;
         private Animator Animator;
 
-        private SimpleDamageable _simpleDamageable;
+        private IDamageable _Damageable;
         
         private void Awake() {
             ContainerHolder.Container.BuildUp(this);
             Animator = GetComponent<Animator>();
             _MovementController = GetComponentInParent<MovementControllerBase>();
-            _simpleDamageable = GetComponentInParent<SimpleDamageable>();
+            _Damageable = GetComponentInParent<SimpleDamageable>();
         }
 
         private void Start()
         {
-            if (_simpleDamageable != null)
+            if (_Damageable != null)
             {
-                _simpleDamageable.OnKill += SimpleDamageableOnOnKill;
+                _Damageable.OnKill += DamageableOnOnKill;
             }
         }
 
-        private void SimpleDamageableOnOnKill(SimpleDamageable arg1, Damage arg2)
+        private void DamageableOnOnKill(IDamageable arg1, Damage arg2)
         {
             Animator.SetTrigger("Death");
         }
@@ -42,9 +42,9 @@ namespace Game.Movement.Enemies
 
         private void OnDestroy()
         {
-            if (_simpleDamageable != null)
+            if (_Damageable != null)
             {
-                _simpleDamageable.OnKill -= SimpleDamageableOnOnKill;
+                _Damageable.OnKill -= DamageableOnOnKill;
             }
         }
     }

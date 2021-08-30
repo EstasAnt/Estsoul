@@ -10,19 +10,24 @@ using UnityEngine;
 
 namespace Character.Shooting {
     public class GrenadeProjectile : ThrowingProjectile {
-        private HealthDamageable _HealthDamageable;
+        private IDamageable _Damageable;
         public float Timer;
         public ThrowingWeapon ThrowingWeapon { get; private set; }
 
         protected override void Awake() {
             base.Awake();
             _RB = GetComponent<Rigidbody2D>();
-            _HealthDamageable = GetComponent<HealthDamageable>();
+            _Damageable = GetComponent<HealthDamageable>();
             ThrowingWeapon = GetComponent<ThrowingWeapon>();
         }
 
         private void Start() {
-            _HealthDamageable.OnDeath += PerformHit;
+            _Damageable.OnKill += DamageableOnOnKill;
+        }
+
+        private void DamageableOnOnKill(IDamageable arg1, Damage arg2)
+        {
+            PerformHit();
         }
 
 
@@ -30,11 +35,9 @@ namespace Character.Shooting {
             base.Setup(data);
             StartCoroutine(ExplosionRoutine());
         }
-
-        //public override void Play() {
-        //    base.Play();
-        //}
-
+        
+        
+        
         private void PerformHit() {
             Setup(ThrowingWeapon.GetProjectileData());
             PerformHit(null, true);
@@ -47,7 +50,7 @@ namespace Character.Shooting {
 
         protected override void OnDestroy() {
             base.OnDestroy();
-            _HealthDamageable.OnDeath -= PerformHit;
+            _Damageable.OnKill -= DamageableOnOnKill;
         }
     }
 }

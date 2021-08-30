@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character.Health;
 using Game.AI.CustomBehaviours.BlackboardData;
 using Game.AI.CustomBehaviours.Tasks;
 using Tools.BehaviourTree;
@@ -9,6 +11,15 @@ using UnityEngine;
 public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
 {
     public MovementPointsData MovementPointsData;
+
+    private IDamageable _Damageable;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _Damageable = GetComponent<IDamageable>();
+    }
+
     protected override void Initialize()
     {
         ContainerHolder.Container.BuildUp(GetType(), this);
@@ -32,6 +43,8 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
     
     protected void Update() {
         //ToDo: Move update to scheduler service
+        if(_Damageable.Dead)
+            return;
         UpdateBT();
     }
 }

@@ -4,24 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyOnDeath : MonoBehaviour {
-    public HealthDamageable HealthDamageable;
+    public IDamageable Damageable;
 
     private void Awake() {
-        if(HealthDamageable == null)
-            HealthDamageable = GetComponentInParent<HealthDamageable>();
-        HealthDamageable.OnDeath += DestroyThisOnDeath;
+        if(Damageable == null)
+            Damageable = GetComponentInParent<HealthDamageable>();
+        Damageable.OnKill += DestroyThisOnDeath;
     }
 
     private void OnValidate() {
-        if (HealthDamageable == null)
-            HealthDamageable = GetComponentInParent<HealthDamageable>();
+        if (Damageable == null)
+            Damageable = GetComponentInParent<HealthDamageable>();
     }
 
-    private void DestroyThisOnDeath() {
+    private void DestroyThisOnDeath(IDamageable victim, Damage dmg) {
         Destroy(gameObject);
     }
 
     private void OnDestroy() {
-        HealthDamageable.OnDeath -= DestroyThisOnDeath;
+        Damageable.OnKill -= DestroyThisOnDeath;
     }
 }

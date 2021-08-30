@@ -16,6 +16,8 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
     public bool UseHealth = false;
 
     public float DestroyAfterKillTime;
+
+    public bool DisablePhysicsAfterDeath = true;
     
     public Collider2D Collider { get; set; }
 
@@ -28,9 +30,8 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
     public float MaxHealth { get; set; }
 
     public bool Dead { get; set; }
-
-    public event Action<SimpleDamageable, Damage> OnDamage;
-    public event Action<SimpleDamageable, Damage> OnKill;
+    public event Action<IDamageable, Damage> OnDamage;
+    public event Action<IDamageable, Damage> OnKill;
 
     public void ApplyDamage(Damage damage) {
         if(UseHealth)
@@ -39,6 +40,14 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
     }
 
     public void Kill(Damage damage) {
+        Dead = true;
+        if (DisablePhysicsAfterDeath)
+        {
+            var rb = GetComponent<Rigidbody2D>();
+            Destroy(rb);
+            var collliders = GetComponentsInChildren<Collider2D>();
+            collliders.ForEach(_ => Destroy(_));
+        }
         OnKill?.Invoke(this, damage);
         StartCoroutine(DestroyRoutine());
     }

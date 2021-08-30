@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Character.Health;
 using Character.Movement;
 using Character.Movement.Modules;
 using Game.Movement;
@@ -19,6 +20,29 @@ namespace Game.Movement.Enemies
         
         private WalkModule _WalkModule;
         private GroundCheckModule _GroundCheckModule;
+
+        private IDamageable _Damageable;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            _Damageable = GetComponent<IDamageable>();
+            if (_Damageable != null)
+                _Damageable.OnKill += DamageableOnOnKill;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            if (_Damageable != null)
+                _Damageable.OnKill -= DamageableOnOnKill;
+        }
+
+        private void DamageableOnOnKill(IDamageable arg1, Damage arg2)
+        {
+            _WalkModule.SetHorizontal(0);
+        }
+
         protected override List<MovementModule> CreateModules()
         {
             var modules = new List<MovementModule>();

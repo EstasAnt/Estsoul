@@ -2,18 +2,18 @@
 using UnityEngine;
 
 public class DisableOnDeath : MonoBehaviour {
-    private HealthDamageable HealthDamageable;
+    private IDamageable Damageable;
 
     private void Awake() {
-        HealthDamageable = GetComponentInParent<HealthDamageable>();
-        HealthDamageable.OnDeath += DisableThisOnDeath;
+        Damageable = GetComponentInParent<HealthDamageable>();
+        Damageable.OnKill += DisableThisOnDeath;
     }
 
-    private void DisableThisOnDeath() {
+    private void DisableThisOnDeath(IDamageable victim, Damage dmg) {
         gameObject.SetActive(false);
     }
 
     private void OnDestroy() {
-        HealthDamageable.OnDeath -= DisableThisOnDeath;
+        Damageable.OnKill -= DisableThisOnDeath;
     }
 }

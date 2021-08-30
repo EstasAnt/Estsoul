@@ -19,12 +19,15 @@ namespace Character.Health {
         public float MaxHealth => _MaxHealth;
         public float Health { get; set; }
         public float NormilizedHealth => Health / MaxHealth;
-        public event Action OnDeath;
+
         public bool DestroyOnDeath = true;
 
         public bool Dead { get; set; }
         public Collider2D Collider { get; set; }
 
+        public event Action<IDamageable, Damage> OnKill;
+        public event Action<IDamageable, Damage> OnDamage;
+        
         private void Awake() {
             Collider = GetComponentInChildren<Collider2D>();
             Health = MaxHealth;
@@ -35,13 +38,14 @@ namespace Character.Health {
         }
 
         public void ApplyDamage(Damage damage) {
+            OnDamage?.Invoke(this, damage);
             _SignalBus.FireSignal(new ApplyDamageSignal(damage));
         }
 
         public void Kill(Damage damage) {
+            OnKill?.Invoke(this, damage);
             if(DestroyOnDeath)
                 Destroy(gameObject);
-            OnDeath?.Invoke();
         }
     }
 }

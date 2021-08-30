@@ -1,6 +1,7 @@
 ﻿using Core.Audio;
 using System.Collections;
 using System.Collections.Generic;
+using Character.Health;
 using Tools.VisualEffects;
 using UnityDI;
 using UnityEngine;
@@ -11,14 +12,14 @@ public class PlayEffectOnDead : MonoBehaviour {
 
     public string EffectOnKillName;
 
-    private SimpleDamageable _SimpleDamageable;
+    private IDamageable _Damageable;
 
     private void Awake() {
-        _SimpleDamageable = GetComponent<SimpleDamageable>();
-        this._SimpleDamageable.OnKill += this._SimpleDamageable_OnKill;
+        _Damageable = GetComponent<IDamageable>();
+        _Damageable.OnKill += this.DamageableOnKill;
     }
 
-    private void _SimpleDamageable_OnKill(SimpleDamageable dmgbl, Character.Health.Damage dmg) {
+    private void DamageableOnKill(IDamageable dmgbl, Damage dmg) {
         ContainerHolder.Container.BuildUp(this);
         var effect = VisualEffect.GetEffect<VisualEffect>(EffectOnKillName);
         effect.transform.position = transform.position;
@@ -27,8 +28,8 @@ public class PlayEffectOnDead : MonoBehaviour {
     }
 
     private void OnDestroy() {
-        if (this._SimpleDamageable) {
-            this._SimpleDamageable.OnKill -= this._SimpleDamageable_OnKill;
+        if (_Damageable != null) {
+            _Damageable.OnKill -= this.DamageableOnKill;
         }
     }
 }

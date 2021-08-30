@@ -36,6 +36,9 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
     public float NormilizedHealth => Health / MaxHealth;
 
     public bool Dead { get; set; }
+    
+    public event Action<IDamageable, Damage> OnKill;
+    public event Action<IDamageable, Damage> OnDamage;
 
     [SerializeField]
     private byte _OwnerId;
@@ -43,7 +46,6 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
     public string CharacterId;
     public List<string> HitAudioEffects;
     public List<string> DeathAudioEffects;
-    public event Action<Damage> OnApplyDamage;
 
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
@@ -68,7 +70,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
 
     public void ApplyDamage(Damage damage) {
         _SignalBus.FireSignal(new ApplyDamageSignal(damage));
-        OnApplyDamage?.Invoke(damage);
+        OnDamage?.Invoke(this, damage);
         PlayeHitSound(HitAudioEffects);
     }
 
@@ -98,9 +100,12 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
         if (Dead)
             return;
         Dead = true;
+        OnKill?.Invoke(this, damage);
         Debug.Log($"Player {OwnerId} character {CharacterId} dead.");
         Destroy(gameObject); //ToDo: something different
         _SignalBus?.FireSignal(new CharacterDeathSignal(damage));
         PlayeHitSound(DeathAudioEffects);
     }
 }
+
+public interface IWeaponPicker { }

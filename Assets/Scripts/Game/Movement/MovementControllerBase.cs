@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Character.Health;
 using Character.Movement.Modules;
 using Tools.BehaviourTree;
 using UnityEngine;
@@ -28,6 +30,7 @@ namespace Game.Movement
 
         public float OverridedAirAcceleration { get; set; }
         public bool OverrideAirAcceleration { get; set; }
+        
         
         protected virtual void Awake()
         {
@@ -76,6 +79,11 @@ namespace Game.Movement
         
         protected virtual void OnCollisionExit2D(Collision2D collision) {
             _MovementModules.ForEach(_ => _.OnCollisionExit2D(collision));
+        }
+
+        protected virtual void OnDestroy()
+        {
+            
         }
 
         protected abstract void SetupBlackboard();
