@@ -53,6 +53,12 @@ TagManager:
   - name: RM1 foreground1
     uniqueID: 3441183921
     locked: 0
+  - name: Platforms
+    uniqueID: 458897945
+    locked: 0
+  - name: RM1 foreground0
+    uniqueID: 190335795
+    locked: 0
   - name: RM1  sunctuary
     uniqueID: 3688968545
     locked: 0

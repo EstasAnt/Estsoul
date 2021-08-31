@@ -528,7 +528,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1169222831
-  m_SortingLayer: 5
+  m_SortingLayer: 10
   m_SortingOrder: 1000
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &213743122938137885
@@ -893,7 +893,7 @@ PrefabInstance:
     - target: {fileID: 42787406825865337, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 42787406825865337, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
@@ -1174,7 +1174,7 @@ PrefabInstance:
     - target: {fileID: 42787406825865337, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.25
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 42787406825865337, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
