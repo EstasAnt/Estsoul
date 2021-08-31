@@ -41,12 +41,14 @@ namespace Game.Movement
         protected virtual void Awake()
         {
             Rigidbody = GetComponent<Rigidbody2D>();
+            _MovementModules = CreateModules();
+            SetupBlackboard();
         }
 
         protected virtual void Start()
         {
-            _MovementModules = CreateModules();
-            SetupBlackboard();
+            // _MovementModules = CreateModules();
+            // SetupBlackboard();
             _MovementModules.ForEach(_ => _.Start());
         }
 

@@ -18,8 +18,6 @@ public class CharacterAnimationController : MonoBehaviour {
     private CharacterUnit _CharacterUnit;
     private WeaponController _WeaponController;
 
-    public AnimatorStateInfo CurrentAnimationState => Animator.GetCurrentAnimatorStateInfo(0);
-    
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
         Animator = GetComponent<Animator>();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Character.Health;
 using Character.Shooting;
 using UnityDI;
@@ -24,7 +25,18 @@ namespace Game.Movement.Enemies
             if (_Damageable != null)
             {
                 _Damageable.OnKill += DamageableOnOnKill;
+                _Damageable.OnDamage += DamageableOnOnDamage;
             }
+
+            var animStopList = new List<string>();
+            animStopList.Add("Hit");
+            animStopList.Add("Death");
+            _MovementController?.SetDontMoveAnimationStateNames(animStopList);
+        }
+
+        private void DamageableOnOnDamage(IDamageable arg1, Damage arg2)
+        {
+            Animator.SetTrigger("Hit");
         }
 
         private void DamageableOnOnKill(IDamageable arg1, Damage arg2)
@@ -45,6 +57,7 @@ namespace Game.Movement.Enemies
             if (_Damageable != null)
             {
                 _Damageable.OnKill -= DamageableOnOnKill;
+                _Damageable.OnDamage -= DamageableOnOnDamage;
             }
         }
     }

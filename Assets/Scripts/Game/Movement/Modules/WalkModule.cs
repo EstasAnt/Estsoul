@@ -19,7 +19,7 @@ namespace Game.Movement.Modules {
         private WallSlideData _WallSlideData;
         private WalkData _WalkData;
 
-        private CharacterAnimationController _characterAnimation;
+        private Animator _characterAnimator;
         
         private WalkParameters _Parameters;
         private float _TargetXVelocity = 0f;
@@ -43,8 +43,8 @@ namespace Game.Movement.Modules {
         public override void Initialize(Blackboard bb)
         {
             base.Initialize(bb);
-            _characterAnimation = CommonData.MovementController
-                .GetComponentInChildren<CharacterAnimationController>();
+            _characterAnimator = CommonData.MovementController
+                .GetComponentInChildren<Animator>();
         }
 
         public override void FixedUpdate()
@@ -71,7 +71,7 @@ namespace Game.Movement.Modules {
             
             if (_StopAnimatorStateNames != null && _StopAnimatorStateNames.Count > 0)
             {
-                if (_StopAnimatorStateNames.Any(_ => _characterAnimation.CurrentAnimationState.IsName(_)))
+                if (_StopAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
                 {
                     SetHorizontal(0);
                 }
