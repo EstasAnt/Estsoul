@@ -12,12 +12,13 @@ using UnityDI;
 using Core.Services.Game;
 using System;
 using Core.Audio;
+using Game.AI.CustomBehaviours.Behaviours;
 using Game.Movement;
 using Game.Weapons;
 using KlimLib.ResourceLoader;
 using Tools.VisualEffects;
 
-public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder {
+public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder, IMobsTarget {
     [Dependency]
     private readonly SignalBus _SignalBus;
     [Dependency]

@@ -11,6 +11,7 @@ using UnityEngine;
 public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
 {
     public MovementPointsData MovementPointsData;
+    public TargetSearchData TargetSearchData;
 
     private IDamageable _Damageable;
 
@@ -29,15 +30,24 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
     {
         var behaviourTree = new BehaviourTree();
             var mainTree = behaviourTree.AddChild<ParallelTask>();
-                mainTree.AddChild<PointPathSelectionTask>();
-                mainTree.AddChild<SimpleMoveToPointTask>();
-        return behaviourTree;
+            
+            mainTree.AddChild<TargetSearchTask>();
+            
+            var moveSelector = mainTree.AddChild<SelectorTask>();
+            moveSelector.AddChild<TargetPursuitTask>();
+                moveSelector.AddChild<TargetPursuitTask>();
+                moveSelector.AddChild<PointPathSelectionTask>();
+                
+            mainTree.AddChild<SimpleMoveToPointTask>();
+
+            return behaviourTree;
     }
 
     protected override Blackboard BuildBlackboard()
     {
         var bb = new Blackboard();
         bb.Set(MovementPointsData);
+        bb.Set(TargetSearchData);
         return bb;
     }
     

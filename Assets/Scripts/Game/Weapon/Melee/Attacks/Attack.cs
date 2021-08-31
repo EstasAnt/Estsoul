@@ -64,7 +64,7 @@ namespace Game.Character.Melee
                 if(!attackTrigger.enabled)
                     continue;
                 var hitColliders = new List<Collider2D>();
-                var hitsCount = Physics2D.OverlapCollider(attackTrigger, new ContactFilter2D(){ useTriggers = true }, hitColliders);
+                var hitsCount = Physics2D.OverlapCollider(attackTrigger, new ContactFilter2D(){ useTriggers = false}, hitColliders);
                 if(hitsCount <=0)
                     continue;
                 foreach (var hit in hitColliders)
