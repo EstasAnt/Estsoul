@@ -45,6 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackTriggers: []
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   AnimationTriggerName: Attack1
   AnimationStateName: Attack1
   Duration: 0.1
@@ -126,5 +129,6 @@ MonoBehaviour:
   _Id: Sword
   ShotSoundEffects: []
   _AnimationTrigger: 
-  Attacks: []
+  Attacks:
+  - {fileID: 1094831049}
   _ShotCameraShakePresetName: 

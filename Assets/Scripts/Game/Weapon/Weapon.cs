@@ -124,12 +124,12 @@ namespace Character.Shooting {
 
         protected virtual void OnLose() { }
 
-        public virtual void Hit()
+        public virtual void Hit(int attackIndex)
         {
             
         }
         
-        public virtual void Dash()
+        public virtual void Dash(int attackIndex)
         {
             
         }

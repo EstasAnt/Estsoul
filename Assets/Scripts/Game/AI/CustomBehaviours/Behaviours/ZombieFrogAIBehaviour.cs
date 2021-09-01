@@ -16,6 +16,7 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
     public MovementData MovementData;
     public MovementPointsData MovementPointsData;
     public TargetSearchData TargetSearchData;
+    public SelectAttackData SelectAttackData;
 
     private IDamageable _Damageable;
 
@@ -41,7 +42,7 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
                 moveSelector.AddChild<TargetPursuitTask>();
                 moveSelector.AddChild<PointPathSelectionTask>();
             mainTree.AddChild<SimpleMoveToPointTask>();
-                
+            mainTree.AddChild<SelectAttackTask>();
             mainTree.AddChild<AttackMeleeWeaponTargetTask>();
 
             return behaviourTree;
@@ -53,6 +54,7 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
         bb.Set(MovementPointsData);
         bb.Set(TargetSearchData);
         bb.Set(MovementData);
+        bb.Set(SelectAttackData);
         return bb;
     }
     

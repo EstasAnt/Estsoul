@@ -81,14 +81,14 @@ namespace Character.Shooting {
             OnReleaseFire?.Invoke();
         }
 
-        public virtual void MainWeaponHit()
+        public virtual void MainWeaponHit(int attackIndex)
         {
-            MainWeapon.Hit();
+            MainWeapon.Hit(attackIndex);
         }
 
-        public virtual void MainWeaponDash()
+        public virtual void MainWeaponDash(int attackIndex)
         {
-            MainWeapon.Dash();
+            MainWeapon.Dash(attackIndex);
         }
         
         public void ThrowOutMainWeapon() {

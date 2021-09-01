@@ -344,6 +344,8 @@ MonoBehaviour:
     TryFoundMissedTargetTime: 2
     HasTargetMoveCoef: 1.3
     LastTimeSawTargetTime: 0
+  SelectAttackData:
+    MinDistanceToJumpAttack: 2.5
 --- !u!114 &8341017972040908776
 MonoBehaviour:
   m_ObjectHideFlags: 0

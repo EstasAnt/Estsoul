@@ -21,13 +21,15 @@ namespace Game.Character.Melee
 
         public List<Attack> Attacks;
 
+        public int ActiveAttackIndex { get; set; }
+        
         [SerializeField] private string _ShotCameraShakePresetName;
 
         protected override void Awake()
         {
             base.Awake();
             _InputProcessor = new SingleShotProcessor(this);
-            GetComponentsInChildren(Attacks);
+            // GetComponentsInChildren(Attacks);
         }
 
         public override bool PickUp(IWeaponHolder owner)
@@ -46,22 +48,22 @@ namespace Game.Character.Melee
             // Debug.LogError("Attack signal sent!");
         }
 
-        public override void Hit()
+        public override void Hit(int attackIndex)
         {
-            base.Hit();
-            Attacks.FirstOrDefault()?.Use();
+            base.Hit(attackIndex);
+            Attacks[attackIndex].Use();
         }
 
-        public override void Dash()
+        public override void Dash(int attackIndex)
         {
-            base.Dash();
-            Attacks.FirstOrDefault()?.Dash();
+            base.Dash(attackIndex);
+            Attacks[attackIndex].Dash();
         }
 
 
         protected override string GetAnimationTriggerName()
         {
-            return Attacks.FirstOrDefault()?.AnimationTriggerName;
+            return Attacks[ActiveAttackIndex].AnimationTriggerName;
         }
     }
 }

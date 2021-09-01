@@ -53,14 +53,14 @@ namespace Game.Movement.Enemies
             Animator.SetTrigger("Death");
         }
 
-        public void MainWeaponHit()
+        public void MainWeaponHit(int attackIndex)
         {
-            _WeaponController.MainWeaponHit();
+            _WeaponController.MainWeaponHit(attackIndex);
         }
 
-        public void MainWeaponDash()
+        public void MainWeaponDash(int attackIndex)
         {
-            _WeaponController.MainWeaponDash();
+            _WeaponController.MainWeaponDash(attackIndex);
         }
 
         public void SetSeeTarget(bool val)
