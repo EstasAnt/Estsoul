@@ -10,7 +10,8 @@ namespace Game.Movement.Enemies
     public class EnemySimpleAnimationController : MonoBehaviour {
         private MovementControllerBase _MovementController;
         private Animator Animator;
-
+        private WeaponController _WeaponController;
+        
         private IDamageable _Damageable;
         
         private void Awake() {
@@ -18,6 +19,7 @@ namespace Game.Movement.Enemies
             Animator = GetComponent<Animator>();
             _MovementController = GetComponentInParent<MovementControllerBase>();
             _Damageable = GetComponentInParent<SimpleDamageable>();
+            _WeaponController = GetComponentInParent<WeaponController>();
         }
 
         private void Start()
@@ -27,6 +29,8 @@ namespace Game.Movement.Enemies
                 _Damageable.OnKill += DamageableOnOnKill;
                 _Damageable.OnDamage += DamageableOnOnDamage;
             }
+            _WeaponController.MainWeapon.AnimationTriggerEvent += MainWeaponOnAnimationTriggerEvent;
+
 
             var animStopList = new List<string>();
             animStopList.Add("Hit");
@@ -34,6 +38,11 @@ namespace Game.Movement.Enemies
             _MovementController?.SetDontMoveAnimationStateNames(animStopList);
         }
 
+        private void MainWeaponOnAnimationTriggerEvent(string obj)
+        {
+            Animator.SetTrigger(obj);
+        }
+        
         private void DamageableOnOnDamage(IDamageable arg1, Damage arg2)
         {
             Animator.SetTrigger("Hit");
@@ -44,6 +53,21 @@ namespace Game.Movement.Enemies
             Animator.SetTrigger("Death");
         }
 
+        public void MainWeaponHit()
+        {
+            _WeaponController.MainWeaponHit();
+        }
+
+        public void MainWeaponDash()
+        {
+            _WeaponController.MainWeaponDash();
+        }
+
+        public void SetSeeTarget(bool val)
+        {
+            Animator.SetBool("SeeTarget", val);
+        }
+        
         private void Update()
         {
             if (_MovementController == null || Animator == null) 
@@ -59,6 +83,11 @@ namespace Game.Movement.Enemies
                 _Damageable.OnKill -= DamageableOnOnKill;
                 _Damageable.OnDamage -= DamageableOnOnDamage;
             }
+            if(_WeaponController == null)
+                return;
+            if(_WeaponController.MainWeapon == null)
+                return;
+            _WeaponController.MainWeapon.AnimationTriggerEvent -= MainWeaponOnAnimationTriggerEvent;
         }
     }
 }

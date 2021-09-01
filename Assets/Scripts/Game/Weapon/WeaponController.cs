@@ -5,6 +5,7 @@ using System.Linq;
 using Assets.Scripts.Tools;
 //using Character.CloseCombat;
 using Core.Audio;
+using Game.Weapons;
 using UnityDI;
 using UnityEngine;
 
@@ -14,11 +15,11 @@ namespace Character.Shooting {
         private readonly AudioService _AudioService;
         
         public Weapon MainWeapon;
-        public Weapon Vehicle;
+        // public Weapon Vehicle;
         //public MeleeAttack MeleeAttack;
 
         public bool HasMainWeapon => MainWeapon != null;
-        public bool HasVehicle => Vehicle != null;
+        // public bool HasVehicle => Vehicle != null;
 
         public event Action OnPressFire;
         public event Action OnHoldFire;
@@ -28,8 +29,8 @@ namespace Character.Shooting {
         public event Action<Weapon> OnWeaponThrowed;
         public event Action<Weapon> OnVehicleThrowed;
 
-        public CharacterUnit Owner { get; private set; }
-        // public WeaponPicker WeaponPicker { get; private set; }
+        public IWeaponHolder Owner { get; private set; }
+        public WeaponPicker WeaponPicker { get; private set; }
 
         public Vector2 AimPosition { get; private set; }
 
@@ -39,7 +40,7 @@ namespace Character.Shooting {
         //public bool MeleeAttacking => MeleeAttack.Attacking && MainWeapon == null;
 
         private void Awake() {
-            Owner = GetComponent<CharacterUnit>();
+            Owner = GetComponent<IWeaponHolder>();
             // WeaponPicker = GetComponentInChildren<WeaponPicker>();
         }
 
@@ -49,18 +50,18 @@ namespace Character.Shooting {
             MainWeapon?.PickUp(Owner);
             //TryPickUpWeapon(MeleeAttack);
             // Vehicle?.PickableItem.PickUp(Owner);
-            Vehicle?.PickUp(Owner);
+            // Vehicle?.PickUp(Owner);
         }
 
         private void Update() {
-            Owner.MovementController.SetCanLegeHang(!HasVehicle || Vehicle.InputProcessor.CurrentMagazine > 0);
+            // Owner.MovementController.SetCanLegeHang(!HasVehicle || Vehicle.InputProcessor.CurrentMagazine > 0);
             if(MainWeapon == null) {
                 //MeleeAttack?.InputProcessor.Process();
             }
             else  {
                 MainWeapon.InputProcessor.Process();
             }
-            Vehicle?.InputProcessor.Process();
+            // Vehicle?.InputProcessor.Process();
 
         }
 
@@ -80,6 +81,16 @@ namespace Character.Shooting {
             OnReleaseFire?.Invoke();
         }
 
+        public virtual void MainWeaponHit()
+        {
+            MainWeapon.Hit();
+        }
+
+        public virtual void MainWeaponDash()
+        {
+            MainWeapon.Dash();
+        }
+        
         public void ThrowOutMainWeapon() {
             if (!HasMainWeapon) return;
             MainWeapon.ThrowOut(Owner);
@@ -89,26 +100,26 @@ namespace Character.Shooting {
             OnWeaponThrowed?.Invoke(weapon);
         }
 
-        public void ThrowOutVehicle() {
-            if (!HasVehicle) return;
-            ThrowOutVehicle(Vehicle.Stats.MaxThrowStartSpeed, -360f);
-        }
+        // public void ThrowOutVehicle() {
+        //     if (!HasVehicle) return;
+        //     ThrowOutVehicle(Vehicle.Stats.MaxThrowStartSpeed, -360f);
+        // }
 
-        public void ThrowOutVehicle(float startSpeed, float angularVel) {
-            if (!HasVehicle) return;
-            Vector2 dir = (AimPosition - Vehicle.WeaponView.ShootTransform.position.ToVector2());
-            dir.Normalize();
-            ThrowOutVehicle(dir * startSpeed, angularVel);
-        }
+        // public void ThrowOutVehicle(float startSpeed, float angularVel) {
+        //     if (!HasVehicle) return;
+        //     Vector2 dir = (AimPosition - Vehicle.WeaponView.ShootTransform.position.ToVector2());
+        //     dir.Normalize();
+        //     ThrowOutVehicle(dir * startSpeed, angularVel);
+        // }
 
-        public void ThrowOutVehicle(Vector2 startSpeed, float angularVel) {
-            if (!HasVehicle) return;
-            Vehicle.ThrowOut(Owner);
-            var vehicle = Vehicle;
-            Vehicle = null;
-            PlaySound(ThrowSound);
-            OnVehicleThrowed?.Invoke(vehicle);
-        }
+        // public void ThrowOutVehicle(Vector2 startSpeed, float angularVel) {
+        //     if (!HasVehicle) return;
+        //     Vehicle.ThrowOut(Owner);
+        //     var vehicle = Vehicle;
+        //     Vehicle = null;
+        //     PlaySound(ThrowSound);
+        //     OnVehicleThrowed?.Invoke(vehicle);
+        // }
 
         private void PlaySound(string soundName) {
             if (string.IsNullOrEmpty(soundName))
@@ -126,13 +137,13 @@ namespace Character.Shooting {
                     OnWeaponEquiped?.Invoke(weapon);
                 }
             } else if (weapon.ItemType == ItemType.Vehicle) {
-                if (HasVehicle)
-                    return;
-                if (weapon.PickUp(Owner)) {
-                    Vehicle = weapon;
-                    PlaySound(PickUpSound);
-                    OnVehicleEquiped?.Invoke(weapon);
-                }
+                // if (HasVehicle)
+                //     return;
+                // if (weapon.PickUp(Owner)) {
+                //     Vehicle = weapon;
+                //     PlaySound(PickUpSound);
+                //     OnVehicleEquiped?.Invoke(weapon);
+                // }
             } else if(weapon.ItemType == ItemType.MeleeAttack) {
                 weapon.PickUp(Owner);
             }
@@ -152,7 +163,7 @@ namespace Character.Shooting {
 
         private void OnDestroy() {
             ThrowOutMainWeapon();
-            ThrowOutVehicle();
+            // ThrowOutVehicle();
         }
     }
 }

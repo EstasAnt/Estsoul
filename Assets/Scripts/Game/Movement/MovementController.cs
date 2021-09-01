@@ -130,8 +130,8 @@ namespace Game.Movement {
         private bool _Jumping = false;
 
         public bool Jump() {
-            if (Owner.WeaponController.HasVehicle && Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
-                return false;
+            // if (Owner.WeaponController.HasVehicle && Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
+            //     return false;
             _Jumping = _JumpModule.Jump(this);
             if (!_Jumping)
                 _Jumping = _JumpModule.AirJump(this);
@@ -139,8 +139,8 @@ namespace Game.Movement {
         }
 
         public bool WallJump() {
-            if (Owner.WeaponController.HasVehicle && Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
-                return false;
+            // if (Owner.WeaponController.HasVehicle && Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
+            //     return false;
             return _JumpModule.WallJump(this);
         }
 

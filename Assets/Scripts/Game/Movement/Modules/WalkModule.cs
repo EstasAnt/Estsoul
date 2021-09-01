@@ -78,10 +78,10 @@ namespace Game.Movement.Modules {
             }
             
             if (_WalkData.Horizontal > 0.15f) {
-                _TargetXVelocity = _Parameters.Speed;
+                _TargetXVelocity = _Parameters.Speed * CommonData.MovementController.MovementSpeedBoostCoef;
                 ProcessRunSound(true);
             } else if (_WalkData.Horizontal < -0.15f) {
-                _TargetXVelocity = -_Parameters.Speed;
+                _TargetXVelocity = -_Parameters.Speed * CommonData.MovementController.MovementSpeedBoostCoef;
                 ProcessRunSound(true);
             } else {
                 _WalkData.Horizontal = 0;

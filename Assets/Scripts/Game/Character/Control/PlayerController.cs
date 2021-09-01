@@ -31,7 +31,7 @@ namespace Character.Control {
             _Camera = Camera.main;
             _AimProvider = PlayerActions.Device == null
                 ? (IAimProvider) new MouseAim(_Camera)
-                : new JoystickAim(_WeaponController.Owner.transform, _MovementController, PlayerActions);
+                : new JoystickAim(_WeaponController.Owner.MovementController.transform, _MovementController, PlayerActions);
             //_AimProvider = new JoystickAim(_WeaponController.NearArmShoulder, _MovementController, PlayerActions);
         }
 
@@ -42,7 +42,7 @@ namespace Character.Control {
             Jump();
             Attack();
             ThrowWeapon();
-            ThrowVehicle();
+            // ThrowVehicle();
         }
         
 
@@ -96,12 +96,12 @@ namespace Character.Control {
             }
         }
 
-        private void ThrowVehicle()
-        {
-            if (PlayerActions.ThrowOutVehicle.WasPressed) {
-                _WeaponController.ThrowOutVehicle();
-            }
-        }
+        // private void ThrowVehicle()
+        // {
+        //     if (PlayerActions.ThrowOutVehicle.WasPressed) {
+        //         _WeaponController.ThrowOutVehicle();
+        //     }
+        // }
 
         public void LateUpdate() {
             if (_WeaponController.HasMainWeapon)

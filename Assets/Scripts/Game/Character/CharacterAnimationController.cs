@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character.Movement;
 using Character.Shooting;
+using Game.Character.Melee;
 using Game.Character.Shooting;
 using Game.Movement;
 using KlimLib.SignalBus;
@@ -10,9 +11,7 @@ using UnityEngine;
 using UnityDI;
 
 public class CharacterAnimationController : MonoBehaviour {
-    
-    [Dependency] private SignalBus _SignalBus;
-    
+
     private Animator Animator;
     private MovementController _MovementController;
     private CharacterUnit _CharacterUnit;
@@ -28,12 +27,12 @@ public class CharacterAnimationController : MonoBehaviour {
 
     private void Start()
     {
-        _SignalBus.Subscribe<AttackAnimationSignal>(OnAttackAnimationSignal, this);
+        _WeaponController.MainWeapon.AnimationTriggerEvent += MainWeaponOnAnimationTriggerEvent;
     }
 
-    private void OnAttackAnimationSignal(AttackAnimationSignal signal)
+    private void MainWeaponOnAnimationTriggerEvent(string obj)
     {
-        Animator.SetTrigger(signal.AnimationTriggerName);
+        Animator.SetTrigger(obj);
     }
 
     private float SpeedForAnimator => Mathf.Clamp(Mathf.InverseLerp(0.3f, _MovementController.MaxSpeed, Mathf.Abs(_MovementController.Velocity.x)), 0.3f, 1f);
@@ -57,8 +56,27 @@ public class CharacterAnimationController : MonoBehaviour {
         // Animator.SetBool("FirstAttack", _WeaponController.MeleeAttacking);
     }
 
+    public void SetTrigger(string triggerName)
+    {
+        Animator.SetTrigger(triggerName);
+    }
+
+    public void MainWeaponHit()
+    {
+        _WeaponController.MainWeaponHit();
+    }
+
+    public void MainWeaponDash()
+    {
+        _WeaponController.MainWeaponDash();
+    }
+    
     private void OnDestroy()
     {
-        _SignalBus.UnSubscribeFromAll(this);
+        if(_WeaponController == null)
+            return;
+        if(_WeaponController.MainWeapon == null)
+            return;
+        _WeaponController.MainWeapon.AnimationTriggerEvent -= MainWeaponOnAnimationTriggerEvent;
     }
 }

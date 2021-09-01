@@ -1,4 +1,5 @@
-﻿using Character.Shooting;
+﻿using Character.Health;
+using Character.Shooting;
 using Game.Movement;
 
 namespace Game.Weapons
@@ -8,5 +9,7 @@ namespace Game.Weapons
         public MovementControllerBase MovementController { get; }
         public byte Id { get; }
         public WeaponController WeaponController { get; }
+        public IDamageable Damageable { get; }
+        
     }
 }

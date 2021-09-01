@@ -44,13 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72b75e09e6a499aad5d5a89323806a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackTriggers: []
+  AttackTriggers:
+  - {fileID: 1094831048}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   AnimationTriggerName: Attack1
   AnimationStateName: Attack1
   Duration: 0.1
   Delay: 0
-  StopWhileAttack: 1
-  CharacterAddForce: {x: 6000, y: 0}
+  StopWhileAttack: 0
+  CharacterAddForce: {x: 8000, y: 4000}
 --- !u!61 &1094831048
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -64,7 +68,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.86067593, y: 0.9644306}
+  m_Offset: {x: 0.5995108, y: 0.9644306}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -75,7 +79,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8, y: 1.6255763}
+  m_Size: {x: 2.1990216, y: 1.6255763}
   m_EdgeRadius: 0
 --- !u!1 &236026443383297003
 GameObject:
@@ -88,7 +92,7 @@ GameObject:
   - component: {fileID: 663233985526596709}
   - component: {fileID: 1261536013469147245}
   m_Layer: 6
-  m_Name: Sword
+  m_Name: ZombieFrogAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,10 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be6de71a71542e2b1fd545fa8d3f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Stats: {fileID: 11400000, guid: fdd964bd9fac4d940bdfb3e136139c32, type: 2}
+  _Stats: {fileID: 11400000, guid: 5c4bdedc41b2ef741a52d915edc8bba9, type: 2}
   PickupType: 2
-  _Id: Sword
+  _Id: ZombieFrogWeapon
   ShotSoundEffects: []
-  _AnimationTrigger: 
-  Attacks: []
+  _AnimationTrigger: Attack1
+  Attacks:
+  - {fileID: 1094831049}
   _ShotCameraShakePresetName: 

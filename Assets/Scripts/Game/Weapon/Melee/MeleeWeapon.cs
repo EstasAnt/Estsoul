@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Character.Shooting;
 using Com.LuisPedroFonseca.ProCamera2D;
 using Game.Character.Shooting;
 using Game.Weapons;
 using KlimLib.SignalBus;
+using Spine.Unity;
 using UnityDI;
 using UnityEngine;
 
@@ -12,18 +14,12 @@ namespace Game.Character.Melee
 {
     public class MeleeWeapon : Weapon
     {
-        [Dependency] private SignalBus _SignalBus;
         public override ItemType ItemType => ItemType.Weapon;
         public override WeaponInputProcessor InputProcessor => _InputProcessor;
 
-        public List<Collider2D> AttackTriggers;
-        
         private WeaponInputProcessor _InputProcessor;
 
         public List<Attack> Attacks;
-        
-        [SerializeField] private string _AnimationTrigger;
-        public string AnimationTrigger => _AnimationTrigger;
 
         [SerializeField] private string _ShotCameraShakePresetName;
 
@@ -47,9 +43,25 @@ namespace Game.Character.Melee
             base.PerformShot();
             if (ProCamera2DShake.Instance != null && !string.IsNullOrEmpty(_ShotCameraShakePresetName))
                 ProCamera2DShake.Instance.Shake(_ShotCameraShakePresetName);
-            _SignalBus.FireSignal(new AttackAnimationSignal(_AnimationTrigger));
-            Attacks.FirstOrDefault()?.Use();
             // Debug.LogError("Attack signal sent!");
+        }
+
+        public override void Hit()
+        {
+            base.Hit();
+            Attacks.FirstOrDefault()?.Use();
+        }
+
+        public override void Dash()
+        {
+            base.Dash();
+            Attacks.FirstOrDefault()?.Dash();
+        }
+
+
+        protected override string GetAnimationTriggerName()
+        {
+            return Attacks.FirstOrDefault()?.AnimationTriggerName;
         }
     }
 }

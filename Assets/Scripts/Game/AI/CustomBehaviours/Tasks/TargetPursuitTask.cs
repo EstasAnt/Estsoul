@@ -21,7 +21,7 @@ namespace Game.AI.CustomBehaviours.Tasks
                 return TaskStatus.Failure;
             else
             {
-                _MovementData.TargetPos = _TargetSearchData.Target.position;
+                _MovementData.TargetPos = _TargetSearchData.Target.Transform.position;
                 return TaskStatus.Success;
             }
         }

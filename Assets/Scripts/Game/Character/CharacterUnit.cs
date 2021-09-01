@@ -31,6 +31,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public byte Id => OwnerId;
     MovementControllerBase IWeaponHolder.MovementController => MovementController;
     public WeaponController WeaponController { get; private set; }
+    public IDamageable Damageable => this;
 
     public DamageBuffer DamageBuffer { get; private set; }
 
@@ -52,6 +53,11 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public List<string> HitAudioEffects;
     public List<string> DeathAudioEffects;
 
+    private void Update()
+    {
+        Debug.LogError(Health);
+    }
+    
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
         MovementController = GetComponent<MovementController>();
@@ -65,6 +71,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     }
 
     public Collider2D Collider { get; set; }
+    public Transform Transform => transform;
     public Rigidbody2D Rigidbody2D { get; set; }
 
     public Vector3 Position => transform.position;
@@ -90,7 +97,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
         ContainerHolder.Container.BuildUp(this);
         OwnerId = ownerId;
         CharacterId = characterId;
-        MaxHealth = 130f; //Todo: Config
+        MaxHealth = 50f; //Todo: Config
         Health = MaxHealth;
         DamageBuffer?.Initialize(this, 3f);
     }

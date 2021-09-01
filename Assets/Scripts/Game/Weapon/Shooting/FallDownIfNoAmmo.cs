@@ -25,7 +25,7 @@ namespace Character.Shooting {
                     _Weapon.Owner.WeaponController.ThrowOutMainWeapon();
                 } else
                 if (_Weapon.ItemType == ItemType.Vehicle) {
-                    _Weapon.Owner.WeaponController.ThrowOutVehicle(_Weapon.Owner.MovementController.Rigidbody.velocity / 3f, Random.Range(-180, 540f));
+                    // _Weapon.Owner.WeaponController.ThrowOutVehicle(_Weapon.Owner.MovementController.Rigidbody.velocity / 3f, Random.Range(-180, 540f));
                 }
             }
             var itemProvider = _Weapon.gameObject.GetComponent<ItemMarkerProvider>();

@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Character.Health;
+using Character.Shooting;
 using Game.AI.CustomBehaviours.BlackboardData;
 using Game.AI.CustomBehaviours.Tasks;
+using Game.Movement;
+using Game.Weapons;
 using Tools.BehaviourTree;
 using UnityDI;
 using UnityEngine;
 
 public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
 {
+    public MovementData MovementData;
     public MovementPointsData MovementPointsData;
     public TargetSearchData TargetSearchData;
 
@@ -34,11 +38,11 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
             mainTree.AddChild<TargetSearchTask>();
             
             var moveSelector = mainTree.AddChild<SelectorTask>();
-            moveSelector.AddChild<TargetPursuitTask>();
                 moveSelector.AddChild<TargetPursuitTask>();
                 moveSelector.AddChild<PointPathSelectionTask>();
-                
             mainTree.AddChild<SimpleMoveToPointTask>();
+                
+            mainTree.AddChild<AttackMeleeWeaponTargetTask>();
 
             return behaviourTree;
     }
@@ -48,6 +52,7 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
         var bb = new Blackboard();
         bb.Set(MovementPointsData);
         bb.Set(TargetSearchData);
+        bb.Set(MovementData);
         return bb;
     }
     

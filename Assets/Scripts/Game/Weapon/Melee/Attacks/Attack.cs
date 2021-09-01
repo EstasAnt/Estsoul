@@ -12,6 +12,8 @@ namespace Game.Character.Melee
         public Weapon Weapon { get; private set; }
         
         public List<Collider2D> AttackTriggers;
+        public LayerMask LayerMask;
+        public string AnimationTriggerName;
         public string AnimationStateName;
         public float Duration;
         public float Delay;
@@ -33,12 +35,8 @@ namespace Game.Character.Melee
             StartCoroutine(UseRoutine());
         }
 
-        private IEnumerator UseRoutine()
+        public virtual void Dash()
         {
-            _HittedDmgbls.Clear();
-            if (Delay != 0)
-                yield return new WaitForSeconds(Delay);
-
             if (CharacterAddForce != Vector2.zero)
             {
                 var mc = Weapon?.Owner?.MovementController;
@@ -48,9 +46,16 @@ namespace Game.Character.Melee
                     {
                         mc.Rigidbody.velocity = new Vector2(0f, mc.Rigidbody.velocity.y);
                     }
-                    mc.Rigidbody.AddForce(CharacterAddForce * mc.Direction);    
+                    mc.Rigidbody.AddForce(new Vector2(CharacterAddForce.x * mc.Direction, CharacterAddForce.y));
                 }
             }
+        }
+        
+        private IEnumerator UseRoutine()
+        {
+            _HittedDmgbls.Clear();
+            if (Delay != 0)
+                yield return new WaitForSeconds(Delay);
             AttackTriggers.ForEach(_ => _.enabled = true);
             yield return new WaitForSeconds(Duration);
             AttackTriggers.ForEach(_ => _.enabled = false);
@@ -64,7 +69,7 @@ namespace Game.Character.Melee
                 if(!attackTrigger.enabled)
                     continue;
                 var hitColliders = new List<Collider2D>();
-                var hitsCount = Physics2D.OverlapCollider(attackTrigger, new ContactFilter2D(){ useTriggers = false}, hitColliders);
+                var hitsCount = Physics2D.OverlapCollider(attackTrigger, new ContactFilter2D { useTriggers = false, layerMask = LayerMask }, hitColliders);
                 if(hitsCount <=0)
                     continue;
                 foreach (var hit in hitColliders)
@@ -73,6 +78,10 @@ namespace Game.Character.Melee
                     if(dmgbl == null)
                         continue;
                     if(_HittedDmgbls.Contains(dmgbl))
+                        continue;
+                    if(dmgbl == Weapon.Owner.Damageable)
+                        continue;
+                    if(dmgbl.OwnerId == Weapon.Owner.Damageable.OwnerId)
                         continue;
                     _HittedDmgbls.Add(dmgbl);
                     dmgbl.ApplyDamage(GetDamage(dmgbl));

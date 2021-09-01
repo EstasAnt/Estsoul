@@ -34,13 +34,25 @@ namespace Character.Shooting {
 
         public event Action OnNoAmmo;
 
+        [SerializeField] private string _AnimationTrigger;
+        public string AnimationTrigger => _AnimationTrigger;
+        public event Action<string> AnimationTriggerEvent;
+        
         [Dependency]
         protected readonly AudioService _AudioService;
 
         public virtual void PerformShot() {
             if (InputProcessor.CurrentMagazine <= 0)
                 OnNoAmmo?.Invoke();
+            var animTrigger = GetAnimationTriggerName();
+            if(!string.IsNullOrEmpty(animTrigger))
+                AnimationTriggerEvent?.Invoke(GetAnimationTriggerName());
             PlayShotSound();
+        }
+
+        protected virtual string GetAnimationTriggerName()
+        {
+            return AnimationTrigger;
         }
 
         private void PlayShotSound() {
@@ -111,6 +123,16 @@ namespace Character.Shooting {
         protected virtual void OnEquip() { }
 
         protected virtual void OnLose() { }
+
+        public virtual void Hit()
+        {
+            
+        }
+        
+        public virtual void Dash()
+        {
+            
+        }
     }
 
     public enum ItemType {

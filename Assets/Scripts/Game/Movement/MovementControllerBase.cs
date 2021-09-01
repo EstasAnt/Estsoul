@@ -37,6 +37,8 @@ namespace Game.Movement
         public event Action OnReleaseJump;
         
         public abstract bool CanMove { get;  }
+
+        public float MovementSpeedBoostCoef { get; set; } = 1f;
         
         protected virtual void Awake()
         {
