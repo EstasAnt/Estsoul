@@ -26,11 +26,6 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
         _Damageable = GetComponent<IDamageable>();
     }
 
-    protected override void Initialize()
-    {
-        ContainerHolder.Container.BuildUp(GetType(), this);
-    }
-
     protected override BehaviourTree BuildBehaviourTree()
     {
         var behaviourTree = new BehaviourTree();

@@ -59,7 +59,8 @@ namespace Game.AI.CustomBehaviours.Tasks
             
             _animationController.SetSeeTarget(_TargetSearchData.Target != null);
 
-            _movementController.MovementSpeedBoostCoef =
+            if(_movementController != null)
+                _movementController.MovementSpeedBoostCoef =
                 _TargetSearchData.Target != null ? _TargetSearchData.HasTargetMoveCoef : 1f;
             
             return _TargetSearchData.Target == null ? TaskStatus.Failure : TaskStatus.Success;
@@ -70,7 +71,10 @@ namespace Game.AI.CustomBehaviours.Tasks
         {
             var foundColliders = new List<Collider2D>();
             var filter = new ContactFilter2D {useTriggers = false, layerMask = Layers.Masks.Character};
-            var foundCollidersCount = Physics2D.OverlapCollider(_TargetSearchData.TargetSearchTrigger, filter,
+            var searchCollider = _TargetSearchData.TargetSearchTrigger != null ? _TargetSearchData.TargetSearchTrigger : _TargetSearchData.TargetAttackTrigger;
+            if (searchCollider == null)
+                return null;
+            var foundCollidersCount = Physics2D.OverlapCollider(searchCollider, filter,
                 foundColliders);
             if (foundCollidersCount == 0)
                 return null;
