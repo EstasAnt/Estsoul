@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be6de71a71542e2b1fd545fa8d3f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Stats: {fileID: 11400000, guid: 5c4bdedc41b2ef741a52d915edc8bba9, type: 2}
+  _Stats: {fileID: 11400000, guid: f79c65491bb80754f98c0982eaf8cc22, type: 2}
   PickupType: 2
   _Id: CactusWeapon
   ShotSoundEffects: []
