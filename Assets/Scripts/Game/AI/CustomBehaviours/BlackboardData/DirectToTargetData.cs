@@ -7,6 +7,7 @@ namespace Game.AI.CustomBehaviours.BlackboardData
     public class DirectToTargetData : global::BlackboardData
     {
         public Transform Root;
-        public bool RotateSign;
+        public bool DirectSign;
+        public float DirectCooldown;
     }
 }

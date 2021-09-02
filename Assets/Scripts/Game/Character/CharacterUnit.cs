@@ -53,11 +53,6 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public List<string> HitAudioEffects;
     public List<string> DeathAudioEffects;
 
-    private void Update()
-    {
-        Debug.LogError(Health);
-    }
-    
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
         MovementController = GetComponent<MovementController>();
