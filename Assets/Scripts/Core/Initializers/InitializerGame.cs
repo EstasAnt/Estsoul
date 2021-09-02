@@ -4,7 +4,10 @@ using Core.Initialization;
 using KlimLib.TaskQueueLib;
 using UnityEngine;
 
-public class InitializerGame : InitializerBase
+namespace Core.Initialization
 {
-    protected override List<Task> SpecialTasks => InitializationParameters.BaseGameTasks;
+    public class InitializerGame : InitializerBase
+    {
+        protected override List<Task> SpecialTasks => InitializationParameters.BaseGameTasks;
+    }
 }

@@ -97,7 +97,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
         ContainerHolder.Container.BuildUp(this);
         OwnerId = ownerId;
         CharacterId = characterId;
-        MaxHealth = 50f; //Todo: Config
+        MaxHealth = 100f; //Todo: Config
         Health = MaxHealth;
         DamageBuffer?.Initialize(this, 3f);
     }

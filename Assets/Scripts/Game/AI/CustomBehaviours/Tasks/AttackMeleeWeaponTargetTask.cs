@@ -30,7 +30,6 @@ namespace Game.AI.CustomBehaviours.Tasks
             if (targetInAttackTrigger)
             {
                 _WeaponController.PressFire();
-                Debug.LogError("ZOMBIE ATTACK!");
                 return TaskStatus.Success;
             }
             return TaskStatus.Failure;
