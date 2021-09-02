@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Character.Health;
 using Game.AI.CustomBehaviours.Behaviours;
 using Game.AI.CustomBehaviours.BlackboardData;
 using Game.Movement;
@@ -16,7 +17,7 @@ namespace Game.AI.CustomBehaviours.Tasks
 
         private EnemySimpleAnimationController _animationController;
         private MovementControllerBase _movementController;
-        
+        private IDamageable _damageable;
         
         public override void Init()
         {
@@ -24,6 +25,14 @@ namespace Game.AI.CustomBehaviours.Tasks
             _TargetSearchData = Blackboard.Get<TargetSearchData>();
             _animationController = BehaviourTree.Executor.GetComponentInChildren<EnemySimpleAnimationController>();
             _movementController = BehaviourTree.Executor.GetComponent<MovementControllerBase>();
+            _damageable = BehaviourTree.Executor.GetComponent<IDamageable>();
+            _damageable.OnDamage += DamageableOnOnDamage;
+        }
+
+        private void DamageableOnOnDamage(IDamageable arg1, Damage arg2)
+        {
+            _TargetSearchData.Target = CharacterUnit.Characters.FirstOrDefault();
+            _TargetSearchData.LastTimeSawTargetTime = Time.timeSinceLevelLoad;
         }
 
         public override TaskStatus Run()
@@ -55,6 +64,7 @@ namespace Game.AI.CustomBehaviours.Tasks
             
             return _TargetSearchData.Target == null ? TaskStatus.Failure : TaskStatus.Success;
         }
+        
 
         private IMobsTarget TryFindTarget()
         {
