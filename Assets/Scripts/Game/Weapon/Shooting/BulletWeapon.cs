@@ -24,13 +24,13 @@ namespace Character.Shooting
             data.LifeTime = Stats.Range / Stats.ProjectileSpeed;
             data.Position = WeaponView.ShootTransform.position;
 
-            Vector3 shootRotEuler;
-            var directionVector = Owner.WeaponController.AimPosition - WeaponView.ShootTransform.position.ToVector2();
-            shootRotEuler = Quaternion.LookRotation(directionVector).eulerAngles;
-            if (_Stats.DispersionAngle != 0) {
-                shootRotEuler = new Vector3(shootRotEuler.x + RandomDispersionAngle, shootRotEuler.y, shootRotEuler.z);
-            }
-            data.Rotation = Quaternion.Euler(shootRotEuler);
+            // Vector3 shootRotEuler;
+            // var directionVector = Owner.WeaponController.AimPosition - WeaponView.ShootTransform.position.ToVector2();
+            // shootRotEuler = Quaternion.LookRotation(directionVector).eulerAngles;
+            // if (_Stats.DispersionAngle != 0) {
+            //     shootRotEuler = new Vector3(shootRotEuler.x + RandomDispersionAngle, shootRotEuler.y, shootRotEuler.z);
+            // }
+            data.Rotation = WeaponView.ShootTransform.rotation;//Quaternion.Euler(shootRotEuler);
 
            Debug.DrawLine(WeaponView.ShootTransform.position, WeaponView.ShootTransform.position + WeaponView.ShootTransform.forward * 10f, Color.green, 3f);
             data.Speed = Stats.ProjectileSpeed;

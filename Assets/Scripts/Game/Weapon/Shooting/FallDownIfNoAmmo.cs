@@ -31,7 +31,7 @@ namespace Character.Shooting {
             var itemProvider = _Weapon.gameObject.GetComponent<ItemMarkerProvider>();
             if (itemProvider != null)
                 Destroy(itemProvider);
-            _Weapon.WeaponView.MakeFallingDown();
+            // _Weapon.WeaponView.MakeFallingDown();
         }
     }
 }

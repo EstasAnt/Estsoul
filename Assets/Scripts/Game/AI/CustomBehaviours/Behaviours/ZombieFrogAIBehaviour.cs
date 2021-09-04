@@ -30,7 +30,7 @@ public class ZombieFrogAIBehaviour : BehaviourTreeExecutor
                 moveSelector.AddChild<PointPathSelectionTask>();
             mainTree.AddChild<SimpleMoveToPointTask>();
             mainTree.AddChild<SelectAttackTask>();
-            mainTree.AddChild<AttackMeleeWeaponTargetTask>();
+            mainTree.AddChild<AttackWeaponTargetTask>();
 
             return behaviourTree;
     }

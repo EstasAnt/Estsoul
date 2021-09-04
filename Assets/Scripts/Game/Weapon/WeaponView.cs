@@ -10,5 +10,6 @@ namespace Items
     public class WeaponView : ItemView
     {
         public Transform ShootTransform;
+        
     }
 }

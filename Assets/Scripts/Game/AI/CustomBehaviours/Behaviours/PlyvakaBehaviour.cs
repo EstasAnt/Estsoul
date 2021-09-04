@@ -5,7 +5,7 @@ using Tools.BehaviourTree;
 
 namespace Game.AI.CustomBehaviours.Behaviours
 {
-    public class CactusBehaviour : BehaviourTreeExecutor
+    public class PlyvakaBehaviour : BehaviourTreeExecutor
     {
         
         public TargetSearchData TargetSearchData;

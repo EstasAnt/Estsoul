@@ -24,8 +24,8 @@ namespace Character.Shooting {
             return data;
         }
 
-        public override void PerformShot() {
-            base.PerformShot();
+        protected virtual void FireProjectile()
+        {
             if (ProCamera2DShake.Instance != null && !string.IsNullOrEmpty(ShotCameraShakePresetName))
                 ProCamera2DShake.Instance.Shake(ShotCameraShakePresetName);
             for (int i = 0; i < Stats.ProjectilesInShot; i++) {
@@ -33,9 +33,18 @@ namespace Character.Shooting {
                 var data = GetProjectileData();
                 projectile.Setup(data);
                 projectile.Play();
-                if (Owner.MovementController.CanMove)
+                if(Owner.MovementController != null && Owner.MovementController.CanMove)
                     AddRecoil(data.Rotation * -Vector3.forward);
             }
+        }
+        
+        public override void PerformShot() {
+            base.PerformShot();
+        }
+
+        public override void Hit(int attackIndex)
+        {
+            FireProjectile();
         }
 
         private void AddRecoil(Vector2 direction) {

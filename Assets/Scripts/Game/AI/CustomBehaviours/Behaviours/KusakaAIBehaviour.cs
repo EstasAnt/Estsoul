@@ -25,7 +25,7 @@ namespace Game.AI.CustomBehaviours.Behaviours
             var mainTree = behaviourTree.AddChild<ParallelTask>();
             mainTree.AddChild<TargetSearchTask>();
             mainTree.AddChild<DirectToTargetTask>();
-            mainTree.AddChild<AttackMeleeWeaponTargetTask>();
+            mainTree.AddChild<AttackWeaponTargetTask>();
             return behaviourTree;
         }
 

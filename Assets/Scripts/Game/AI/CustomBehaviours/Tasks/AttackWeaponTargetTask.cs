@@ -7,19 +7,16 @@ using UnityEngine;
 
 namespace Game.AI.CustomBehaviours.Tasks
 {
-    public class AttackMeleeWeaponTargetTask : BuildedTask
+    public class AttackWeaponTargetTask : BuildedTask
     {
         private WeaponController _WeaponController;
         private TargetSearchData _TargetSearchData;
 
-        private MeleeWeapon _MeleeWeapon;
-        
         public override void Init()
         {
             base.Init();
             _WeaponController = BehaviourTree.Executor.GetComponentInParent<WeaponController>();
             _TargetSearchData = Blackboard.Get<TargetSearchData>();
-            _MeleeWeapon = _WeaponController.MainWeapon as MeleeWeapon;
         }
 
         public override TaskStatus Run()

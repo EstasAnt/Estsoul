@@ -295,7 +295,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.7988434, y: 1.3737719}
+  m_Offset: {x: 2.7988434, y: 1.0421889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -306,7 +306,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.597687, y: 2.4442582}
+  m_Size: {x: 6.597687, y: 1.781092}
   m_EdgeRadius: 0
 --- !u!1 &4869967552453111186
 GameObject:
@@ -873,7 +873,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678680489530655148}
-  m_Mesh: {fileID: 8710585815467018933, guid: 99e3e9bd09819a8469a0477f0e9d56e2, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &5678680489530655184
 MeshRenderer:
   m_ObjectHideFlags: 0

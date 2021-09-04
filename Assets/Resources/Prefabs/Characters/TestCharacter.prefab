@@ -245,12 +245,12 @@ MonoBehaviour:
     RightSensor: {fileID: 2291625009419118049}
     LeftSensor: {fileID: 2291625008036404188}
   JumpParameters:
-    GroundJumpSpeed: 20
+    GroundJumpSpeed: 22
     GroundJumpFixedUpdates: 6
     AllowWallJump: 0
     WallJumpSpeed: 40
     AllowAirJump: 1
-    AirJumpSpeed: 20
+    AirJumpSpeed: 18
     AirJumpFixedUpdates: 5
     JumpEffectTransformPoints: []
     JumpEffectNames: []
@@ -825,6 +825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
+      propertyPath: _LayerMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
+        type: 3}
       propertyPath: _InteractEffectorColliders
       value: 1
       objectReference: {fileID: 0}
@@ -919,6 +924,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _Radius
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
+        type: 3}
+      propertyPath: _LayerMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
@@ -1111,6 +1121,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
+      propertyPath: _LayerMask.m_Bits
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
+        type: 3}
       propertyPath: _InteractEffectorColliders
       value: 1
       objectReference: {fileID: 0}
@@ -1297,6 +1312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _Radius
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
+        type: 3}
+      propertyPath: _LayerMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}
@@ -1583,6 +1603,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _Radius
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 42787406825865336, guid: 6890494b4e67b094fa020bb8468f8753,
+        type: 3}
+      propertyPath: _LayerMask.m_Bits
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 42787406825865337, guid: 6890494b4e67b094fa020bb8468f8753,
         type: 3}

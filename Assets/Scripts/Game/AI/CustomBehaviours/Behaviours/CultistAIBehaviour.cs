@@ -28,7 +28,7 @@ public class CultistAIBehaviour : BehaviourTreeExecutor
         moveSelector.AddChild<TargetPursuitTask>();
         moveSelector.AddChild<PointPathSelectionTask>();
         mainTree.AddChild<SimpleMoveToPointTask>();
-        mainTree.AddChild<AttackMeleeWeaponTargetTask>();
+        mainTree.AddChild<AttackWeaponTargetTask>();
 
         return behaviourTree;
     }
