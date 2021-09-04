@@ -9,6 +9,7 @@ namespace Game.AI.CustomBehaviours.Behaviours
     {
         
         public TargetSearchData TargetSearchData;
+        public AimToPointData AimToPointData;
         
         private IDamageable _Damageable;
         
@@ -23,6 +24,7 @@ namespace Game.AI.CustomBehaviours.Behaviours
             var behaviourTree = new BehaviourTree();
             var mainTree = behaviourTree.AddChild<ParallelTask>();
             mainTree.AddChild<TargetSearchTask>();
+            mainTree.AddChild<AimToPointTask>();
             mainTree.AddChild<AttackWeaponTargetTask>();
             return behaviourTree;
         }
@@ -31,6 +33,7 @@ namespace Game.AI.CustomBehaviours.Behaviours
         {
             var bb = new Blackboard();
             bb.Set(TargetSearchData);
+            bb.Set(AimToPointData);
             return bb;
         }
         

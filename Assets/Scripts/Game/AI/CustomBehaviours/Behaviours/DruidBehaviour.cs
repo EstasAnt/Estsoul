@@ -5,12 +5,12 @@ using Tools.BehaviourTree;
 
 namespace Game.AI.CustomBehaviours.Behaviours
 {
-    public class MasterOfCultBehaviour : BehaviourTreeExecutor
+    public class DruidBehaviour : BehaviourTreeExecutor
     {
         
         public TargetSearchData TargetSearchData;
+        public AimToTargetData aimToTargetData;
         public DirectToTargetData DirectToTargetData;
-        public AimToTargetData AimToTargetData;
         
         private IDamageable _Damageable;
         
@@ -36,7 +36,7 @@ namespace Game.AI.CustomBehaviours.Behaviours
             var bb = new Blackboard();
             bb.Set(TargetSearchData);
             bb.Set(DirectToTargetData);
-            bb.Set(AimToTargetData);
+            bb.Set(aimToTargetData);
             return bb;
         }
         
