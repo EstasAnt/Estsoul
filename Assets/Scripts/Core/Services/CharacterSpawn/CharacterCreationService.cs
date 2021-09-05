@@ -35,7 +35,7 @@ namespace Core.Services.Game {
         public CharacterUnit CreateCharacter(PlayerData playerData, PlayerActions playerActions, Vector3 pos) {
             var path = Path.Resources.CharacterPath(playerData.CharacterId);
             var unit = _ResourceLoader.LoadResourceOnScene<CharacterUnit>(path, pos, Quaternion.identity);
-            var playerController = unit.gameObject.AddComponent<PlayerController>();
+            var playerController = unit.gameObject.AddComponent<Character.Control.PlayerController>();
             playerController.PlayerActions = playerActions;
             unit.Initialize(playerData.PlayerId, playerData.CharacterId);
             _SignalBus.FireSignal(new CharacterSpawnedSignal(unit));

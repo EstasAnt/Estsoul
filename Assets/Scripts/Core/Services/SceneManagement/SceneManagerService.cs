@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Core.Services;
 using KlimLib.TaskQueueLib;
+using SceneManagement;
 using Tools.Unity;
 using UnityDI;
 using UnityEngine;
@@ -15,7 +16,12 @@ namespace Core.Services.SceneManagement {
         private readonly UnityEventProvider _EventProvider;
 
         private readonly Dictionary<SceneType, SceneLoadingParameters> _SceneLoadingParametersMap = new Dictionary<SceneType, SceneLoadingParameters>() {
-            
+            {
+                SceneType.GameLevel_1, new GameLevelLoadingParameters()
+            },
+            {
+                SceneType.SpiritWorld, new SpiritWorldLoadingParameters()
+            }
         };
 
         public SceneType ActiveScene {
@@ -83,5 +89,6 @@ namespace Core.Services.SceneManagement {
 
     public enum SceneType {
         GameLevel_1,
+        SpiritWorld,
     }
 }

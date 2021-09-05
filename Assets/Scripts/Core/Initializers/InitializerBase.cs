@@ -26,6 +26,8 @@ namespace Core.Initialization {
         private void Initialize() {
             if (_InitializationRequested)
                 return;
+            if(_WasInitialized)
+                return;
             _WasInitialized = true;
             _InitializationRequested = true;
             InitializationParameters.BaseTasks

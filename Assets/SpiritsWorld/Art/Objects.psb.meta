@@ -1,0 +1,343 @@
+fileFormatVersion: 2
+guid: 875e2228acd6bf64c89eb5283519688c
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    isReadable: 0
+    streamingMipmaps: 1
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  spriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 0, y: 0}
+  mosaicSpriteImportData: []
+  rigSpriteImportData:
+  - name: 'altar '
+    originalName: 
+    pivot: {x: 0.51851875, y: 0.40168816}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 587
+      height: 516
+    spriteID: 55f17c5846f7ba74e9b35d663f9179c2
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -1365, y: -630}
+  - name: black spirit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 599
+      y: 4
+      width: 170
+      height: 171
+    spriteID: 7eee8de666abe44438d7b2fe411a9137
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 350, y: -1070}
+  - name: wight spirit
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 599
+      y: 183
+      width: 170
+      height: 171
+    spriteID: c869cf72d6ca7ab4e8d6c304971638cd
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 354, y: -905}
+  - name: black gravity flover
+    originalName: 
+    pivot: {x: 0.49237168, y: 0.42240942}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 528
+      width: 475
+      height: 467
+    spriteID: 91b5785ff3163034e91397cbbb738058
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -417, y: -40}
+  - name: wight gravity flover
+    originalName: 
+    pivot: {x: 0.5252806, y: 0.5671022}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 487
+      y: 528
+      width: 430
+      height: 378
+    spriteID: 1b962c0200d142847a5bf941b2a2020f
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -356, y: -4}
+  - name: Hero black
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 777
+      y: 4
+      width: 123
+      height: 186
+    spriteID: f28094a58739b9b4ea8ba4c716b4f021
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -246, y: -904}
+  - name: Hero
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 777
+      y: 198
+      width: 123
+      height: 186
+    spriteID: e70087259358b5d47939dc32fc7b8b18
+    internalID: 0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -246, y: -710}
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  sharedRigSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  importedTextureWidth: 1024
+  importedTextureHeight: 1024
+  documentSize: {x: 4320, y: 2160}
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  skeletonAssetReferenceID: 
+  spriteCategoryList:
+    categories: []
+  textureActualWidth: 1024
+  textureActualHeight: 1024
+  spritePackingTag: 
+  resliceFromLayer: 0
+  mosaicPSDLayers: []
+  rigPSDLayers:
+  - name: "\u0441\u043A\u0440\u0438\u043D5"
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 00000000000000000000000000000000
+    layerID: 146
+    mosaicPosition: {x: 0, y: 0}
+  - name: 'altar '
+    spriteName: 'altar '
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 55f17c5846f7ba74e9b35d663f9179c2
+    layerID: 253
+    mosaicPosition: {x: 4, y: 4}
+  - name: black spirit
+    spriteName: black spirit
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 7eee8de666abe44438d7b2fe411a9137
+    layerID: 224
+    mosaicPosition: {x: 599, y: 4}
+  - name: wight spirit
+    spriteName: wight spirit
+    isGroup: 0
+    parentIndex: 0
+    spriteID: c869cf72d6ca7ab4e8d6c304971638cd
+    layerID: 226
+    mosaicPosition: {x: 599, y: 183}
+  - name: black gravity flover
+    spriteName: black gravity flover
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 91b5785ff3163034e91397cbbb738058
+    layerID: 139
+    mosaicPosition: {x: 4, y: 528}
+  - name: wight gravity flover
+    spriteName: wight gravity flover
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 1b962c0200d142847a5bf941b2a2020f
+    layerID: 230
+    mosaicPosition: {x: 487, y: 528}
+  - name: Hero black
+    spriteName: Hero black
+    isGroup: 0
+    parentIndex: 0
+    spriteID: f28094a58739b9b4ea8ba4c716b4f021
+    layerID: 252
+    mosaicPosition: {x: 777, y: 4}
+  - name: Hero
+    spriteName: Hero
+    isGroup: 0
+    parentIndex: 0
+    spriteID: e70087259358b5d47939dc32fc7b8b18
+    layerID: 251
+    mosaicPosition: {x: 777, y: 198}
+  sharedRigPSDLayers: []
+  generateGOHierarchy: 0
+  textureAssetName: Objects Texture
+  prefabAssetName: Objects Prefab
+  spriteLibAssetName: Objects Sprite Lib
+  skeletonAssetName: Objects Skeleton
+  secondarySpriteTextures: []

@@ -15,7 +15,7 @@ MonoBehaviour:
   Range: 0
   ReloadingTime: 0
   ProjectileSpeed: 0
-  Damage: 10
+  Damage: 100
   HitForce: 0
   RecoilForce: 0
   RateOfFire: 1
