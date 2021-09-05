@@ -79,7 +79,7 @@ Transform:
   m_GameObject: {fileID: 1015543759490682422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 5678680489530655149}
   - {fileID: 5678680487873439856}
@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946ad52d3c4638f4c9173d7b9aa8c691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHealth: 150
+  StartHealth: 100
   UseHealth: 1
   DestroyAfterKillTime: 5
 --- !u!114 &3009157670127343197
@@ -734,7 +734,7 @@ MonoBehaviour:
   TargetSearchData:
     TargetSearchTrigger: {fileID: 8761163298605657521}
     TargetAttackTrigger: {fileID: 6402410734086588720}
-    TryFoundMissedTargetTime: 2
+    TryFoundMissedTargetTime: 3
     HasTargetMoveCoef: 1.3
     LastTimeSawTargetTime: 0
 --- !u!1 &5678680488526342238
@@ -825,7 +825,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678680489516591933}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.63, y: 0, z: 0}
+  m_LocalPosition: {x: 5.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5678680489234703404}
@@ -873,7 +873,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678680489530655148}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 8710585815467018933, guid: 99e3e9bd09819a8469a0477f0e9d56e2, type: 3}
 --- !u!23 &5678680489530655184
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1010,7 +1010,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678680489603600174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.16, y: 0, z: 0}
+  m_LocalPosition: {x: 12.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5678680489234703404}

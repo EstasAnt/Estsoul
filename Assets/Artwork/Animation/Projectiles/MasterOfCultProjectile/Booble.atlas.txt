@@ -1,0 +1,7 @@
+Booble.png
+size:89,89
+filter:Linear,Linear
+pma:true
+scale:0.2
+booble
+bounds:2,2,85,85

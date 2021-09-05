@@ -258,7 +258,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AttackJump
-  m_Speed: 1.5
+  m_Speed: 1.4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8953885456526336327}
@@ -1366,7 +1366,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 1
 --- !u!1101 &737560509396269979
 AnimatorStateTransition:
@@ -1413,7 +1413,7 @@ AnimatorStateMachine:
     m_Position: {x: 700, y: -160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3964667428908895920}
-    m_Position: {x: 169.75308, y: -429.84915, z: 0}
+    m_Position: {x: 170, y: -430, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6927017576672328931}
     m_Position: {x: 910, y: -310, z: 0}
@@ -1990,7 +1990,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hit
-  m_Speed: 1.5
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2059104097130372574}
@@ -2009,7 +2009,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8694738303202949151}
+  m_Motion: {fileID: 8738845356576463654, guid: 05ae96c19145cbc499f31ce85d7bcd0f,
+    type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

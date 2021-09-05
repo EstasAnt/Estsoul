@@ -139,7 +139,7 @@ MonoBehaviour:
   Duration: 0.1
   Delay: 0
   StopWhileAttack: 0
-  CharacterAddForce: {x: 9000, y: 5000}
+  CharacterAddForce: {x: 8000, y: 4500}
 --- !u!61 &1471843730555024506
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -745,7 +745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7322053492563257841}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.55, y: 0, z: 0}
+  m_LocalPosition: {x: 28.19, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7322053492819977952}
@@ -775,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7322053492652396002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.91, y: 0, z: 0}
+  m_LocalPosition: {x: 11.45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7322053492819977952}
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946ad52d3c4638f4c9173d7b9aa8c691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHealth: 150
+  StartHealth: 80
   UseHealth: 1
   DestroyAfterKillTime: 5
 --- !u!114 &184997228365141137
@@ -1037,7 +1037,7 @@ MonoBehaviour:
     HasTargetMoveCoef: 2.3
     LastTimeSawTargetTime: 0
   SelectAttackData:
-    MinDistanceToJumpAttack: 7
+    MinDistanceToJumpAttack: 4
 --- !u!1 &7470398465633949249
 GameObject:
   m_ObjectHideFlags: 0
