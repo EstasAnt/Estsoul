@@ -53,7 +53,7 @@ MonoBehaviour:
   UseTopBoundary: 1
   TopBoundary: 16
   UseBottomBoundary: 1
-  BottomBoundary: -31.7
+  BottomBoundary: -88.8
   UseLeftBoundary: 1
   LeftBoundary: -12.98
   UseRightBoundary: 1

@@ -29,6 +29,6 @@ bounds:427,145,127,136
 r_wing
 bounds:226,16,65,133
 rotate:90
-Слой 112
+tail
 bounds:2,17,132,222
 rotate:90

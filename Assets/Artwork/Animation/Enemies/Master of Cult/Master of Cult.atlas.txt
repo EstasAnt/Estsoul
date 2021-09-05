@@ -3,6 +3,8 @@ size:502,516
 filter:Linear,Linear
 pma:true
 scale:0.2
+belt
+bounds:167,2,89,101
 body
 bounds:360,105,102,97
 hand down
@@ -16,15 +18,13 @@ rotate:90
 mask
 bounds:167,105,114,191
 rotate:90
-r_hand
-bounds:435,62,57,41
-Слой 127
-bounds:2,221,389,293
-Слой 68
+orb
 bounds:258,8,95,91
 rotate:90
-Слой 69
+orb1
 bounds:393,204,113,106
 rotate:90
-Слой4
-bounds:167,2,89,101
+orb2
+bounds:2,221,389,293
+r_hand
+bounds:435,62,57,41
