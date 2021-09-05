@@ -63,4 +63,4 @@ MonoBehaviour:
   ChangeZoom: 0
   TargetZoom: 1.5
   ZoomSmoothness: 1
-  _setAsStartingBoundaries: 1
+  _setAsStartingBoundaries: 0
