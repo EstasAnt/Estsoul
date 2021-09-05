@@ -27,7 +27,7 @@ namespace Core.Initialization {
 
         public static List<Task> BaseGameTasks =>
             new List<Task> {
-                new WaitForAwakesTask(),
+                 new WaitForAwakesTask(),
                 new RegisterAndLoadServiceTask<CharacterCreationService>(),
                 new RegisterAndLoadServiceTask<HealthService>(),
                 new GameCameraSpawnTask(),

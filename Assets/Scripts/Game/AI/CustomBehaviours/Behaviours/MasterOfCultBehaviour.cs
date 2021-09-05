@@ -7,7 +7,6 @@ namespace Game.AI.CustomBehaviours.Behaviours
 {
     public class MasterOfCultBehaviour : BehaviourTreeExecutor
     {
-        
         public TargetSearchData TargetSearchData;
         public DirectToTargetData DirectToTargetData;
         public AimToTargetData AimToTargetData;

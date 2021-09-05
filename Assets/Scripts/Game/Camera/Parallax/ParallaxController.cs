@@ -20,6 +20,7 @@ public class ParallaxController : MonoBehaviour {
 
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
+        GetComponentsInChildren(ParallaxObjects);
         _SignalBus.Subscribe<GameCameraSpawnedSignal>(OnGameCameraSpawn, this);
     }
 
