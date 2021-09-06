@@ -8,5 +8,6 @@ namespace Game.AI.CustomBehaviours.BlackboardData
     {
         public Vector2? TargetPos { get; set; }
         public float ReachDistance = 0.1f;
+        public float DirectChangeCD = 1f;
     }
 }

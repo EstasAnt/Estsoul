@@ -10,19 +10,21 @@ namespace Game.AI.CustomBehaviours.Tasks
     {
         private MovementControllerBase _movementController;
         private MovementData _MovementData;
+
+        private float _CurrentDirection;
+        private float _LastChangeDirectionTime;
         
         public override void Init()
         {
             base.Init();
             _movementController = BehaviourTree.Executor.GetComponent<MovementControllerBase>();
+            _MovementData = Blackboard.Get<MovementData>();
+            _LastChangeDirectionTime = -_MovementData.DirectChangeCD;
         }
 
-        public override void Begin() {
-            _MovementData = Blackboard.Get<MovementData>();
-        }
-        
         public override TaskStatus Run()
         {
+            _CurrentDirection = _movementController.Direction;
             if (!_MovementData.TargetPos.HasValue)
             {
                 _movementController.SetHorizontal(0);
@@ -35,8 +37,18 @@ namespace Game.AI.CustomBehaviours.Tasks
                 _movementController.SetHorizontal(0);
                 return TaskStatus.Success;
             }
-            _movementController.SetHorizontal(Mathf.Sign(vectorToTarget.x));
-            
+            var directSign = Mathf.Sign(vectorToTarget.x);
+
+            if (_CurrentDirection != directSign && Time.timeSinceLevelLoad - _LastChangeDirectionTime >= _MovementData.DirectChangeCD)
+            {
+                _movementController.SetHorizontal(directSign);
+                _LastChangeDirectionTime = Time.timeSinceLevelLoad;
+            }
+            else
+            {
+                _movementController.SetHorizontal(_CurrentDirection);
+            }
+
             return TaskStatus.Running;
         }
     }
