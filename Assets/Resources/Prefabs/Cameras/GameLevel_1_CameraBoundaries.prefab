@@ -51,11 +51,11 @@ MonoBehaviour:
   NumericBoundaries: {fileID: 0}
   AreBoundariesRelative: 1
   UseTopBoundary: 1
-  TopBoundary: 16
+  TopBoundary: 15.58
   UseBottomBoundary: 1
-  BottomBoundary: -88.8
+  BottomBoundary: -33.6
   UseLeftBoundary: 1
-  LeftBoundary: -12.98
+  LeftBoundary: -21.5
   UseRightBoundary: 1
   RightBoundary: 139.1
   TransitionDuration: 1

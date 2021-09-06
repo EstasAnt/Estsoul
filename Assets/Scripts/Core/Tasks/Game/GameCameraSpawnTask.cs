@@ -23,15 +23,14 @@ namespace Core.Initialization.Game {
         private readonly SceneManagerService _SceneManagerService;
 
         protected override void AutoCompletedRun() {
-            // var activeScene = _SceneManagerService.ActiveScene;
-            // var cameraPath = Path.Resources.CameraPath(activeScene);
-            // var cameraBoundariesPath = Path.Resources.CameraBoundariesPath(activeScene);
-            // var camera = _ResourceLoader.LoadResourceOnScene<ProCamera2D>(cameraPath, _CameraSettings.SpawnTransform.position, _CameraSettings.SpawnTransform.rotation);
-            var camera = ProCamera2D.Instance;
+            var activeScene = _SceneManagerService.ActiveScene;
+            var cameraPath = Path.Resources.CameraPath(activeScene);
+            var cameraBoundariesPath = Path.Resources.CameraBoundariesPath(activeScene);
+            var camera = _ResourceLoader.LoadResourceOnScene<ProCamera2D>(cameraPath, _CameraSettings.SpawnTransform.position, _CameraSettings.SpawnTransform.rotation);
             ContainerHolder.Container.RegisterInstance(camera);
             var units = Object.FindObjectsOfType<CharacterUnit>();
             camera.AddCameraTargets(units.Select(_ => _.transform).ToList());
-            //var bordaers = _ResourceLoader.LoadResourceOnScene<ProCamera2DTriggerBoundaries>(cameraBoundariesPath);
+            var bordaers = _ResourceLoader.LoadResourceOnScene<ProCamera2DTriggerBoundaries>(cameraBoundariesPath);
             _SignalBus.FireSignal(new GameCameraSpawnedSignal(camera));
         }
     }
