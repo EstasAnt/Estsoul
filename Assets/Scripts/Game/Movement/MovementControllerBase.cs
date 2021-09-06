@@ -36,6 +36,8 @@ namespace Game.Movement
         public event Action OnHoldJump;
         public event Action OnReleaseJump;
         
+        public bool MovementBlock { get; set; }
+        
         public abstract bool CanMove { get;  }
 
         public float MovementSpeedBoostCoef { get; set; } = 1f;

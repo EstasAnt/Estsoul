@@ -726,6 +726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementData:
     ReachDistance: 4
+    DirectChangeCD: 1
   MovementPointsData:
     MovementPoints:
     - PointTransform: {fileID: 5678680489516591934}

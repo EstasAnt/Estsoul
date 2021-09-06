@@ -30,7 +30,7 @@ namespace Core.Initialization.Game {
             ContainerHolder.Container.RegisterInstance(camera);
             var units = Object.FindObjectsOfType<CharacterUnit>();
             camera.AddCameraTargets(units.Select(_ => _.transform).ToList());
-            var bordaers = _ResourceLoader.LoadResourceOnScene<ProCamera2DTriggerBoundaries>(cameraBoundariesPath);
+            //var bordaers = _ResourceLoader.LoadResourceOnScene<ProCamera2DTriggerBoundaries>(cameraBoundariesPath);
             _SignalBus.FireSignal(new GameCameraSpawnedSignal(camera));
         }
     }

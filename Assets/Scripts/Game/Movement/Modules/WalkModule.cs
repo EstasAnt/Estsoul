@@ -49,6 +49,8 @@ namespace Game.Movement.Modules {
 
         public override void FixedUpdate()
         {
+            if(CommonData.MovementController.MovementBlock)
+                return;
             var xVelocity = CommonData.ObjRigidbody.velocity.x;
             var xLocalvelocity = xVelocity;
             var attachedRb = CommonData.MovementController.AttachedToRB;

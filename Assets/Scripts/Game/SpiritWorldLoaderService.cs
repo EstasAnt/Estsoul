@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using System.Linq;
 using Character.Health;
 using Core.Services;
 using Core.Services.SceneManagement;
+using Game.LevelSpecial;
 using KlimLib.SignalBus;
 using Tools.Unity;
 using UnityDI;
@@ -18,13 +20,27 @@ namespace SceneManagement.Game
         public void Load()
         {
             _SignalBus.Subscribe<CharacterDeathSignal>(OnCharacterDeadSignal, this);
+            _SignalBus.Subscribe<RealWorldGateInSignal>(OnRealWorldGateInSignal, this);
         }
 
         private void OnCharacterDeadSignal(CharacterDeathSignal signal)
         {
-            _UnityEventProvider.StartCoroutine(LoadSpiritWorldRoutine());
+            LoadSpiritWorld();
+        }
+        
+        private void OnRealWorldGateInSignal(RealWorldGateInSignal signal)
+        {
+            LoadSpiritWorld();
         }
 
+        private void LoadSpiritWorld()
+        {
+            var characterUnit = CharacterUnit.Characters.FirstOrDefault();
+            if(characterUnit)
+                characterUnit.MovementController.MovementBlock = true;
+            _UnityEventProvider.StartCoroutine(LoadSpiritWorldRoutine());
+        }
+        
         private IEnumerator LoadSpiritWorldRoutine()
         {
             yield return new WaitForSecondsRealtime(SpiritWordlLoadTime);
