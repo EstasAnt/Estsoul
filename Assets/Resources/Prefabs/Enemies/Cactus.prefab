@@ -319,6 +319,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -484,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946ad52d3c4638f4c9173d7b9aa8c691, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartHealth: 50
+  StartHealth: 40
   UseHealth: 1
   DestroyAfterKillTime: 3
 --- !u!114 &5775252174389268232
