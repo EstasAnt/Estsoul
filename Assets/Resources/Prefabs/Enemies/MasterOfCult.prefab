@@ -50,7 +50,7 @@ MonoBehaviour:
   _Id: PlyvakaWeapon
   ShotSoundEffects: []
   _AnimationTrigger: Attack
-  ProjectileName: PlyvakaProjectile
+  ProjectileName: MasterOfCultProjectile
   ShotCameraShakePresetName: 
   _ShellEffectPoint: {fileID: 0}
   _ShellEffectName: 
@@ -334,6 +334,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

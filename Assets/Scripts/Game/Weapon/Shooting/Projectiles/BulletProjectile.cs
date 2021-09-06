@@ -15,7 +15,7 @@ namespace Character.Shooting {
         private ContactFilter2D _Filter;
 
         public override void Simulate(float time) {
-            var targetPos = transform.position + transform.forward * Data.Speed * time;
+            var targetPos = transform.position + transform.right * Data.Speed * time;
             List<RaycastHit2D> results = new List<RaycastHit2D>();
             var hitsCount = Physics2D.Linecast(transform.position, targetPos, _Filter, results);
             var hit = results.FirstOrDefault();
