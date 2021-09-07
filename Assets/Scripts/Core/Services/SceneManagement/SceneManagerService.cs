@@ -20,6 +20,9 @@ namespace Core.Services.SceneManagement {
                 SceneType.GameLevel_1, new GameLevelLoadingParameters()
             },
             {
+                SceneType.LevelTemplate, new GameLevelLoadingParameters()
+            },
+            {
                 SceneType.SpiritWorld, new SpiritWorldLoadingParameters()
             }
         };
@@ -90,5 +93,6 @@ namespace Core.Services.SceneManagement {
     public enum SceneType {
         GameLevel_1,
         SpiritWorld,
+        LevelTemplate,
     }
 }
