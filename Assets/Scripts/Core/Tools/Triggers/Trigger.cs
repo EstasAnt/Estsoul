@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.LevelSpecial
@@ -6,6 +7,10 @@ namespace Game.LevelSpecial
     public abstract class Trigger<T> : MonoBehaviour where T : Component
     {
         protected  List<T> _UnitsInscide = new List<T>();
+
+        protected virtual bool UseTriggerEnter => true;
+        protected virtual bool UseTriggerExit => true;
+        protected virtual bool UseTriggerStay => false;
         
         public IReadOnlyList<T> UnitsInside => _UnitsInscide;
         
@@ -18,6 +23,8 @@ namespace Game.LevelSpecial
         }
 
         protected virtual void OnTriggerEnter2D(Collider2D col) {
+            if(!UseTriggerEnter)
+                return;
             var unit = col.gameObject.GetComponent<T>();
             if (!unit || _UnitsInscide.Contains(unit))
                 return;
@@ -25,10 +32,22 @@ namespace Game.LevelSpecial
         }
 
         protected virtual void OnTriggerExit2D(Collider2D col) {
+            if(!UseTriggerExit)
+                return;
             var unit = col.gameObject.GetComponent<T>();
             if (!unit || !_UnitsInscide.Contains(unit))
                 return;
             OnUnitExitTheTrigger(unit);
+        }
+
+        protected void OnTriggerStay2D(Collider2D col)
+        {
+            if(!UseTriggerStay)
+                return;
+            var unit = col.gameObject.GetComponent<T>();
+            if (!unit)
+                return;
+            OnUnitStayInTrigger(unit);
         }
 
         protected virtual void OnUnitEnterTheTrigger(T unit) {
@@ -37,6 +56,10 @@ namespace Game.LevelSpecial
 
         protected virtual void OnUnitExitTheTrigger(T unit) {
             _UnitsInscide.Remove(unit);
+        }
+        
+        protected virtual void OnUnitStayInTrigger(T unit) {
+            
         }
     }
 }

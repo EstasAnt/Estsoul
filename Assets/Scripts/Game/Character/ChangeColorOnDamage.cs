@@ -30,6 +30,8 @@ public class ChangeColorOnDamage : MonoBehaviour
 
     private void OnDamage(IDamageable arg1, Damage arg2)
     {
+        if(arg2.Amount <= 0)
+            return;
         StopAllCoroutines();
         StartCoroutine(ChangeColorRoutine());
     }

@@ -6,9 +6,15 @@ using UnityEngine;
 using Core.Services.Game;
 using Game.Movement;
 using InControl;
+using KlimLib.SignalBus;
+using UnityDI;
 
 namespace Character.Control {
-    public class PlayerController : MonoBehaviour {
+    public class PlayerController : MonoBehaviour
+    {
+
+        [Dependency] private readonly SignalBus _signalBus;
+        
         public int Id;
         //public InputDevice InputDevice;
         public PlayerActions PlayerActions;
@@ -28,6 +34,7 @@ namespace Character.Control {
         }
 
         private void Start() {
+            ContainerHolder.Container.BuildUp(this);
             _Camera = Camera.main;
             _AimProvider = PlayerActions.Device == null
                 ? (IAimProvider) new MouseAim(_Camera)
@@ -41,8 +48,7 @@ namespace Character.Control {
             Move();
             Jump();
             Attack();
-            ThrowWeapon();
-            // ThrowVehicle();
+            Action();
         }
         
 
@@ -90,18 +96,13 @@ namespace Character.Control {
             }
         }
 
-        private void ThrowWeapon() {
-            if (PlayerActions.ThrowOutWeapon.WasPressed) {
-                _WeaponController.ThrowOutMainWeapon();
+        private void Action()
+        {
+            if (PlayerActions.Action.WasPressed)
+            {
+                _signalBus.FireSignal(new PlayerActionWasPressedSignal());
             }
         }
-
-        // private void ThrowVehicle()
-        // {
-        //     if (PlayerActions.ThrowOutVehicle.WasPressed) {
-        //         _WeaponController.ThrowOutVehicle();
-        //     }
-        // }
 
         public void LateUpdate() {
             if (_WeaponController.HasMainWeapon)

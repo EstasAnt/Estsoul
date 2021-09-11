@@ -2,12 +2,13 @@
 {
     public class RealWorldGateInTrigger : TriggerSignalBroadcaster<CharacterUnit, RealWorldGateInSignal>
     {
-        protected override RealWorldGateInSignal CreateSignal(CharacterUnit unit, bool enter)
+        protected override bool UseTriggerExit => false;
+        protected override RealWorldGateInSignal CreateSignal(CharacterUnit unit, bool inTrigger)
         {
             return new RealWorldGateInSignal()
             {
                 characterUnit = unit,
-                In = enter,
+                In = inTrigger,
             };
         }
     }

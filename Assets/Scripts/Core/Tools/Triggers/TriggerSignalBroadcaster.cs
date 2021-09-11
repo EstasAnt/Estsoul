@@ -23,6 +23,12 @@ namespace Game.LevelSpecial
             _SignalBus.FireSignal(CreateSignal(unit, false));
         }
 
-        protected abstract S CreateSignal(T unit, bool enter);
+        protected override void OnUnitStayInTrigger(T unit)
+        {
+            base.OnUnitStayInTrigger(unit);
+            _SignalBus.FireSignal(CreateSignal(unit, true));
+        }
+
+        protected abstract S CreateSignal(T unit, bool inTrigger);
     }
 }

@@ -7,8 +7,9 @@ public class PlayerActions : PlayerActionSet {
     public readonly PlayerAction Fire;
     public readonly PlayerAction Jump;
     public readonly PlayerAction Confirm;
-    public readonly PlayerAction ThrowOutWeapon;
-    public readonly PlayerAction ThrowOutVehicle;
+    public readonly PlayerAction Action;
+
+
     public readonly PlayerAction Left;
     public readonly PlayerAction Right;
     public readonly PlayerAction Up;
@@ -26,8 +27,7 @@ public class PlayerActions : PlayerActionSet {
         Fire = CreatePlayerAction("Fire");
         Jump = CreatePlayerAction("Jump");
         Confirm = CreatePlayerAction("Confirm");
-        ThrowOutWeapon = CreatePlayerAction("ThrowOutWeapon");
-        ThrowOutVehicle = CreatePlayerAction("ThrowOutVehicle");
+        Action = CreatePlayerAction("Action");
 
         Left = CreatePlayerAction("Move Left");
         Right = CreatePlayerAction("Move Right");
@@ -50,9 +50,8 @@ public class PlayerActions : PlayerActionSet {
         playerActions.Jump.AddDefaultBinding(Key.Space);
 
         playerActions.Confirm.AddDefaultBinding(Key.Space);
-
-        playerActions.ThrowOutWeapon.AddDefaultBinding(Key.C);
-        playerActions.ThrowOutVehicle.AddDefaultBinding(Key.X);
+        
+        playerActions.Action.AddDefaultBinding(Key.F);
 
         playerActions.Up.AddDefaultBinding(Key.UpArrow);
         playerActions.Down.AddDefaultBinding(Key.DownArrow);
@@ -88,9 +87,8 @@ public class PlayerActions : PlayerActionSet {
 
         playerActions.Confirm.AddDefaultBinding(InputControlType.Action1);
 
-        playerActions.ThrowOutWeapon.AddDefaultBinding(InputControlType.Action4);
-        playerActions.ThrowOutVehicle.AddDefaultBinding(InputControlType.Action3);
-
+        playerActions.Action.AddDefaultBinding(InputControlType.Action2); //ToDo: correct button
+        
         playerActions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
         playerActions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
         playerActions.Up.AddDefaultBinding(InputControlType.LeftStickUp);
