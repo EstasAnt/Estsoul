@@ -9047,7 +9047,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 23f9c59d4ea0b5b4082ad54e3e768736, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.491
+  m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12855,9 +12855,9 @@ MonoBehaviour:
   Black: {fileID: 2260371696716906408, guid: 875e2228acd6bf64c89eb5283519688c, type: 3}
   Body: {fileID: 2112013216}
   CollisionPS: {fileID: 967750551}
-  FailSound: {fileID: 8300000, guid: 29c2e2756e0d5454397df713491bfb9c, type: 3}
-  SuccessSound: {fileID: 8300000, guid: faa428f34b773b4489fede9eb2b03578, type: 3}
-  SwipeSound: {fileID: 8300000, guid: c0440ad0ae626f548856fb89c7835251, type: 3}
+  FailSound: {fileID: 8300000, guid: 9dd211fd2bb3e95469335dfd5ec19761, type: 3}
+  SuccessSound: {fileID: 8300000, guid: 25519521ec40dac419575f120b4ad379, type: 3}
+  SwipeSound: {fileID: 8300000, guid: 30906a8d2c6764e42a616933e9bcc8c3, type: 3}
   CheckPoints:
   - {fileID: 1747589046}
   - {fileID: 1181781065}
