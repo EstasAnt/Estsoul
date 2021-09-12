@@ -14,6 +14,8 @@ namespace Game.LevelSpecial
         }
 
         protected override void OnUnitEnterTheTrigger(T  unit) {
+            if(_SignalBus == null)
+                ContainerHolder.Container.BuildUp(GetType(), this);
             base.OnUnitEnterTheTrigger(unit);
             _SignalBus.FireSignal(CreateSignal(unit, true));
         }
