@@ -25,32 +25,32 @@ namespace SceneManagement.Game
 
         private void OnCharacterDeadSignal(CharacterDeathSignal signal)
         {
-            LoadSpiritWorld();
+            LoadSpiritWorld(SceneType.SpiritWorldShort);
         }
         
         private void OnRealWorldGateInSignal(RealWorldGateInSignal signal)
         {
-            LoadSpiritWorld();
+            LoadSpiritWorld(SceneType.SpiritWorldLong);
         }
 
-        private void LoadSpiritWorld()
+        private void LoadSpiritWorld(SceneType sceneType)
         {
             var characterUnit = CharacterUnit.Characters.FirstOrDefault();
             if(characterUnit)
                 characterUnit.MovementController.MovementBlock = true;
-            _UnityEventProvider.StartCoroutine(LoadSpiritWorldRoutine());
+            _UnityEventProvider.StartCoroutine(LoadSpiritWorldRoutine(sceneType));
         }
         
-        private IEnumerator LoadSpiritWorldRoutine()
+        private IEnumerator LoadSpiritWorldRoutine(SceneType sceneType)
         {
             yield return new WaitForSecondsRealtime(SpiritWordlLoadTime);
-            _SceneManagerService.LoadScene(SceneType.SpiritWorld);
+            _SceneManagerService.LoadScene(sceneType);
         }
 
-        public void StopLoading()
-        {
-            _UnityEventProvider.StopCoroutine(LoadSpiritWorldRoutine());
-        }
+        // public void StopLoading()
+        // {
+        //     _UnityEventProvider.StopCoroutine(LoadSpiritWorldRoutine());
+        // }
         
         public float SpiritWordlLoadTime => 3f;
 

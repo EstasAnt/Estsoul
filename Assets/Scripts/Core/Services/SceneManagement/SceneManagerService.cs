@@ -24,6 +24,12 @@ namespace Core.Services.SceneManagement {
             },
             {
                 SceneType.SpiritWorld, new SpiritWorldLoadingParameters()
+            },
+            {
+                SceneType.SpiritWorldShort, new SpiritWorldLoadingParameters()
+            },
+            {
+                SceneType.SpiritWorldLong, new SpiritWorldLoadingParameters()
             }
         };
 
@@ -94,5 +100,7 @@ namespace Core.Services.SceneManagement {
         GameLevel_1,
         SpiritWorld,
         LevelTemplate,
+        SpiritWorldShort,
+        SpiritWorldLong,
     }
 }

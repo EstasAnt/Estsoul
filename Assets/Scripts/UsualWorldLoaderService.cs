@@ -22,7 +22,6 @@ namespace SceneManagement
 
         private void  OnSpiritWorldGateInSignal(SpiritWorldGateInSignal signal)
         {
-            Debug.LogError($"enter = {signal.In}");
             if(!signal.In)
                 return;
             LoadUsualWorld();
