@@ -16,7 +16,7 @@ namespace Game.Movement
 
         private void Update()
         {
-            _ShadowSprite.enabled = _MovementController.IsGrounded;
+            _ShadowSprite.enabled = _MovementController.IsMainGrounded;
         }
     }
 }
