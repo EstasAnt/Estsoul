@@ -15,7 +15,10 @@ namespace Tools.BehaviourTree {
             BehaviourTree.Init();
         }
 
-        protected abstract void Initialize();
+        protected virtual void Initialize()
+        {
+            ContainerHolder.Container.BuildUp(GetType(), this);
+        }
 
         protected abstract BehaviourTree BuildBehaviourTree();
 

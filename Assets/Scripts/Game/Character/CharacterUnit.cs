@@ -12,10 +12,13 @@ using UnityDI;
 using Core.Services.Game;
 using System;
 using Core.Audio;
+using Game.AI.CustomBehaviours.Behaviours;
+using Game.Movement;
+using Game.Weapons;
 using KlimLib.ResourceLoader;
 using Tools.VisualEffects;
 
-public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
+public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder, IMobsTarget {
     [Dependency]
     private readonly SignalBus _SignalBus;
     [Dependency]
@@ -24,7 +27,11 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
     private readonly IResourceLoaderService _ResourceLoader;
 
     public MovementController MovementController { get; private set; }
+
+    public byte Id => OwnerId;
+    MovementControllerBase IWeaponHolder.MovementController => MovementController;
     public WeaponController WeaponController { get; private set; }
+    public IDamageable Damageable => this;
 
     public DamageBuffer DamageBuffer { get; private set; }
 
@@ -35,6 +42,9 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
     public float NormilizedHealth => Health / MaxHealth;
 
     public bool Dead { get; set; }
+    
+    public event Action<IDamageable, Damage> OnKill;
+    public event Action<IDamageable, Damage> OnDamage;
 
     [SerializeField]
     private byte _OwnerId;
@@ -42,7 +52,6 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
     public string CharacterId;
     public List<string> HitAudioEffects;
     public List<string> DeathAudioEffects;
-    public event Action<Damage> OnApplyDamage;
 
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
@@ -57,6 +66,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
     }
 
     public Collider2D Collider { get; set; }
+    public Transform Transform => transform;
     public Rigidbody2D Rigidbody2D { get; set; }
 
     public Vector3 Position => transform.position;
@@ -67,7 +77,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
 
     public void ApplyDamage(Damage damage) {
         _SignalBus.FireSignal(new ApplyDamageSignal(damage));
-        OnApplyDamage?.Invoke(damage);
+        OnDamage?.Invoke(this, damage);
         PlayeHitSound(HitAudioEffects);
     }
 
@@ -82,7 +92,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
         ContainerHolder.Container.BuildUp(this);
         OwnerId = ownerId;
         CharacterId = characterId;
-        MaxHealth = 130f; //Todo: Config
+        MaxHealth = 100f; //Todo: Config
         Health = MaxHealth;
         DamageBuffer?.Initialize(this, 3f);
     }
@@ -97,6 +107,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget {
         if (Dead)
             return;
         Dead = true;
+        OnKill?.Invoke(this, damage);
         Debug.Log($"Player {OwnerId} character {CharacterId} dead.");
         Destroy(gameObject); //ToDo: something different
         _SignalBus?.FireSignal(new CharacterDeathSignal(damage));

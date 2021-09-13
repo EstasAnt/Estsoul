@@ -1,0 +1,102 @@
+GG.png
+size:190,1484
+filter:Linear,Linear
+pma:true
+scale:0.2
+1
+bounds:2,314,81,70
+2
+bounds:105,373,81,70
+3
+bounds:2,697,118,93
+body
+bounds:83,504,95,96
+body down
+bounds:85,311,83,60
+body up
+bounds:2,587,108,120
+rotate:90
+eye
+bounds:12,2,55,15
+fireball1
+bounds:124,602,64,40
+fireball2
+bounds:135,190,64,40
+rotate:90
+glow 2
+bounds:2,456,128,63
+rotate:90
+glow fireball1
+bounds:2,386,101,57
+glow fireball2
+bounds:67,445,101,57
+glow1
+bounds:122,664,128,63
+rotate:90
+hair down
+bounds:130,794,56,53
+rotate:180
+hair up 1
+bounds:68,167,77,36
+rotate:180
+hair up 2
+bounds:107,863,78,51
+hair up 3
+bounds:58,128,63,38
+head
+bounds:2,791,147,123
+lh1
+bounds:93,36,38,51
+rotate:90
+lh2
+bounds:106,56,35,57
+rotate:90
+lh3
+bounds:31,38,38,34
+ll1
+bounds:2,149,35,64
+rotate:90
+ll2
+bounds:2,105,32,60
+rotate:90
+ll3
+bounds:2,18,35,23
+lr4
+bounds:2,18,35,23
+magic sword  fire glow2
+bounds:2,916,160,105
+magic sword fire glow1
+bounds:2,1023,160,105
+magic_sword_fire1
+bounds:93,256,89,53
+magic_sword_fire2
+bounds:2,256,89,53
+rh1
+bounds:152,23,50,36
+rotate:270
+rh2
+bounds:126,112,40,60
+rotate:90
+rh3
+bounds:2,181,132,73
+rl 1
+bounds:122,141,47,63
+rotate:90
+rl 2
+bounds:68,101,28,59
+rotate:270
+rl3
+bounds:70,24,32,25
+tentacle down1
+bounds:75,2,71,37
+offsets:0,0,71,49
+tentacle down2
+bounds:86,83,100,38
+offsets:0,0,100,39
+tentacle up
+bounds:2,63,92,40
+offsets:0,0,93,40
+uno glow1
+bounds:2,1130,176,175
+uno glow2
+bounds:2,1307,176,175

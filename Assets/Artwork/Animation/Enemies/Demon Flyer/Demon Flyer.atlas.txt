@@ -1,0 +1,34 @@
+Demon Flyer.png
+size:559,283
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:232,139,142,193
+rotate:90
+cl_eyes
+bounds:425,13,65,40
+eyes
+bounds:517,47,65,40
+rotate:90
+glow_cl_eyes
+bounds:425,55,90,57
+glow_eyes
+bounds:361,2,79,62
+rotate:90
+hand down
+bounds:427,114,29,122
+rotate:90
+hand up
+bounds:226,83,54,196
+rotate:90
+head
+bounds:2,151,228,130
+l_wing
+bounds:427,145,127,136
+r_wing
+bounds:226,16,65,133
+rotate:90
+tail
+bounds:2,17,132,222
+rotate:90

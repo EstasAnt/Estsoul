@@ -1,0 +1,36 @@
+Zombiefrog.png
+size:768,175
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:2,4,169,223
+rotate:90
+body_glow
+bounds:227,16,157,191
+rotate:90
+eye_glow_left
+bounds:552,2,85,67
+rotate:90
+eye_glow_right
+bounds:574,89,86,84
+left_eye
+bounds:621,2,34,19
+rotate:90
+left_hand
+bounds:420,91,152,82
+left_leg
+bounds:662,112,61,104
+rotate:90
+r hand
+bounds:646,5,43,45
+rotate:90
+r hand up
+bounds:420,22,130,67
+right_eye
+bounds:693,18,37,30
+rl
+bounds:662,50,60,93
+rotate:90
+tongue
+bounds:621,38,23,49

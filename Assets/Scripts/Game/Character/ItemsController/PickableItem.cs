@@ -22,39 +22,38 @@ namespace Items {
             ItemView = GetComponent<ItemView>();
         }
 
-        public virtual void ThrowOut(Vector2? startVelocity, float? angularVel) {
-            ItemView.ThrowOut(Owner.WeaponController.gameObject);
-            if(startVelocity != null)
-                ItemView.Rigidbody.velocity = startVelocity.Value;
-            if(angularVel != null)
-                ItemView.Rigidbody.angularVelocity = angularVel.Value;
-            ItemView.Levitation.DisableOnTime(6f);
-            Owner = null;
-        }
+        // public virtual void ThrowOut(Vector2? startVelocity, float? angularVel) {
+        //     if (ItemView)
+        //     {
+        //         ItemView.ThrowOut(Owner.WeaponController.gameObject);
+        //         if (startVelocity != null)
+        //             ItemView.Rigidbody.velocity = startVelocity.Value;
+        //         if (angularVel != null)
+        //             ItemView.Rigidbody.angularVelocity = angularVel.Value;
+        //         ItemView.Levitation.DisableOnTime(6f);
+        //     }
+        //
+        //     Owner = null;
+        // }
 
-        public virtual bool PickUp(CharacterUnit pickuper) {
-            if (CanPickUp)
-            {
-                Owner = pickuper;
-                var target = GetPickupTransform(_PickupType);
-                ItemView.PickUp(target);
-            }
-            return CanPickUp;
-        }
+        // public virtual bool PickUp(CharacterUnit pickuper) {
+        //     if (CanPickUp)
+        //     {
+        //         Owner = pickuper;
+        //         if (ItemView != null)
+        //         {
+        //             var target = GetPickupTransform(_PickupType);
+        //             ItemView.PickUp(target);
+        //         }
+        //     }
+        //     return CanPickUp;
+        // }
 
 
-        private Transform GetPickupTransform(WeaponPickupType pickupType)
-        {                    
-                switch (pickupType)
-                {
-                    case WeaponPickupType.ArmNear:
-                        return Owner.WeaponController.NearArmWeaponTransform;
-                    case WeaponPickupType.Neck:
-                        return Owner.WeaponController.NeckWeaponTransform;
-                    default:
-                        return null;
-                }         
-        }
+        // private Transform GetPickupTransform(WeaponPickupType pickupType)
+        // {
+        //     return null;
+        // }
 
     }
 }

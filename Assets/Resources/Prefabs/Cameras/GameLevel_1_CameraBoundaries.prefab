@@ -51,16 +51,16 @@ MonoBehaviour:
   NumericBoundaries: {fileID: 0}
   AreBoundariesRelative: 1
   UseTopBoundary: 1
-  TopBoundary: 17
+  TopBoundary: 15.58
   UseBottomBoundary: 1
-  BottomBoundary: -40
+  BottomBoundary: -33.6
   UseLeftBoundary: 1
-  LeftBoundary: -20
+  LeftBoundary: -21.5
   UseRightBoundary: 1
-  RightBoundary: 150
+  RightBoundary: 139.1
   TransitionDuration: 1
   TransitionEaseType: 0
   ChangeZoom: 0
   TargetZoom: 1.5
   ZoomSmoothness: 1
-  _setAsStartingBoundaries: 1
+  _setAsStartingBoundaries: 0

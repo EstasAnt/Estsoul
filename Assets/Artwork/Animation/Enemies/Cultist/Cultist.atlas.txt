@@ -1,0 +1,45 @@
+Cultist.png
+size:1687,375
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:668,114,259,232
+rotate:90
+cape
+bounds:436,90,230,283
+head
+bounds:1529,147,226,155
+rotate:90
+hl1
+bounds:883,9,103,163
+rotate:90
+hl2 idle
+bounds:1588,57,88,97
+rotate:90
+hl3 idle
+bounds:1588,6,97,49
+hr1
+bounds:1247,15,154,126
+hr2
+bounds:1496,44,97,90
+rotate:90
+hr2 idle
+bounds:436,5,90,83
+hr3+weapon
+bounds:2,10,432,363
+hr3+weapon idle
+bounds:1025,143,502,230
+lh2
+bounds:1048,2,100,139
+ll idle
+bounds:1403,19,91,122
+ll1
+bounds:528,9,79,134
+rotate:90
+lr1
+bounds:1150,13,95,128
+mask
+bounds:902,117,121,256
+skirt
+bounds:664,15,217,73

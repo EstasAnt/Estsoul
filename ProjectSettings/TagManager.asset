@@ -12,11 +12,11 @@ TagManager:
   - Water
   - UI
   - Character
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Corpse
+  - Enemy
+  - ParralaxLayer1
+  - ParralaxLayer2
+  - ParralaxLayer3
   - 
   - 
   - 
@@ -40,4 +40,37 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background2
+    uniqueID: 1160719735
+    locked: 0
+  - name: Background1
+    uniqueID: 1325691945
+    locked: 0
+  - name: RM1 foreground2
+    uniqueID: 3458557213
+    locked: 0
+  - name: RM1 foreground1
+    uniqueID: 3441183921
+    locked: 0
+  - name: Platforms
+    uniqueID: 458897945
+    locked: 0
+  - name: RM1 foreground0
+    uniqueID: 190335795
+    locked: 0
+  - name: RM1  sunctuary
+    uniqueID: 3688968545
+    locked: 0
+  - name: RM1 doors
+    uniqueID: 543496173
+    locked: 0
+  - name: Enemy
+    uniqueID: 2173460587
+    locked: 0
+  - name: Character
+    uniqueID: 1169222831
+    locked: 0
+  - name: Projectile
+    uniqueID: 3019948015
     locked: 0

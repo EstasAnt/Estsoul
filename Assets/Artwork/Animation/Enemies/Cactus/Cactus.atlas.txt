@@ -1,0 +1,13 @@
+Cactus.png
+size:789,245
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:111,10,233,209
+rotate:90
+thorns_1
+bounds:2,2,241,107
+rotate:90
+thorns_2
+bounds:322,23,465,220

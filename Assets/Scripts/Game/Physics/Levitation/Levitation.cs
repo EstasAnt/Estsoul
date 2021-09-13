@@ -47,7 +47,7 @@ namespace Game.Physics {
 
         private Rigidbody2D _Rigidbody;
 
-        private SimpleDamageable _Damageable;
+        private IDamageable _Damageable;
 
         public void SetActive(bool active) {
             StopAllCoroutines();
@@ -121,7 +121,7 @@ namespace Game.Physics {
             SwitchLevitation(leviate);
         }
 
-        private void DisableOnDamage(SimpleDamageable dmgbl, Damage damage) {
+        private void DisableOnDamage(IDamageable dmgbl, Damage damage) {
             DisableOnTime(6f);
         }
 
