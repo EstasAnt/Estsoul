@@ -18,7 +18,7 @@ MonoBehaviour:
   Damage: 10
   HitForce: 0
   RecoilForce: 0
-  RateOfFire: 4
+  RateOfFire: 8
   ReloadTime: 1
   DispersionAngle: 0
   MinThrowStartSpeed: 0

@@ -216,8 +216,8 @@ MonoBehaviour:
   BodyCollider: {fileID: 2425413470185177007}
   WalkParameters:
     Speed: 10
-    GroundAcceleration: 8
-    AirAcceleration: 7
+    GroundAcceleration: 12
+    AirAcceleration: 8
     RunSoundEffectName: Audio_GG_Run
   GroundCheckParameters:
     GroundSensors:
