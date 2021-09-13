@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using Character.Control;
 using Character.Health;
+using Core.Audio;
 using KlimLib.SignalBus;
 using UI.Game.AltarMarker;
 using UnityDI;
@@ -13,11 +14,14 @@ namespace Game.LevelSpecial
     public class HealAltar : MonoBehaviour
     {
         [Dependency] private readonly SignalBus _signalBus;
+        [Dependency] private readonly AudioService _audioService;
         
         public AltarMarkerProvider AltarMarkerProvider;
         public float RestoreHealthAmount;
         public float RestoreHealthTime;
         public float RestoreHealthTimePerSec;
+        public string RestoreSound;
+        
         private void Start()
         {
             ContainerHolder.Container.BuildUp(this);
@@ -43,6 +47,8 @@ namespace Game.LevelSpecial
         private void OnPlayerActionWasPressedSignal(PlayerActionWasPressedSignal signal)
         {
             StartCoroutine(RestoreHealthRoutine());
+            if (!string.IsNullOrEmpty(RestoreSound))
+                _audioService.PlaySound3D(RestoreSound, false, false, transform.position);
         }
 
         private IEnumerator RestoreHealthRoutine()
@@ -59,14 +65,11 @@ namespace Game.LevelSpecial
                 health = Mathf.Clamp(health, 0, RestoreHealthAmount - restoredHealth);
                 restoredHealth += health;
                 timer += period;
-                Debug.LogError($"RestoredHealth: {restoredHealth}");
                 RestoreHealth(character, -health);
                 yield return new WaitForSeconds(period);
             }
             var leftHealth = RestoreHealthAmount - restoredHealth;
             RestoreHealth(character, -leftHealth);
-            Debug.LogError($"RestoredHealthFinally: {restoredHealth + leftHealth}");
-            Debug.LogError($"Routine lenght {timer}");
         }
 
         private void RestoreHealth(CharacterUnit unit, float amounth)

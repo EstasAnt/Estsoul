@@ -1,5 +1,6 @@
 ﻿using KlimLib.SignalBus;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityDI;
 using UnityEngine;
@@ -7,6 +8,8 @@ using UnityEngine;
 namespace Core.Audio {
     public class BackgroundMusic : MonoBehaviour {
         public List<TrackPlayInfo> Tracks;
+        public float Delay;
+        
         [Dependency]
         private readonly AudioService _AudioService;
         [Dependency]
@@ -15,8 +18,9 @@ namespace Core.Audio {
         private AudioEffect _AudioTrack;
         private List<TrackPlayInfo> _TracksOnMatchStart = new List<TrackPlayInfo>();
 
-        private void Start() {
+        private IEnumerator Start() {
             ContainerHolder.Container.BuildUp(this);
+            yield return new WaitForSeconds(Delay);
             foreach(var track in Tracks) {
                 if (track.PlayMoment == PlayMomentType.Start)
                     Play(track);

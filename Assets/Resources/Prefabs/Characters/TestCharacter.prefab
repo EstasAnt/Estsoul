@@ -292,6 +292,8 @@ MonoBehaviour:
   CharacterId: TestCharacter
   HitAudioEffects: []
   DeathAudioEffects: []
+  SpawnAudioEffect:
+  - Audio_Gate_Spawn
 --- !u!114 &4898336128781387651
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,6 +53,8 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public List<string> HitAudioEffects;
     public List<string> DeathAudioEffects;
 
+    public List<string> SpawnAudioEffect;
+    
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
         MovementController = GetComponent<MovementController>();
@@ -63,6 +65,11 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
         Characters.Add(this);
         OwnerId = _OwnerId;
         Health = MaxHealth;
+    }
+
+    private void Start()
+    {
+        _AudioService.PlayRandomSound(SpawnAudioEffect, false, false, transform.position);
     }
 
     public Collider2D Collider { get; set; }
