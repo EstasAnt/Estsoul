@@ -81,13 +81,13 @@ namespace Game.Movement.Modules {
             
             if (_WalkData.Horizontal > 0.15f) {
                 _TargetXVelocity = _Parameters.Speed * CommonData.MovementController.MovementSpeedBoostCoef;
-                ProcessRunSound(true);
+                // ProcessRunSound(true);
             } else if (_WalkData.Horizontal < -0.15f) {
                 _TargetXVelocity = -_Parameters.Speed * CommonData.MovementController.MovementSpeedBoostCoef;
-                ProcessRunSound(true);
+                // ProcessRunSound(true);
             } else {
                 _WalkData.Horizontal = 0;
-                ProcessRunSound(false);
+                // ProcessRunSound(false);
             }
             // if (CommonData.WeaponController.MeleeAttacking) {
             //     _TargetXVelocity *= 0.8f;
@@ -95,15 +95,17 @@ namespace Game.Movement.Modules {
         }
 
         private AudioEffect _RunSoundEffect;
-        private void ProcessRunSound(bool moving) {
-            if (string.IsNullOrEmpty(_Parameters.RunSoundEffectName) || !_GroundedData.Grounded || !moving) {
-                StopIfHasEffect();
-                return;
-            }
-            if (_RunSoundEffect == null)
-                _RunSoundEffect = _AudioService.PlaySound3D(_Parameters.RunSoundEffectName, false, false, CommonData.MovementController.transform.position);
-            else
-                _RunSoundEffect.transform.position = CommonData.ObjTransform.position;
+        public void ProcessRunSound() {
+            _AudioService.PlaySound3D(_Parameters.RunSoundEffectName, false, false, CommonData.ObjTransform.position);
+            // if (string.IsNullOrEmpty(_Parameters.RunSoundEffectName) || !_GroundedData.Grounded || !moving) {
+            //     StopIfHasEffect();
+            //     return;
+            // }
+            // if (_RunSoundEffect == null)
+            //     _RunSoundEffect = _AudioService.PlaySound3D(_Parameters.RunSoundEffectName, false, false, CommonData.MovementController.transform.position);
+            // else
+            //     _RunSoundEffect.transform.position = CommonData.ObjTransform.position;
+            
         }
 
         private void StopIfHasEffect() {

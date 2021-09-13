@@ -78,14 +78,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public void ApplyDamage(Damage damage) {
         _SignalBus.FireSignal(new ApplyDamageSignal(damage));
         OnDamage?.Invoke(this, damage);
-        PlayeHitSound(HitAudioEffects);
-    }
-
-    private void PlayeHitSound(List<string> sounds) {
-        if (sounds == null || sounds.Count == 0)
-            return;
-        var randIndex = UnityEngine.Random.Range(0, sounds.Count);
-        _AudioService.PlaySound3D(sounds[randIndex], false, false, transform.position);
+        _AudioService.PlayRandomSound(HitAudioEffects, false, false, transform.position);
     }
 
     public void Initialize(byte ownerId, string characterId) {
@@ -111,6 +104,6 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
         Debug.Log($"Player {OwnerId} character {CharacterId} dead.");
         Destroy(gameObject); //ToDo: something different
         _SignalBus?.FireSignal(new CharacterDeathSignal(damage));
-        PlayeHitSound(DeathAudioEffects);
+        _AudioService.PlayRandomSound(DeathAudioEffects, false, false, transform.position);
     }
 }

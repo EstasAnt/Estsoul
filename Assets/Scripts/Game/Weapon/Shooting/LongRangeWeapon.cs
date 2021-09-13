@@ -44,6 +44,7 @@ namespace Character.Shooting {
 
         public override void Hit(int attackIndex)
         {
+            base.Hit(attackIndex);
             FireProjectile();
         }
 

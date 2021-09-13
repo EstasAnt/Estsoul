@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Character.Movement;
-using Character.Shooting;
-using Game.Character.Melee;
-using Game.Character.Shooting;
+﻿using Character.Shooting;
 using Game.Movement;
-using KlimLib.SignalBus;
 using UnityEngine;
 using UnityDI;
 
@@ -69,6 +62,11 @@ public class CharacterAnimationController : MonoBehaviour {
     public void MainWeaponDash(int attackIndex)
     {
         _WeaponController.MainWeaponDash(attackIndex);
+    }
+    
+    public void PlayStepSound()
+    {
+        _MovementController.PlayMoveSound();
     }
     
     private void OnDestroy()

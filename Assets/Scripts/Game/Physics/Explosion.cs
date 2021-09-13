@@ -44,12 +44,6 @@ namespace Game.Physics {
             Play();
         }
 
-        private void PlaySound() {
-            if (AudioEffectNames == null || AudioEffectNames.Count == 0)
-                return;
-            _AudioService.PlaySound3D(AudioEffectNames[UnityEngine.Random.Range(0, AudioEffectNames.Count)], false, false, transform.position);
-        }
-
         private void PlayEffect() {
             VFXEffects?.ForEach(_ => _.Play());
         }
@@ -90,7 +84,7 @@ namespace Game.Physics {
             if (ProCamera2DShake.Instance != null && !string.IsNullOrEmpty(CameraShakePresetName))
                 ProCamera2DShake.Instance.Shake(CameraShakePresetName);
             PlayEffect();
-            PlaySound();
+            _AudioService.PlayRandomSound(AudioEffectNames, false, false, transform.position);
         }
 
         private struct PartData {

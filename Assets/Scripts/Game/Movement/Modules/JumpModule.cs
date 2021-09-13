@@ -55,8 +55,7 @@ namespace Game.Movement.Modules {
             behaviour.StopCoroutine(GroundJumpRoutine());
             behaviour.StartCoroutine(GroundJumpRoutine());
             SpawnJumpEffects();
-            PlayAudioEffect();
-
+            _AudioService.PlayRandomSound(_Parameters.AirJumpAudioEffectNames, false, false, CommonData.ObjTransform.position);
             return true;
         }
 
@@ -67,6 +66,7 @@ namespace Game.Movement.Modules {
             _UsedAirJump = true;
             behaviour.StopCoroutine(AirJumpRoutine());
             behaviour.StartCoroutine(AirJumpRoutine());
+            _AudioService.PlayRandomSound(_Parameters.AirJumpAudioEffectNames, false, false, CommonData.ObjTransform.position);
             return true;
         }
 
@@ -81,13 +81,6 @@ namespace Game.Movement.Modules {
                 effect.transform.localScale = new Vector3(Mathf.Abs(effect.transform.localScale.x) * _WalkData.Direction, effect.transform.localScale.y, effect.transform.localScale.z);
                 effect.Play();
             }
-        }
-
-        private void PlayAudioEffect() {
-            if (_Parameters.JumpAudioEffectNames.IsNullOrEmpty())
-                return;
-            var randIndex = UnityEngine.Random.Range(0, _Parameters.JumpAudioEffectNames.Count);
-            _AudioService.PlaySound3D(_Parameters.JumpAudioEffectNames[randIndex], false, false, CommonData.ObjTransform.position);
         }
 
         private IEnumerator JumpRoutine(float jumpVelocity, int fixedUpdatesCount) {
@@ -134,14 +127,14 @@ namespace Game.Movement.Modules {
                 var vector = new Vector2(-1, 0.9f).normalized;
                 CommonData.ObjRigidbody.velocity = vector * _Parameters.WallJumpSpeed;
                 _JumpData.LastWallJumpTime = Time.time;
-                PlayAudioEffect();
+                _AudioService.PlayRandomSound(_Parameters.AirJumpAudioEffectNames, false, false, CommonData.ObjTransform.position);
                 return true;
             }
             if (_WallSlideData.LeftTouch) {
                 var vector = new Vector2(1, 0.9f).normalized;
                 CommonData.ObjRigidbody.velocity = vector * _Parameters.WallJumpSpeed;
                 _JumpData.LastWallJumpTime = Time.time;
-                PlayAudioEffect();
+                _AudioService.PlayRandomSound(_Parameters.AirJumpAudioEffectNames, false, false, CommonData.ObjTransform.position);
                 return true;
             }
 
@@ -164,5 +157,6 @@ namespace Game.Movement.Modules {
         public List<Transform> JumpEffectTransformPoints;
         public List<string> JumpEffectNames;
         public List<string> JumpAudioEffectNames;
+        public List<string> AirJumpAudioEffectNames;
     }
 }

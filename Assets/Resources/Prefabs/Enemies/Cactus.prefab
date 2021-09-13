@@ -183,6 +183,8 @@ MonoBehaviour:
   PickupType: 2
   _Id: CactusWeapon
   ShotSoundEffects: []
+  HitAudioEffects:
+  - Audio_Cactus_Attack
   _AnimationTrigger: 
   Attacks:
   - {fileID: 30877244311321718}

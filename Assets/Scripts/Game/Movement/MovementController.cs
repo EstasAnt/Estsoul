@@ -31,8 +31,6 @@ namespace Game.Movement {
         private LedgeHangModule _LedgeHangModule;
         private PushingModule _PushingModule;
         private OneWayPlatformModule _OneWayPlatformModule;
-        
-
         public CharacterUnit Owner { get; private set; }
 
         public bool IsGrounded => _GroundCheckModule.IsGrounded;
@@ -158,5 +156,10 @@ namespace Game.Movement {
             _LedgeHangModule.CanLedgeHang = val;
         }
 
+        public override void PlayMoveSound()
+        {
+            base.PlayMoveSound();
+            _WalkModule.ProcessRunSound();
+        }
     }
 }

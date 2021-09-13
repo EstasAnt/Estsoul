@@ -537,6 +537,7 @@ MonoBehaviour:
   PickupType: 2
   _Id: DruidWeapon
   ShotSoundEffects: []
+  HitAudioEffects: []
   _AnimationTrigger: Attack
   ProjectileName: DruidProjectile
   ShotCameraShakePresetName: 

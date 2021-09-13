@@ -48,7 +48,9 @@ MonoBehaviour:
   PickupType: 2
   _Id: KusakaWeapon
   ShotSoundEffects: []
-  _AnimationTrigger: 
+  HitAudioEffects:
+  - Audio_Kusaka_Attack
+  _AnimationTrigger: Audio_Kusaka_Attack
   Attacks:
   - {fileID: 6757950778457054639}
   _ShotCameraShakePresetName: 

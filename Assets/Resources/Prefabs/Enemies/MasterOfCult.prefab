@@ -49,6 +49,8 @@ MonoBehaviour:
   PickupType: 2
   _Id: PlyvakaWeapon
   ShotSoundEffects: []
+  HitAudioEffects:
+  - Audio_MasterOfCult_Attack
   _AnimationTrigger: Attack
   ProjectileName: MasterOfCultProjectile
   ShotCameraShakePresetName: 

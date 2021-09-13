@@ -23,6 +23,7 @@ namespace Game.Movement
         public Vector2 LocalVelocity { get; private set; }
         
         public Rigidbody2D AttachedToRB { get; set; }
+
         public bool CanDetach { get; set; }
         
         public abstract float Horizontal { get; }
@@ -132,6 +133,11 @@ namespace Game.Movement
             OnHoldJump -= weapon.InputProcessor.ProcessHold;
             OnPressJump -= weapon.InputProcessor.ProcessPress;
             OnReleaseJump -= weapon.InputProcessor.ProcessRelease;
+        }
+
+        public virtual void PlayMoveSound()
+        {
+            
         }
     }
 }

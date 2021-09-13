@@ -31,6 +31,7 @@ namespace Character.Shooting {
         public WeaponConfig Stats => _Stats;
 
         public List<string> ShotSoundEffects;
+        public List<string> HitAudioEffects;
 
         public event Action OnNoAmmo;
 
@@ -47,18 +48,12 @@ namespace Character.Shooting {
             var animTrigger = GetAnimationTriggerName();
             if(!string.IsNullOrEmpty(animTrigger))
                 AnimationTriggerEvent?.Invoke(GetAnimationTriggerName());
-            PlayShotSound();
+            _AudioService.PlayRandomSound(ShotSoundEffects, false, false, transform.position);
         }
 
         protected virtual string GetAnimationTriggerName()
         {
             return AnimationTrigger;
-        }
-
-        private void PlayShotSound() {
-            if (ShotSoundEffects == null || ShotSoundEffects.Count == 0)
-                return;
-            _AudioService.PlaySound3D(ShotSoundEffects[UnityEngine.Random.Range(0, ShotSoundEffects.Count)], false, false, transform.position);
         }
 
         protected virtual bool UseThrowForce => true;
@@ -126,7 +121,7 @@ namespace Character.Shooting {
 
         public virtual void Hit(int attackIndex)
         {
-            
+            _AudioService.PlayRandomSound(HitAudioEffects, false, false, transform.position);
         }
         
         public virtual void Dash(int attackIndex)

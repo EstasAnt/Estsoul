@@ -349,6 +349,8 @@ MonoBehaviour:
   PickupType: 2
   _Id: ZombieFrogWeapon
   ShotSoundEffects: []
+  HitAudioEffects:
+  - Audio_ZombieFrog_Attack
   _AnimationTrigger: 
   Attacks:
   - {fileID: 2669736747545375736}
@@ -460,7 +462,7 @@ Transform:
   m_GameObject: {fileID: 7739881347762320053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.31, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
   - {fileID: 7739881348041998097}
   - {fileID: 7739881349208620743}
@@ -520,8 +522,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.25}
-  m_Size: {x: 1.2, y: 2.5}
+  m_Offset: {x: 0, y: 1}
+  m_Size: {x: 1, y: 2}
   m_Direction: 0
 --- !u!70 &6801660119824185759
 CapsuleCollider2D:
@@ -685,7 +687,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7739881348839839173}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.38, y: 0, z: 0}
+  m_LocalPosition: {x: 13.79, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7739881349208620743}

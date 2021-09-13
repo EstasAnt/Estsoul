@@ -39,6 +39,13 @@ namespace Core.Audio {
             track.Play(rise);
             return track;
         }
+        
+        public void PlayRandomSound(List<string> sounds, bool forceSingle, bool rise, Vector3 position) {
+            if (sounds == null || sounds.Count == 0)
+                return;
+            var randIndex = UnityEngine.Random.Range(0, sounds.Count);
+            PlaySound3D(sounds[randIndex], forceSingle, rise, position);
+        }
 
         public AudioEffect GetTrack(string trackName) {
             var track = _ResourceLoaderService.LoadResource<AudioEffect>("Prefabs/AudioTracks/" + trackName);
@@ -47,8 +54,12 @@ namespace Core.Audio {
             return _ResourceLoaderService.LoadResource<AudioEffect>("Prefabs/AudioTracks/" + trackName);
         }
 
-        public bool CanPlayTrack(string trackName) {
-            var audioGroup = GetTrack(trackName).AudioGroup;
+        public bool CanPlayTrack(string trackName)
+        {
+            var track = GetTrack(trackName);
+            if (track == null)
+                return false;
+            var audioGroup = track.AudioGroup;
             switch (audioGroup) {
                 case AudioGroup.SFX:
                     return true;
