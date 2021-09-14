@@ -56,9 +56,6 @@ TagManager:
   - name: Platforms
     uniqueID: 458897945
     locked: 0
-  - name: RM1 foreground0
-    uniqueID: 190335795
-    locked: 0
   - name: RM1  sunctuary
     uniqueID: 3688968545
     locked: 0
@@ -70,6 +67,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1169222831
+    locked: 0
+  - name: RM1 foreground0
+    uniqueID: 190335795
     locked: 0
   - name: Projectile
     uniqueID: 3019948015
