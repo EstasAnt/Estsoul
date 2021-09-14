@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Core.Services {
-    public class CharacterSpawnedSignal {
+    public struct CharacterSpawnedSignal {
         public CharacterUnit Unit;
 
         public CharacterSpawnedSignal(CharacterUnit unit) {

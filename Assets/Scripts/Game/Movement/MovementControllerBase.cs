@@ -48,6 +48,7 @@ namespace Game.Movement
             Rigidbody = GetComponent<Rigidbody2D>();
             _MovementModules = CreateModules();
             SetupBlackboard();
+            _MovementModules.ForEach(_ => _.Awake());
         }
 
         protected virtual void Start()

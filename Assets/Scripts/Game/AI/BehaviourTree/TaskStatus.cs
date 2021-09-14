@@ -2,7 +2,6 @@
 
 
     public enum TaskStatus {
-        Idle,
         Running,
         Success,
         Failure
