@@ -295,6 +295,7 @@ MonoBehaviour:
   DeathAudioEffects: []
   SpawnAudioEffect:
   - Audio_Gate_Spawn
+  DestroyAfterKillTime: 2
 --- !u!114 &4898336128781387651
 MonoBehaviour:
   m_ObjectHideFlags: 0

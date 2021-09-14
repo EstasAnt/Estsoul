@@ -1,84 +1,83 @@
 GG.png
-size:168,1032
+size:1606,142
 filter:Linear,Linear
 pma:true
 scale:0.2
+GG-weapon_0000s_0000_rh3
+bounds:230,9,41,42
+rotate:90
+GG-weapon_0000s_0001_Layer2
+bounds:692,40,193,55
+GG-weapon_0000s_0002_Layer4
+bounds:2,97,393,43
+GG-weapon_0000s_0003_Layer7
+bounds:397,44,293,96
+GG-weapon_0000s_0004_Layer5
+bounds:1166,58,130,82
+GG-weapon_0000s_0005_Layer3
+bounds:2,52,275,43
+GG-weapon_0000s_0006_Layer8
+bounds:692,97,213,43
+GG-weapon_0000s_0007_Layer1
+bounds:2,7,147,43
 body down
-bounds:77,344,83,60
+bounds:1401,15,83,60
 body up
-bounds:2,461,108,120
+bounds:1056,20,108,120
 eye
-bounds:151,975,55,15
+bounds:887,40,55,15
 rotate:90
 fireball1
-bounds:67,264,64,40
+bounds:382,2,64,40
 fireball2
-bounds:67,222,64,40
+bounds:448,2,64,40
 glow 2
-bounds:2,197,128,63
-rotate:90
+bounds:1298,77,128,63
 glow fireball1
-bounds:109,804,101,57
-rotate:90
+bounds:279,38,101,57
 glow fireball2
-bounds:109,701,101,57
-rotate:90
+bounds:1298,18,101,57
 glow1
-bounds:2,67,128,63
-rotate:90
+bounds:1428,77,128,63
 hair down
-bounds:112,472,56,53
-rotate:90
+bounds:1231,3,56,53
 hair up 1
-bounds:77,306,77,36
+bounds:151,14,77,36
 hair up 2
-bounds:112,530,78,51
-rotate:90
+bounds:1486,24,78,51
 hair up 3
-bounds:51,2,63,38
+bounds:1558,77,63,38
 rotate:90
 head
-bounds:2,907,147,123
+bounds:907,17,147,123
 lh1
-bounds:109,145,38,51
-rotate:90
+bounds:1566,24,38,51
 lh2
-bounds:109,185,35,57
+bounds:694,3,35,57
 rotate:90
 lh3
-bounds:104,67,38,34
-rotate:90
+bounds:274,2,38,34
 ll1
-bounds:67,94,35,64
+bounds:576,7,35,64
+rotate:90
 ll2
-bounds:133,244,32,60
+bounds:753,6,32,60
+rotate:90
 ll3
-bounds:121,30,35,23
-rotate:90
+bounds:314,13,35,23
 lr4
-bounds:121,30,35,23
-rotate:90
-magic sword  fire glow2
-bounds:2,745,160,105
-rotate:90
-magic sword fire glow1
-bounds:2,583,160,105
-rotate:90
-magic_sword_fire1
-bounds:109,610,89,53
-rotate:90
-magic_sword_fire2
-bounds:77,406,89,53
+bounds:314,13,35,23
 rh1
-bounds:104,107,50,36
+bounds:642,2,50,36
 rh2
-bounds:67,160,40,60
-rh3
-bounds:2,327,132,73
+bounds:514,2,40,60
 rotate:90
 rl 1
-bounds:2,2,47,63
+bounds:1166,9,47,63
+rotate:90
 rl 2
-bounds:91,6,28,59
+bounds:815,10,28,59
+rotate:90
 rl3
-bounds:67,67,32,25
+bounds:876,6,32,25
+rotate:90

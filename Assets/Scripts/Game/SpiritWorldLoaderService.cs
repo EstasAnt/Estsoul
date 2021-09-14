@@ -52,7 +52,7 @@ namespace SceneManagement.Game
         //     _UnityEventProvider.StopCoroutine(LoadSpiritWorldRoutine());
         // }
         
-        public float SpiritWordlLoadTime => 3f;
+        public float SpiritWordlLoadTime => 5f;
 
 
         public void Unload()

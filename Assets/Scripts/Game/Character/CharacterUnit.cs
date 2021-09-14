@@ -54,6 +54,8 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public List<string> DeathAudioEffects;
 
     public List<string> SpawnAudioEffect;
+
+    public float DestroyAfterKillTime;
     
     private void Awake() {
         ContainerHolder.Container.BuildUp(this);
@@ -110,8 +112,16 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
         Dead = true;
         OnKill?.Invoke(this, damage);
         Debug.Log($"Player {OwnerId} character {CharacterId} dead.");
-        Destroy(gameObject); //ToDo: something different
+        
+        StartCoroutine(DestroyRoutine());
+        //ToDo: something different
         _SignalBus?.FireSignal(new CharacterDeathSignal(damage));
         _AudioService.PlayRandomSound(DeathAudioEffects, false, false, transform.position);
+    }
+    
+    private IEnumerator DestroyRoutine()
+    {
+        yield return new WaitForSeconds(DestroyAfterKillTime);
+        Destroy(gameObject);
     }
 }

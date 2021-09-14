@@ -1,4 +1,6 @@
-﻿using Character.Shooting;
+﻿using System.Collections.Generic;
+using Character.Health;
+using Character.Shooting;
 using Game.Movement;
 using UnityEngine;
 using UnityDI;
@@ -21,6 +23,13 @@ public class CharacterAnimationController : MonoBehaviour {
     private void Start()
     {
         _WeaponController.MainWeapon.AnimationTriggerEvent += MainWeaponOnAnimationTriggerEvent;
+        
+        _CharacterUnit.OnKill += DamageableOnOnKill;
+        
+        var animStopList = new List<string>();
+        animStopList.Add("Death");
+        _MovementController?.SetDontMoveAnimationStateNames(animStopList);
+        
     }
 
     private void MainWeaponOnAnimationTriggerEvent(string obj)
@@ -29,6 +38,11 @@ public class CharacterAnimationController : MonoBehaviour {
     }
 
     private float SpeedForAnimator => Mathf.Clamp(Mathf.InverseLerp(0.3f, _MovementController.MaxSpeed, Mathf.Abs(_MovementController.Velocity.x)), 0.3f, 1f);
+    
+    private void DamageableOnOnKill(IDamageable arg1, Damage arg2)
+    {
+        Animator.SetTrigger("Death");
+    }
     
     private void Update()
     {
@@ -71,6 +85,8 @@ public class CharacterAnimationController : MonoBehaviour {
     
     private void OnDestroy()
     {
+        if (_CharacterUnit != null)
+            _CharacterUnit.OnKill -= DamageableOnOnKill;
         if(_WeaponController == null)
             return;
         if(_WeaponController.MainWeapon == null)
