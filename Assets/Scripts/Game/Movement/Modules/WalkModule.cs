@@ -26,7 +26,7 @@ namespace Game.Movement.Modules {
         public float Horizontal => _WalkData.Horizontal;
         public float Vertical => _WalkData.Vertical;
 
-        
+        public MovementControllerBase MovementController => CommonData.MovementController;
         
         public WalkModule(WalkParameters parameters) : base() {
             this._Parameters = parameters;
@@ -70,10 +70,15 @@ namespace Game.Movement.Modules {
         public override void Update() {
             SetDirection();
             _TargetXVelocity = 0f;
-            
-            if (_StopAnimatorStateNames != null && _StopAnimatorStateNames.Count > 0)
+
+            if (CommonData.MovementController.gameObject.name == "TestCharacter(Clone)")
             {
-                if (_StopAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
+                Debug.LogError("");
+            }
+            
+            if (MovementController.DontMoveAnimatorStateNames != null && MovementController.DontMoveAnimatorStateNames.Count > 0)
+            {
+                if (MovementController.DontMoveAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
                 {
                     SetHorizontal(0);
                 }
@@ -130,13 +135,6 @@ namespace Game.Movement.Modules {
                 return;
             var newDir = _WalkData.Horizontal > 0 ? 1 : -1;
             ChangeDirection(newDir);
-        }
-
-        private List<string> _StopAnimatorStateNames;
-        
-        public void SetStopAnimatorStateNames(List<string> stateNames)
-        {
-            _StopAnimatorStateNames = stateNames;
         }
         
         public void ChangeDirection(int newDir) {

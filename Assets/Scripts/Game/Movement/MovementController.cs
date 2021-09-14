@@ -146,11 +146,6 @@ namespace Game.Movement {
             return _OneWayPlatformModule.FallDownPlatform();
         }
 
-        public override void SetDontMoveAnimationStateNames(List<string> stateNames)
-        {
-            _WalkModule.SetStopAnimatorStateNames(stateNames);
-        }
-        
         public void SetCanLegeHang(bool val)
         {
             _LedgeHangModule.CanLedgeHang = val;

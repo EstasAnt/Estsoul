@@ -42,6 +42,10 @@ namespace Game.Movement
         public abstract bool CanMove { get;  }
 
         public float MovementSpeedBoostCoef { get; set; } = 1f;
+
+        public IReadOnlyList<string> DontMoveAnimatorStateNames => _DontMoveAnimatorStateNames;
+
+        private List<string> _DontMoveAnimatorStateNames = new List<string>();
         
         protected virtual void Awake()
         {
@@ -91,8 +95,30 @@ namespace Game.Movement
             // }
         }
 
-        public abstract void SetDontMoveAnimationStateNames(List<string> stateNames);
+        public void SetDontMoveAnimationStateNames(List<string> stateNames)
+        {
+            _DontMoveAnimatorStateNames = stateNames;
+        }
 
+        public void AddDontMoveAnimationStateNames(List<string> stateNames)
+        {
+            if(stateNames.IsNullOrEmpty())
+                return;
+            stateNames.ForEach(AddDontMoveAnimationStateName);
+        }
+        
+        public void AddDontMoveAnimationStateName(string stateName)
+        {
+            if(!_DontMoveAnimatorStateNames.Contains(stateName))
+                _DontMoveAnimatorStateNames.Add(stateName);
+        }
+
+        public void RemoveDontMoveAnimationStateName(string stateName)
+        {
+            if(_DontMoveAnimatorStateNames.Contains(stateName))
+                _DontMoveAnimatorStateNames.Remove(stateName);
+        }
+        
         protected virtual void OnCollisionExit2D(Collision2D collision) {
             _MovementModules.ForEach(_ => _.OnCollisionExit2D(collision));
         }

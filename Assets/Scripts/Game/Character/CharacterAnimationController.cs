@@ -28,7 +28,7 @@ public class CharacterAnimationController : MonoBehaviour {
         
         var animStopList = new List<string>();
         animStopList.Add("Death");
-        _MovementController?.SetDontMoveAnimationStateNames(animStopList);
+        _MovementController?.AddDontMoveAnimationStateNames(animStopList);
         
     }
 

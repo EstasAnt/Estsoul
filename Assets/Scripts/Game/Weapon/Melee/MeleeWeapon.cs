@@ -36,7 +36,8 @@ namespace Game.Character.Melee
         {
             var pickedUp = base.PickUp(owner);
             if(pickedUp)
-                owner.MovementController?.SetDontMoveAnimationStateNames(Attacks.Where(_=>_.StopWhileAttack).Select(_=>_.AnimationStateName).ToList());
+                owner.MovementController?.AddDontMoveAnimationStateNames(Attacks.Where(_ => _.StopWhileAttack)
+                    .Select(_ => _.AnimationStateName).ToList());
             return pickedUp;
         }
 

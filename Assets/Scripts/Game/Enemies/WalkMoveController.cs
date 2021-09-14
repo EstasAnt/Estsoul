@@ -79,10 +79,5 @@ namespace Game.Movement.Enemies
         {
             _WalkModule.SetVertical(vertical);
         }
-        
-        public override void SetDontMoveAnimationStateNames(List<string> stateNames)
-        {
-            _WalkModule.SetStopAnimatorStateNames(stateNames);
-        }
     }
 }
