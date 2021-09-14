@@ -67,7 +67,7 @@ namespace Game.AI.CustomBehaviours.Tasks
         }
         
 
-        private IMobsTarget TryFindTarget()
+        private IDamageable TryFindTarget()
         {
             var foundColliders = new List<Collider2D>();
             var filter = new ContactFilter2D {useTriggers = false, layerMask = Layers.Masks.Character};
@@ -78,8 +78,12 @@ namespace Game.AI.CustomBehaviours.Tasks
                 foundColliders);
             if (foundCollidersCount == 0)
                 return null;
-            var mobsTargetCollider = foundColliders.FirstOrDefault(_ => _.GetComponent<IMobsTarget>() != null);
-            return mobsTargetCollider == null ? null : mobsTargetCollider.GetComponent<IMobsTarget>();
+            var mobsTargetCollider = foundColliders.FirstOrDefault(_ =>
+            {
+                var dmgbl = _.GetComponent<IDamageable>();
+                return dmgbl != null && dmgbl.TeamIndex != _damageable.TeamIndex;
+            });
+            return mobsTargetCollider == null ? null : mobsTargetCollider.GetComponent<IDamageable>();
         }
     }
 }

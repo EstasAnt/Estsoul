@@ -9,6 +9,7 @@ namespace Character.Health {
         float MaxHealth { get; }
         float Health { get; set; }
         float NormilizedHealth { get; }
+        float TeamIndex { get; }
         bool Dead { get; set; }
         Collider2D Collider { get; set; }
         void ApplyDamage(Damage damage);

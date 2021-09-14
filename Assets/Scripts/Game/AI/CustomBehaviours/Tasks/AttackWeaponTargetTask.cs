@@ -23,6 +23,8 @@ namespace Game.AI.CustomBehaviours.Tasks
         {
             if (_TargetSearchData.Target == null)
                 return TaskStatus.Failure;
+            if (_TargetSearchData.Target.Dead)
+                return TaskStatus.Failure;
             var targetInAttackTrigger = CheckTargetInAttackTrigger();
             if (targetInAttackTrigger)
             {

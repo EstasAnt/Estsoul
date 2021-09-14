@@ -23,7 +23,7 @@ namespace Game.AI.CustomBehaviours.Tasks
         {
             if (_TargetSearchData.Target == null)
                 return TaskStatus.Failure;
-            var aimPosition = _TargetSearchData.Target.Transform.position + Vector3.up * _aimToTargetData.OffsetY;
+            var aimPosition = _TargetSearchData.Target.Collider.transform.position + Vector3.up * _aimToTargetData.OffsetY;
             _WeaponController.SetAimPosition(aimPosition);
             return TaskStatus.Success;
         }

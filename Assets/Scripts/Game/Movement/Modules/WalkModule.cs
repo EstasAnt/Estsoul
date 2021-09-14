@@ -71,11 +71,6 @@ namespace Game.Movement.Modules {
             SetDirection();
             _TargetXVelocity = 0f;
 
-            if (CommonData.MovementController.gameObject.name == "TestCharacter(Clone)")
-            {
-                Debug.LogError("");
-            }
-            
             if (MovementController.DontMoveAnimatorStateNames != null && MovementController.DontMoveAnimatorStateNames.Count > 0)
             {
                 if (MovementController.DontMoveAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))

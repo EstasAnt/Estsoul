@@ -18,7 +18,7 @@ using Game.Weapons;
 using KlimLib.ResourceLoader;
 using Tools.VisualEffects;
 
-public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder, IMobsTarget {
+public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder {
     [Dependency]
     private readonly SignalBus _SignalBus;
     [Dependency]
@@ -40,7 +40,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public float Health { get; set; }
     public float MaxHealth { get; private set; }
     public float NormilizedHealth => Health / MaxHealth;
-
+    public float TeamIndex => 1;
     public bool Dead { get; set; }
     
     public event Action<IDamageable, Damage> OnKill;

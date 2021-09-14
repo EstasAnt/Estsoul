@@ -15,6 +15,9 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
     public float StartHealth;
     public bool UseHealth = false;
 
+    [SerializeField]
+    public int _TeamIndex = 2;
+    
     public float DestroyAfterKillTime;
 
     public Collider2D Collider { get; set; }
@@ -22,7 +25,7 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
     public float Health { get; set; }
 
     public float NormilizedHealth => Health / MaxHealth;
-
+    public float TeamIndex => _TeamIndex;
     public byte? OwnerId => null;
 
     public float MaxHealth { get; set; }

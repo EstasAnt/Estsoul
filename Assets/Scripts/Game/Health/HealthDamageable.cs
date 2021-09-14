@@ -15,10 +15,14 @@ namespace Character.Health {
 
         [SerializeField]
         private float _MaxHealth;
+        
+        [SerializeField]
+        public int _TeamIndex = 2;
         public byte? OwnerId => null;
         public float MaxHealth => _MaxHealth;
         public float Health { get; set; }
         public float NormilizedHealth => Health / MaxHealth;
+        public float TeamIndex { get; }
 
         public bool DestroyOnDeath = true;
 

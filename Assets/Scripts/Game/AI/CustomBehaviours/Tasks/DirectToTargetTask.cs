@@ -33,7 +33,7 @@ namespace Game.AI.CustomBehaviours.Tasks
             if (clipInfo[0].clip.name.Contains("Attack"))
                 return TaskStatus.Running;
             var vectorToTarget =
-                _TargetSearchData.Target.Transform.position - _DirectToTargetData.Root.position;
+                _TargetSearchData.Target.Collider.transform.position - _DirectToTargetData.Root.position;
             var sign = Mathf.Sign(vectorToTarget.x);
             var currentSign = Mathf.Sign(_DirectToTargetData.Root.localScale.x);
             if (_DirectToTargetData.DirectSign)
