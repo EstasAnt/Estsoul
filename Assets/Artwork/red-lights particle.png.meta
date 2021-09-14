@@ -1,7 +1,40 @@
 fileFormatVersion: 2
 guid: 95dde0fdc9e01ea49bc14911ba1719ef
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -628912247389712918
+    second: red-lights particle_0
+  - first:
+      213: 7865570659744589999
+    second: red-lights particle_1
+  - first:
+      213: 5831092286110711444
+    second: red-lights particle_2
+  - first:
+      213: -1626029506339943264
+    second: red-lights particle_3
+  - first:
+      213: 2385613706234453581
+    second: red-lights particle_4
+  - first:
+      213: -4130211403117625368
+    second: red-lights particle_5
+  - first:
+      213: -5715341405539858191
+    second: red-lights particle_6
+  - first:
+      213: 5884946357164803404
+    second: red-lights particle_7
+  - first:
+      213: -8610369712522410148
+    second: red-lights particle_8
+  - first:
+      213: 6343733613498906668
+    second: red-lights particle_9
+  - first:
+      213: -4640249086842573130
+    second: red-lights particle_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +74,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +108,252 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: red-lights particle_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 194
+        width: 111
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aed8173a4a7a547f0800000000000000
+      internalID: -628912247389712918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_1
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 132
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa8afc967de182d60800000000000000
+      internalID: 7865570659744589999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_2
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 134
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49e362e2a833ce050800000000000000
+      internalID: 5831092286110711444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 113
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0accd4077ce2f69e0800000000000000
+      internalID: -1626029506339943264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_4
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 101
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4e586bb6076b1120800000000000000
+      internalID: 2385613706234453581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_5
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 101
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eff7e59c9a8ea6c0800000000000000
+      internalID: -4130211403117625368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_6
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 59
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f807b8d5470fa0b0800000000000000
+      internalID: -5715341405539858191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_7
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 61
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c45890538878ba150800000000000000
+      internalID: 5884946357164803404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_8
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 40
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c57c15cbd52d18880800000000000000
+      internalID: -8610369712522410148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_9
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 28
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c28be466c18790850800000000000000
+      internalID: 6343733613498906668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: red-lights particle_10
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 28
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6beea656a068a9fb0800000000000000
+      internalID: -4640249086842573130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

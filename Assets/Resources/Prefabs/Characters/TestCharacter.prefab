@@ -290,7 +290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _OwnerId: 0
   CharacterId: TestCharacter
-  HitAudioEffects: []
+  HitAudioEffects:
+  - Audio_GG_Hit
   DeathAudioEffects: []
   SpawnAudioEffect:
   - Audio_Gate_Spawn
@@ -790,7 +791,7 @@ MonoBehaviour:
   Duration: 0.1
   Delay: 0
   StopWhileAttack: 1
-  CharacterAddForce: {x: 6000, y: 0}
+  CharacterAddForce: {x: 1800, y: 0}
 --- !u!61 &8625940879786321272
 BoxCollider2D:
   m_ObjectHideFlags: 0
