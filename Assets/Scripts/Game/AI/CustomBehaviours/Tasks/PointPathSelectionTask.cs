@@ -16,14 +16,11 @@ namespace Game.AI.CustomBehaviours.Tasks
         {
             base.Init();
             _movementController = BehaviourTree.Executor.GetComponent<MovementControllerBase>();
-        }
-        
-        public override void Begin() {
             _MovementData = Blackboard.Get<MovementData>();
             _MovementPointsData = Blackboard.Get<MovementPointsData>();
             _MovementPointsData.CurrentMovePointIndex = 0;
         }
-        
+
         public override TaskStatus Run()
         {
             if (_MovementPointsData.MovementPoints.Count <= _MovementPointsData.CurrentMovePointIndex)
