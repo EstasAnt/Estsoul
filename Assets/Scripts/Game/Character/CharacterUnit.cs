@@ -85,7 +85,8 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public void ApplyDamage(Damage damage) {
         _SignalBus.FireSignal(new ApplyDamageSignal(damage));
         OnDamage?.Invoke(this, damage);
-        _AudioService.PlayRandomSound(HitAudioEffects, false, false, transform.position);
+        if(damage.Amount > 0)
+            _AudioService.PlayRandomSound(HitAudioEffects, false, false, transform.position);
     }
 
     public void Initialize(byte ownerId, string characterId) {
