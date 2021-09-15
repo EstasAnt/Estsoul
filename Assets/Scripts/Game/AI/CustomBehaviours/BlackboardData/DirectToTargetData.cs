@@ -10,4 +10,5 @@ namespace Game.AI.CustomBehaviours.BlackboardData
         public bool DirectSign;
         public float DirectCooldown;
     }
+    
 }
