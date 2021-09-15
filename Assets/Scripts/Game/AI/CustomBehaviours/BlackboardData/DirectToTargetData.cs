@@ -11,4 +11,5 @@ namespace Game.AI.CustomBehaviours.BlackboardData
         public float DirectCooldown;
     }
     
+    
 }
