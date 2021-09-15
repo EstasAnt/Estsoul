@@ -66,9 +66,16 @@ namespace Game.Movement.Modules {
                 xVelocity += attachedRb.velocity.x;
             CommonData.ObjRigidbody.velocity = new Vector2(xVelocity, CommonData.ObjRigidbody.velocity.y);
         }
-
+                 
         public override void Update() {
-            SetDirection();
+
+            if (MovementController.CantChangeDirectionAnimatorStateNames == null ||
+                MovementController.CantChangeDirectionAnimatorStateNames.Count == 0 ||
+                !MovementController.CantChangeDirectionAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
+            {
+                SetDirection();
+            }
+            
             _TargetXVelocity = 0f;
 
             if (MovementController.DontMoveAnimatorStateNames != null && MovementController.DontMoveAnimatorStateNames.Count > 0)

@@ -18,6 +18,7 @@ namespace Game.Character.Melee
         public float Duration;
         public float Delay;
         public bool StopWhileAttack;
+        public bool CanDirectWhileAttack = true;
         public Vector2 CharacterAddForce;
 
         private List<IDamageable> _HittedDmgbls = new List<IDamageable>();

@@ -35,9 +35,15 @@ namespace Game.Character.Melee
         public override bool PickUp(IWeaponHolder owner)
         {
             var pickedUp = base.PickUp(owner);
-            if(pickedUp)
+            if (pickedUp)
+            {
                 owner.MovementController?.AddDontMoveAnimationStateNames(Attacks.Where(_ => _.StopWhileAttack)
                     .Select(_ => _.AnimationStateName).ToList());
+                
+                owner.MovementController?.AddCantDirectAnimationStateNames(Attacks.Where(_ => _.CanDirectWhileAttack)
+                    .Select(_ => _.AnimationStateName).ToList());
+            }
+
             return pickedUp;
         }
 
