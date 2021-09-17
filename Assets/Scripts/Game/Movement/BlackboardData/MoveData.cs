@@ -1,5 +1,5 @@
 ﻿namespace Game.Movement.Modules {
-    public class WalkData : BlackboardData
+    public class MoveData : BlackboardData
     {
         public int Direction;
         public float Horizontal;

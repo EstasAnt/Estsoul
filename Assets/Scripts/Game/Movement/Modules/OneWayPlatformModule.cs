@@ -10,7 +10,7 @@ namespace Game.Movement.Modules {
     public class OneWayPlatformModule : MovementModule {
 
         private GroundedData _GroundedData;
-        private WalkData _WalkData;
+        private MoveData _WalkData;
 
         private OneWayPlatformParameters _Parameters;
 
@@ -23,7 +23,7 @@ namespace Game.Movement.Modules {
 
         public override void Start() {
             _GroundedData = BB.Get<GroundedData>();
-            _WalkData = BB.Get<WalkData>();
+            _WalkData = BB.Get<MoveData>();
         }
 
         public override void Update() {

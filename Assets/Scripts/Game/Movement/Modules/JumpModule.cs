@@ -17,7 +17,7 @@ namespace Game.Movement.Modules {
         private WallSlideData _WallSlideData;
         private GroundedData _GroundedData;
         private JumpData _JumpData;
-        private WalkData _WalkData;
+        private MoveData _WalkData;
         
         private Coroutine _WallJumpWaitingRoutine;
 
@@ -34,7 +34,7 @@ namespace Game.Movement.Modules {
             _WallSlideData = BB.Get<WallSlideData>();
             _GroundedData = BB.Get<GroundedData>();
             _JumpData = BB.Get<JumpData>();
-            _WalkData = BB.Get<WalkData>();
+            _WalkData = BB.Get<MoveData>();
         }
 
         public override void LateUpdate() {
