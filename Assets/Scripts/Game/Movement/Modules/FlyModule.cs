@@ -55,13 +55,13 @@ namespace Game.Movement.Modules
         {
             if (CommonData.MovementController.MovementBlock)
                 return;
-            Vector2 Velocity= Vector2.Lerp(CommonData.ObjRigidbody.velocity, new Vector2(_MoveData.Horizontal, _MoveData.Vertical).normalized * _Parameters.Speed, Time.fixedDeltaTime * _Parameters.Acceleration);
+            Vector2 targetSpeed = new Vector2(Horizontal, Vertical).normalized * _Parameters.Speed;
+            Vector2 Velocity= Vector2.Lerp(CommonData.ObjRigidbody.velocity, new Vector2(Horizontal, Vertical).normalized * _Parameters.Speed, Time.fixedDeltaTime * _Parameters.Acceleration);
             CommonData.ObjRigidbody.velocity = Velocity;
-            Debug.LogError($"Vertical - {_MoveData.Vertical}, LocalVelocity - {CommonData.ObjRigidbody.velocity}, {Velocity}");
         }
 
         public override void Update()
-        {/*
+        {
             SetDirection();
             _TargetXVelocity = 0f;
 
@@ -90,7 +90,7 @@ namespace Game.Movement.Modules
             }
             // if (CommonData.WeaponController.MeleeAttacking) {
             //     _TargetXVelocity *= 0.8f;
-            // }*/
+            // }
         }
 
         private AudioEffect _RunSoundEffect;
