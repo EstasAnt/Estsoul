@@ -30,7 +30,7 @@ namespace Character.Movement.Modules {
         }
 
         public override void Update() {
-            /*_GroundedData.Grounded = _Parameters.GroundSensors.Any(_ => _.IsTouching) && !_WallSlideData.WallSliding;
+            _GroundedData.Grounded = _Parameters.GroundSensors.Any(_ => _.IsTouching) && !_WallSlideData.WallSliding;
             _GroundedData.MainGrounded = _Parameters.MainGroundSensors.Any(_ => _.IsTouching);
             _GroundedData.FallingDown = CommonData.ObjTransform.position.y < _LastY && !_GroundedData.MainGrounded;
             if (_GroundedData.FallingDown) {
@@ -56,7 +56,7 @@ namespace Character.Movement.Modules {
                             effectorColliders.Add(effector);
                     }
             }
-            _GroundedData.TouchedEffectorColliders = effectorColliders;*/
+            _GroundedData.TouchedEffectorColliders = effectorColliders;
         }
     }
 
