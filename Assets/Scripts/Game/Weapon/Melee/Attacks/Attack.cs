@@ -18,6 +18,7 @@ namespace Game.Character.Melee
         public float Duration;
         public float Delay;
         public bool StopWhileAttack;
+        public bool StopWhileAttackInAir;
         public bool CanDirectWhileAttack = true;
         public Vector2 CharacterAddForce;
 
@@ -43,7 +44,10 @@ namespace Game.Character.Melee
                 var mc = Weapon?.Owner?.MovementController;
                 if (mc != null)
                 {
-                    if (StopWhileAttack)
+                    var stopAttack = StopWhileAttack;
+                    if (!Weapon.Owner.MovementController.IsGrounded && !StopWhileAttackInAir)
+                        stopAttack = false;
+                    if (stopAttack)
                     {
                         mc.Rigidbody.velocity = new Vector2(0f, mc.Rigidbody.velocity.y);
                     }

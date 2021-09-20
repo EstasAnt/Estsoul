@@ -40,7 +40,7 @@ namespace Game.Movement {
 
         public event Action<string> RollAnimationEvent; 
         
-        public bool IsGrounded => _GroundCheckModule.IsGrounded;
+        public override bool IsGrounded => _GroundCheckModule.IsGrounded;
         public bool IsMainGrounded => _GroundCheckModule.IsMainGrounded;
         public float MinDistanceToGround => _GroundCheckModule.MinDistanceToGround;
         public bool FallingDown => _GroundCheckModule.FallingDown;

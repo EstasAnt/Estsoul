@@ -30,6 +30,8 @@ namespace Game.Movement
 
         public abstract float Direction { get; }
         
+        public abstract bool IsGrounded { get; }
+        
         public float OverridedAirAcceleration { get; set; }
         public bool OverrideAirAcceleration { get; set; }
         
