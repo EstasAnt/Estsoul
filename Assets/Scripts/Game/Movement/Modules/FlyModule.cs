@@ -53,10 +53,10 @@ namespace Game.Movement.Modules
 
         public override void FixedUpdate()
         {
-            if (CommonData.MovementController.MovementBlock)
+            if (CommonData.MovementController.MovementBlock|CommonData.Damageable.Dead)
                 return;
             Vector2 targetSpeed = new Vector2(Horizontal, Vertical).normalized * _Parameters.Speed;
-            Vector2 Velocity= Vector2.Lerp(CommonData.ObjRigidbody.velocity, new Vector2(Horizontal, Vertical).normalized * _Parameters.Speed, Time.fixedDeltaTime * _Parameters.Acceleration);
+            Vector2 Velocity= Vector2.Lerp(CommonData.ObjRigidbody.velocity, targetSpeed - Physics2D.gravity * CommonData.ObjRigidbody.gravityScale, Time.fixedDeltaTime * _Parameters.Acceleration);
             CommonData.ObjRigidbody.velocity = Velocity;
         }
 

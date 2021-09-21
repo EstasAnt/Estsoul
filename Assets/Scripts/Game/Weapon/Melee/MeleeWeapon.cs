@@ -63,7 +63,7 @@ namespace Game.Character.Melee
 
         protected override string GetAnimationTriggerName()
         {
-            return Attacks[ActiveAttackIndex].AnimationTriggerName;
+            return Attacks[Mathf.Clamp(ActiveAttackIndex, 0, Attacks.Count-1)].AnimationTriggerName;
         }
     }
 }

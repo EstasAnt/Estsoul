@@ -23,14 +23,14 @@ public class DemonFlyerAIBehaviour : BehaviourTreeExecutor
         var behaviourTree = new BehaviourTree();
         var mainTree = behaviourTree.AddChild<ParallelTask>();
 
-        //mainTree.AddChild<TargetSearchTask>();
+        mainTree.AddChild<TargetSearchTask>();
 
         var moveSelector = mainTree.AddChild<SelectorTask>();
-        //moveSelector.AddChild<TargetPursuitTask>();
+        moveSelector.AddChild<TargetPursuitTask>();
         moveSelector.AddChild<PointPathSelectionTask>();
         mainTree.AddChild<SimpleFlyToPointTask>();
-        //mainTree.AddChild<SelectAttackTask>();
-        //mainTree.AddChild<AttackWeaponTargetTask>();
+        mainTree.AddChild<SelectAttackTask>();
+        mainTree.AddChild<AttackWeaponTargetTask>();
 
         return behaviourTree;
     }
