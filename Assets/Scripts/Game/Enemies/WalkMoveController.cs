@@ -19,7 +19,8 @@ namespace Game.Movement.Enemies
         public override float Horizontal => _WalkModule.Horizontal;
         
         public override float Direction => _WalkModule.Direction;
-        
+        public override bool IsGrounded => _GroundCheckModule.IsGrounded;
+
         private WalkModule _WalkModule;
         private GroundCheckModule _GroundCheckModule;
 

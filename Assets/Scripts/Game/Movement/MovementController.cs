@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Character.Health;
 using Character.Movement.Modules;
 using Game.Movement.Modules;
 using Tools.BehaviourTree;
@@ -20,6 +22,8 @@ namespace Game.Movement {
         private PushingParameters PushingParameters;
         [SerializeField]
         private JumpParameters JumpParameters;
+        [SerializeField] 
+        private RollParameters RollParameters;
         [SerializeField]
         private OneWayPlatformParameters OneWayPlatformParameters;
         
@@ -28,12 +32,16 @@ namespace Game.Movement {
         private WallsCheckModule _WallsCheckModule;
         private WallsSlideModule _WallsSlideModule;
         private JumpModule _JumpModule;
+        private RollModule _RollModule;
+        
         private LedgeHangModule _LedgeHangModule;
         private PushingModule _PushingModule;
         private OneWayPlatformModule _OneWayPlatformModule;
         public CharacterUnit Owner { get; private set; }
 
-        public bool IsGrounded => _GroundCheckModule.IsGrounded;
+        public event Action<string> RollAnimationEvent; 
+        
+        public override bool IsGrounded => _GroundCheckModule.IsGrounded;
         public bool IsMainGrounded => _GroundCheckModule.IsMainGrounded;
         public float MinDistanceToGround => _GroundCheckModule.MinDistanceToGround;
         public bool FallingDown => _GroundCheckModule.FallingDown;
@@ -69,6 +77,17 @@ namespace Game.Movement {
             });
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            _RollModule.AnimationTriggerEvent += RollModuleOnAnimationTriggerEvent;
+        }
+
+        private void RollModuleOnAnimationTriggerEvent(string obj)
+        {
+            RollAnimationEvent?.Invoke(obj);
+        }
+
         protected override List<MovementModule> CreateModules() {
             var modules = new List<MovementModule>();
 
@@ -77,6 +96,7 @@ namespace Game.Movement {
             _WallsCheckModule = new WallsCheckModule(WallCheckParameters);
             _WallsSlideModule = new WallsSlideModule(WallSlideParameters);
             _JumpModule = new JumpModule(JumpParameters);
+            _RollModule = new RollModule(RollParameters);
             _LedgeHangModule = new LedgeHangModule(LedgeHangParameters);
             _PushingModule = new PushingModule(PushingParameters);
             _OneWayPlatformModule = new OneWayPlatformModule(OneWayPlatformParameters);
@@ -87,6 +107,7 @@ namespace Game.Movement {
             modules.Add(_LedgeHangModule);
             modules.Add(_WallsSlideModule);
             modules.Add(_JumpModule);
+            modules.Add(_RollModule);
             modules.Add(_PushingModule);
             modules.Add(_OneWayPlatformModule);
             return modules;
@@ -100,11 +121,8 @@ namespace Game.Movement {
             commonData.BodyCollider = BodyCollider;
             commonData.GroundCollider = GroundCollider;
             commonData.MovementController = this;
+            commonData.IDamageable = GetComponent<IDamageable>();
             _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
-        }
-
-        protected override void Update() {
-            base.Update();
         }
 
         protected override void LateUpdate() {
@@ -115,6 +133,13 @@ namespace Game.Movement {
         protected override void FixedUpdate() {
             base.FixedUpdate();
             _MovementModules.ForEach(_ => _.FixedUpdate());
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            if(_RollModule != null)
+                _RollModule.AnimationTriggerEvent -= RollModuleOnAnimationTriggerEvent;
         }
 
         public override void SetHorizontal(float hor) {
@@ -128,8 +153,6 @@ namespace Game.Movement {
         private bool _Jumping = false;
 
         public bool Jump() {
-            // if (Owner.WeaponController.HasVehicle && Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
-            //     return false;
             _Jumping = _JumpModule.Jump(this);
             if (!_Jumping)
                 _Jumping = _JumpModule.AirJump(this);
@@ -137,11 +160,15 @@ namespace Game.Movement {
         }
 
         public bool WallJump() {
-            // if (Owner.WeaponController.HasVehicle && Owner.WeaponController.Vehicle.InputProcessor.CurrentMagazine != 0)
-            //     return false;
             return _JumpModule.WallJump(this);
         }
 
+        public bool Roll()
+        {
+            _RollModule.Roll();
+            return true;
+        }
+        
         public bool FallDownPlatform() {
             return _OneWayPlatformModule.FallDownPlatform();
         }

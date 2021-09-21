@@ -8,7 +8,7 @@ public class PlayerActions : PlayerActionSet {
     public readonly PlayerAction Jump;
     public readonly PlayerAction Confirm;
     public readonly PlayerAction Action;
-
+    public readonly PlayerAction Roll;
 
     public readonly PlayerAction Left;
     public readonly PlayerAction Right;
@@ -26,6 +26,7 @@ public class PlayerActions : PlayerActionSet {
     public PlayerActions() {
         Fire = CreatePlayerAction("Fire");
         Jump = CreatePlayerAction("Jump");
+        Roll = CreatePlayerAction("Roll");
         Confirm = CreatePlayerAction("Confirm");
         Action = CreatePlayerAction("Action");
 
@@ -49,6 +50,8 @@ public class PlayerActions : PlayerActionSet {
 
         playerActions.Jump.AddDefaultBinding(Key.Space);
 
+        playerActions.Roll.AddDefaultBinding(Key.LeftShift);
+        
         playerActions.Confirm.AddDefaultBinding(Key.Space);
         
         playerActions.Action.AddDefaultBinding(Key.F);
@@ -85,6 +88,8 @@ public class PlayerActions : PlayerActionSet {
 
         playerActions.Jump.AddDefaultBinding(InputControlType.LeftBumper);
 
+        playerActions.Roll.AddDefaultBinding(InputControlType.Action3);
+        
         playerActions.Confirm.AddDefaultBinding(InputControlType.Action1);
 
         playerActions.Action.AddDefaultBinding(InputControlType.Action2); //ToDo: correct button

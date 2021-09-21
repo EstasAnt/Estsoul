@@ -47,6 +47,7 @@ namespace Character.Control {
             //     return;
             Move();
             Jump();
+            Roll();
             Attack();
             Action();
         }
@@ -83,6 +84,14 @@ namespace Character.Control {
             }
         }
 
+        private void Roll()
+        {
+            if (PlayerActions.Roll.WasPressed)
+            {
+                _MovementController.Roll();
+            }
+        }
+        
         private void Attack() {
             if (PlayerActions.Fire.WasPressed)
             {
