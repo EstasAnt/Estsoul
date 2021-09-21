@@ -19,7 +19,8 @@ public class PlayerActions : PlayerActionSet {
     public readonly PlayerAction AimRight;
     public readonly PlayerAction AimUp;
     public readonly PlayerAction AimDown;
-
+    
+    
     public readonly PlayerTwoAxisAction Move;
     public readonly PlayerTwoAxisAction Aim;
 
@@ -84,11 +85,11 @@ public class PlayerActions : PlayerActionSet {
     public static PlayerActions CreateWithJoystickBindings() {
         var playerActions = new PlayerActions();
 
-        playerActions.Fire.AddDefaultBinding(InputControlType.Action3);
+        playerActions.Fire.AddDefaultBinding(InputControlType.RightBumper);
 
         playerActions.Jump.AddDefaultBinding(InputControlType.Action1);
 
-        playerActions.Roll.AddDefaultBinding(InputControlType.Action3);
+        playerActions.Roll.AddDefaultBinding(InputControlType.Action2);
         
         playerActions.Confirm.AddDefaultBinding(InputControlType.Action1);
 

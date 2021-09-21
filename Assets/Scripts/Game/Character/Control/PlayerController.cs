@@ -114,7 +114,7 @@ namespace Character.Control {
 
         private void Roll()
         {
-            if (PlayerActions.Roll.WasPressed)
+            if (CurrentPlayerActions.Roll.WasPressed)
             {
                 _MovementController.Roll();
             }

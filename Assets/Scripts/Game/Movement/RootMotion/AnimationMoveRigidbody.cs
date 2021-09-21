@@ -24,8 +24,8 @@ namespace Game.Movement.RootMotion
             {
                 var pos = _Animator.transform.position;
                 _Rigidbody.MovePosition(pos);
-                _Animator.transform.localPosition = Vector3.zero;
             }
+            _Animator.transform.localPosition = Vector3.zero;
         }
     }
 }
