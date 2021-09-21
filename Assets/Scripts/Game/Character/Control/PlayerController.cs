@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Character.Movement;
 using Character.Shooting;
 using UnityEngine;
@@ -16,8 +18,27 @@ namespace Character.Control {
         [Dependency] private readonly SignalBus _signalBus;
         
         public int Id;
-        //public InputDevice InputDevice;
-        public PlayerActions PlayerActions;
+        public PlayerActions CurrentPlayerActions
+        {
+            get
+            {
+                if (_GamepadActions == null)
+                    return _KeyboardActions;
+
+                if (_GamepadActions.Device == null)
+                    _GamepadActions.Device =
+                        InputManager.Devices.FirstOrDefault(_ => _.DeviceClass == InputDeviceClass.Controller); //ToDo: Remove from here
+                if (_KeyboardActions == null)
+                    return _GamepadActions;
+                if (_GamepadActions.Device == null)
+                    return _KeyboardActions;
+                if (_KeyboardActions.Device == null)
+                    return _GamepadActions;
+                return _KeyboardActions.Device.LastInputTick > _GamepadActions.Device.LastInputTick
+                    ? _KeyboardActions
+                    : _GamepadActions;
+            }
+        }
         //public const float PressTime2HighJump = 0.12f;
         private WeaponController _WeaponController;
         private MovementController _MovementController;
@@ -28,6 +49,9 @@ namespace Character.Control {
         private bool _WallJump;
         private bool _IsWallJumping;
 
+        private PlayerActions _KeyboardActions;
+        private PlayerActions _GamepadActions;
+        
         private void Awake() {
             _MovementController = GetComponent<MovementController>();
             _WeaponController = GetComponent<WeaponController>();
@@ -36,15 +60,19 @@ namespace Character.Control {
         private void Start() {
             ContainerHolder.Container.BuildUp(this);
             _Camera = Camera.main;
-            _AimProvider = PlayerActions.Device == null
-                ? (IAimProvider) new MouseAim(_Camera)
-                : new JoystickAim(_WeaponController.Owner.MovementController.transform, _MovementController, PlayerActions);
-            //_AimProvider = new JoystickAim(_WeaponController.NearArmShoulder, _MovementController, PlayerActions);
+            // _AimProvider = CurrentPlayerActions.Device == null
+            //     ? (IAimProvider) new MouseAim(_Camera)
+            //     : new JoystickAim(_WeaponController.Owner.MovementController.transform, _MovementController, CurrentPlayerActions);
         }
 
+
+        public void InitializeActions(PlayerActions keyboard, PlayerActions gamepad)
+        {
+            _KeyboardActions = keyboard;
+            _GamepadActions = gamepad;
+        }
+        
         public void Update() {
-            // if (GameManagerService.GameInProgress && !GameManagerService.MatchStarted)
-            //     return;
             Move();
             Jump();
             Roll();
@@ -54,14 +82,14 @@ namespace Character.Control {
         
 
         private void Move() {
-            var hor = PlayerActions.Move.Value.x;
-            var vert = PlayerActions.Move.Value.y;
+            var hor = CurrentPlayerActions.Move.Value.x;
+            var vert = CurrentPlayerActions.Move.Value.y;
             _MovementController.SetHorizontal(hor);
             _MovementController.SetVertical(vert);
         }
 
         private void Jump() {
-            if (PlayerActions.Jump.WasPressed) {
+            if (CurrentPlayerActions.Jump.WasPressed) {
                 var fallDown = _MovementController.FallDownPlatform();
                 if (!fallDown) {
                     _IsJumping = _MovementController.Jump();
@@ -73,11 +101,11 @@ namespace Character.Control {
                 }
             }
 
-            if (PlayerActions.Jump) {
+            if (CurrentPlayerActions.Jump) {
                 _MovementController.ProcessHoldJump();
             }
 
-            if (PlayerActions.Jump.WasReleased) {
+            if (CurrentPlayerActions.Jump.WasReleased) {
                 _IsJumping = false;
                 _WallJump = false;
                 _MovementController.ReleaseJump();
@@ -93,28 +121,28 @@ namespace Character.Control {
         }
         
         private void Attack() {
-            if (PlayerActions.Fire.WasPressed)
+            if (CurrentPlayerActions.Fire.WasPressed)
             {
                 _WeaponController.PressFire();
             }
-            if (PlayerActions.Fire) {
+            if (CurrentPlayerActions.Fire) {
                 _WeaponController.HoldFire();
             }
-            if (PlayerActions.Fire.WasReleased) {
+            if (CurrentPlayerActions.Fire.WasReleased) {
                 _WeaponController.ReleaseFire();
             }
         }
 
         private void Action()
         {
-            if (PlayerActions.Action.WasPressed)
+            if (CurrentPlayerActions.Action.WasPressed)
             {
                 _signalBus.FireSignal(new PlayerActionWasPressedSignal());
             }
         }
 
         public void LateUpdate() {
-            if (_WeaponController.HasMainWeapon)
+            if(_AimProvider != null && _WeaponController.HasMainWeapon)
                 _WeaponController.SetAimPosition(_AimProvider.AimPoint);
         }
 

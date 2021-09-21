@@ -84,15 +84,15 @@ public class PlayerActions : PlayerActionSet {
     public static PlayerActions CreateWithJoystickBindings() {
         var playerActions = new PlayerActions();
 
-        playerActions.Fire.AddDefaultBinding(InputControlType.RightBumper);
+        playerActions.Fire.AddDefaultBinding(InputControlType.Action3);
 
-        playerActions.Jump.AddDefaultBinding(InputControlType.LeftBumper);
+        playerActions.Jump.AddDefaultBinding(InputControlType.Action1);
 
         playerActions.Roll.AddDefaultBinding(InputControlType.Action3);
         
         playerActions.Confirm.AddDefaultBinding(InputControlType.Action1);
 
-        playerActions.Action.AddDefaultBinding(InputControlType.Action2); //ToDo: correct button
+        playerActions.Action.AddDefaultBinding(InputControlType.Action4); //ToDo: correct button
         
         playerActions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
         playerActions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
