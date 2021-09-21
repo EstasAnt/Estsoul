@@ -20,6 +20,7 @@ namespace Game.Character.Melee
         public bool StopWhileAttack;
         public bool StopWhileAttackInAir;
         public bool CanDirectWhileAttack = true;
+        public bool CanHitRolledTarget;
         public Vector2 CharacterAddForce;
 
         private List<IDamageable> _HittedDmgbls = new List<IDamageable>();
@@ -87,6 +88,8 @@ namespace Game.Character.Melee
                     if(dmgbl == Weapon.Owner.Damageable)
                         continue;
                     if(dmgbl.OwnerId == Weapon.Owner.Damageable.OwnerId)
+                        continue;
+                    if(dmgbl.InvulnerableToAttacks)
                         continue;
                     _HittedDmgbls.Add(dmgbl);
                     dmgbl.ApplyDamage(GetDamage(dmgbl));

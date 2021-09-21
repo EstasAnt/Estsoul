@@ -43,8 +43,28 @@ namespace Game.Movement.Modules
             AnimationTriggerEvent?.Invoke(_Parameters.AnimationTriggerName);
         }
 
+        private bool _LastFrameRollAnimation = false;
+        
         public override void Update()
         {
+            if (_Parameters.InvulnerableToAttacks)
+            {
+                var rollAnimation =_characterAnimator.GetCurrentAnimatorStateInfo(0)
+                    .IsName(_Parameters.AnimationStateName);
+                if (rollAnimation)
+                {
+                    CommonData.IDamageable.InvulnerableToAttacks = true;
+                }
+                else
+                {
+                    if (_LastFrameRollAnimation)
+                    {
+                        CommonData.IDamageable.InvulnerableToAttacks = false;
+                    }
+                }
+                _LastFrameRollAnimation = rollAnimation;
+            }
+
             if (_characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_Parameters.AnimationStateName))
             {
                 CommonData.BodyCollider.gameObject.layer = LayerMask.NameToLayer(Layers.Names.Corpse);
@@ -61,6 +81,8 @@ namespace Game.Movement.Modules
     {
         public string AnimationTriggerName = "Roll";
         public string AnimationStateName = "Roll";
+        public bool InvulnerableToAttacks;
+        public bool InvulnerableToProjectiles;
     }
     
 }

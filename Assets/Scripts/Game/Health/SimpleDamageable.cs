@@ -32,6 +32,7 @@ public class SimpleDamageable : MonoBehaviour, IDamageable {
 
     public bool Dead { get; set; }
     public event Action<IDamageable, Damage> OnDamage;
+    public bool InvulnerableToAttacks { get; set; }
     public event Action<IDamageable, Damage> OnKill;
 
     public void ApplyDamage(Damage damage) {

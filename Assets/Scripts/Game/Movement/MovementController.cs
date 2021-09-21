@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Character.Health;
 using Character.Movement.Modules;
 using Game.Movement.Modules;
 using Tools.BehaviourTree;
@@ -120,6 +121,7 @@ namespace Game.Movement {
             commonData.BodyCollider = BodyCollider;
             commonData.GroundCollider = GroundCollider;
             commonData.MovementController = this;
+            commonData.IDamageable = GetComponent<IDamageable>();
             _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
         }
 

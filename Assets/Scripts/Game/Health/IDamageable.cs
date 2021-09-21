@@ -16,5 +16,6 @@ namespace Character.Health {
         void Kill(Damage damage);
         public event Action<IDamageable, Damage> OnKill;
         public event Action<IDamageable, Damage> OnDamage;
+        public bool InvulnerableToAttacks { get; set; }
     }
 }

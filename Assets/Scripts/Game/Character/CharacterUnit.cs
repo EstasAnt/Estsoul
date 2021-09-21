@@ -18,7 +18,9 @@ using Game.Weapons;
 using KlimLib.ResourceLoader;
 using Tools.VisualEffects;
 
-public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder {
+public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder
+{
+
     [Dependency]
     private readonly SignalBus _SignalBus;
     [Dependency]
@@ -31,6 +33,9 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     public byte Id => OwnerId;
     MovementControllerBase IWeaponHolder.MovementController => MovementController;
     public WeaponController WeaponController { get; private set; }
+    
+    public Animator Animator { get; private set; }
+    
     public IDamageable Damageable => this;
 
     public DamageBuffer DamageBuffer { get; private set; }
@@ -45,6 +50,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
     
     public event Action<IDamageable, Damage> OnKill;
     public event Action<IDamageable, Damage> OnDamage;
+    public bool InvulnerableToAttacks { get; set; }
 
     [SerializeField]
     private byte _OwnerId;
@@ -64,6 +70,7 @@ public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponH
         DamageBuffer = GetComponent<DamageBuffer>();
         Collider = GetComponent<Collider2D>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
+        Animator = GetComponentInChildren<Animator>();
         Characters.Add(this);
         OwnerId = _OwnerId;
         Health = MaxHealth;
