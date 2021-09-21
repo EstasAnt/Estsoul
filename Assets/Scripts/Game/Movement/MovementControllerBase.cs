@@ -148,6 +148,8 @@ namespace Game.Movement
             if(_CantChangeDirectionAnimatorStateNames.Contains(stateName))
                 _CantChangeDirectionAnimatorStateNames.Remove(stateName);
         }
+
+        public abstract float Direct();
         
         protected virtual void OnCollisionExit2D(Collision2D collision) {
             _MovementModules.ForEach(_ => _.OnCollisionExit2D(collision));

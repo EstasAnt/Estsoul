@@ -18,14 +18,26 @@ namespace Game.Movement.RootMotion
             _Animator = GetComponentInChildren<Animator>();
         }
 
+        private bool _LastFrameAnimation;
+        
         public void Update()
         {
-            if(AnimationNames.Any(_ => _Animator.GetCurrentAnimatorStateInfo(0).IsName(_)))
+            var isAnim = AnimationNames.Any(_ => _Animator.GetCurrentAnimatorStateInfo(0).IsName(_));
+            if(isAnim)
             {
                 var pos = _Animator.transform.position;
                 _Rigidbody.MovePosition(pos);
+                _Animator.transform.localPosition = Vector3.zero;
             }
-            _Animator.transform.localPosition = Vector3.zero;
+            else
+            {
+                if (_LastFrameAnimation)
+                {
+                    _Animator.transform.localPosition = Vector3.zero;
+                }
+            }
+
+            _LastFrameAnimation = isAnim;
         }
     }
 }

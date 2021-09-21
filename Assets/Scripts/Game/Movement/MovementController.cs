@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Character.Health;
 using Character.Movement.Modules;
@@ -135,6 +136,13 @@ namespace Game.Movement {
             _MovementModules.ForEach(_ => _.FixedUpdate());
         }
 
+        public override float Direct()
+        {
+            var dir = _WalkModule.Direct();
+            Debug.LogError(dir);
+            return dir;
+        }
+        
         protected override void OnDestroy()
         {
             base.OnDestroy();
@@ -143,11 +151,11 @@ namespace Game.Movement {
         }
 
         public override void SetHorizontal(float hor) {
-            _WalkModule.SetHorizontal(hor);
+            _WalkModule.SetHorizontalAxis(hor);
         }
 
         public override void SetVertical(float vertical) {
-            _WalkModule.SetVertical(vertical);
+            _WalkModule.SetVerticalAxis(vertical);
         }
 
         private bool _Jumping = false;

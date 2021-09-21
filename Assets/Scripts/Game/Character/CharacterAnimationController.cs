@@ -79,6 +79,11 @@ public class CharacterAnimationController : MonoBehaviour {
     {
         _WeaponController.MainWeaponDash(attackIndex);
     }
+
+    public void Direct()
+    {
+        var dir = _MovementController.Direct();
+    }
     
     public void PlayStepSound()
     {

@@ -36,6 +36,11 @@ namespace Game.Movement.Enemies
                 _Damageable.OnKill += DamageableOnOnKill;
         }
 
+        public override float Direct()
+        {
+            return _WalkModule.Direct();
+        }
+        
         protected override void OnDestroy()
         {
             base.OnDestroy();
@@ -45,7 +50,7 @@ namespace Game.Movement.Enemies
 
         private void DamageableOnOnKill(IDamageable arg1, Damage arg2)
         {
-            _WalkModule.SetHorizontal(0);
+            _WalkModule.SetHorizontalAxis(0);
         }
 
         protected override List<MovementModule> CreateModules()
@@ -73,12 +78,12 @@ namespace Game.Movement.Enemies
 
         public override void SetHorizontal(float hor)
         {
-            _WalkModule.SetHorizontal(hor);
+            _WalkModule.SetHorizontalAxis(hor);
         }
 
         public override void SetVertical(float vertical)
         {
-            _WalkModule.SetVertical(vertical);
+            _WalkModule.SetVerticalAxis(vertical);
         }
     }
 }
