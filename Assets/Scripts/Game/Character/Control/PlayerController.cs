@@ -137,7 +137,7 @@ namespace Character.Control {
         {
             if (CurrentPlayerActions.Action.WasPressed)
             {
-                _signalBus.FireSignal(new PlayerActionWasPressedSignal());
+                _signalBus.FireSignal(new PlayerActionWasPressedSignal(CurrentPlayerActions.Action));
             }
         }
 

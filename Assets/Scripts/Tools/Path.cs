@@ -33,5 +33,10 @@ public static class Path {
         public static string CameraBoundariesPath(SceneType sceneType) {
             return $"Prefabs/Cameras/{sceneType.ToString()}_CameraBoundaries";
         }
+
+        public static string GetDropPath()
+        {
+            return $"Prefabs/Items/ItemsDrop";
+        }
     }
 }

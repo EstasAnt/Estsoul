@@ -3,9 +3,11 @@ using Character.Health;
 using Core.Audio;
 using Core.Initialization.Base;
 using Core.Initialization.Game;
+using Core.Initialization.Items;
 using Core.Services.Controllers;
 using Core.Services.Game;
 using Core.Services.SceneManagement;
+using Game.Items;
 using KlimLib.ResourceLoader;
 using KlimLib.SignalBus;
 using KlimLib.TaskQueueLib;
@@ -25,6 +27,7 @@ namespace Core.Initialization {
                 new RegisterAndLoadServiceTask<ControllersStatusService>(),
                 new RegisterAndLoadServiceTask<MarkerService>(),
                 new RegisterAndLoadServiceTask<AudioService>(),
+                new ItemsInitializeTask(),
             };
 
         public static List<Task> BaseGameLoadTasks =>
