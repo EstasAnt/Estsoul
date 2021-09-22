@@ -1,6 +1,8 @@
-﻿using Character.Control;
+﻿using System.Collections.Generic;
+using Character.Control;
 using Com.LuisPedroFonseca.ProCamera2D;
 using Game.Match;
+using InControl;
 using KlimLib.ResourceLoader;
 using KlimLib.SignalBus;
 using UnityDI;
@@ -23,20 +25,23 @@ namespace Core.Services.Game {
         {
             //ToDo: remove from here
             var playerData = new PlayerData(0, "MainCharacter", false, 0, "TestCharacter");
-            var inputActions = PlayerActions.CreateWithKeyboardBindings();
+
+            var keyboard = PlayerActions.CreateWithKeyboardBindings();
+            var gamepad = PlayerActions.CreateWithJoystickBindings();
+            
             var spawnPoint = _PlayersSpawnSettings.PlayerSpawnPoints[0].Point;
-            CreateCharacter(playerData, inputActions, spawnPoint.position);
+            CreateCharacter(playerData, keyboard, gamepad, spawnPoint.position);
         }
 
         public void Unload() {
             _SignalBus.UnSubscribeFromAll(this);
         }
 
-        public CharacterUnit CreateCharacter(PlayerData playerData, PlayerActions playerActions, Vector3 pos) {
+        public CharacterUnit CreateCharacter(PlayerData playerData, PlayerActions keyboardActions, PlayerActions gamepadActions, Vector3 pos) {
             var path = Path.Resources.CharacterPath(playerData.CharacterId);
             var unit = _ResourceLoader.LoadResourceOnScene<CharacterUnit>(path, pos, Quaternion.identity);
             var playerController = unit.gameObject.AddComponent<Character.Control.PlayerController>();
-            playerController.PlayerActions = playerActions;
+            playerController.InitializeActions(keyboardActions, gamepadActions);
             unit.Initialize(playerData.PlayerId, playerData.CharacterId);
             _SignalBus.FireSignal(new CharacterSpawnedSignal(unit));
             if(Camera2D != null) {

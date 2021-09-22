@@ -26,6 +26,7 @@ namespace Game.Items
             if (Drop == null || Drop.Count == 0)
             {
                 Debug.LogError($"drop == null or empty. go name: {gameObject.name}");
+                Destroy(gameObject);
                 return;
             }
             foreach (var dropInfo in Drop)

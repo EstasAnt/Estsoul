@@ -30,6 +30,8 @@ namespace Game.Movement
 
         public abstract float Direction { get; }
         
+        public abstract bool IsGrounded { get; }
+        
         public float OverridedAirAcceleration { get; set; }
         public bool OverrideAirAcceleration { get; set; }
         
@@ -45,7 +47,11 @@ namespace Game.Movement
 
         public IReadOnlyList<string> DontMoveAnimatorStateNames => _DontMoveAnimatorStateNames;
 
+        public IReadOnlyList<string> CantChangeDirectionAnimatorStateNames => _CantChangeDirectionAnimatorStateNames;
+        
         private List<string> _DontMoveAnimatorStateNames = new List<string>();
+        
+        private List<string> _CantChangeDirectionAnimatorStateNames = new List<string>();
         
         protected virtual void Awake()
         {
@@ -115,9 +121,35 @@ namespace Game.Movement
 
         public void RemoveDontMoveAnimationStateName(string stateName)
         {
-            if(_DontMoveAnimatorStateNames.Contains(stateName))
+            if(_CantChangeDirectionAnimatorStateNames.Contains(stateName))
                 _DontMoveAnimatorStateNames.Remove(stateName);
         }
+        
+        public void SetCantDirectAnimationStateNames(List<string> stateNames)
+        {
+            _CantChangeDirectionAnimatorStateNames = stateNames;
+        }
+
+        public void AddCantDirectAnimationStateNames(List<string> stateNames)
+        {
+            if(stateNames.IsNullOrEmpty())
+                return;
+            stateNames.ForEach(AddCantDirectAnimationStateName);
+        }
+        
+        public void AddCantDirectAnimationStateName(string stateName)
+        {
+            if(!_CantChangeDirectionAnimatorStateNames.Contains(stateName))
+                _CantChangeDirectionAnimatorStateNames.Add(stateName);
+        }
+
+        public void RemoveCantDirectAnimationStateName(string stateName)
+        {
+            if(_CantChangeDirectionAnimatorStateNames.Contains(stateName))
+                _CantChangeDirectionAnimatorStateNames.Remove(stateName);
+        }
+
+        public abstract float Direct();
         
         protected virtual void OnCollisionExit2D(Collision2D collision) {
             _MovementModules.ForEach(_ => _.OnCollisionExit2D(collision));

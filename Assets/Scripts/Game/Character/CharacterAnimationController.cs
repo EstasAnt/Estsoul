@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Character.Health;
 using Character.Shooting;
 using Game.Movement;
@@ -22,7 +23,8 @@ public class CharacterAnimationController : MonoBehaviour {
 
     private void Start()
     {
-        _WeaponController.MainWeapon.AnimationTriggerEvent += MainWeaponOnAnimationTriggerEvent;
+        _WeaponController.MainWeapon.AnimationTriggerEvent += OnAnimationTriggerEvent;
+        _MovementController.RollAnimationEvent += OnAnimationTriggerEvent;
         
         _CharacterUnit.OnKill += DamageableOnOnKill;
         
@@ -32,7 +34,7 @@ public class CharacterAnimationController : MonoBehaviour {
         
     }
 
-    private void MainWeaponOnAnimationTriggerEvent(string obj)
+    private void OnAnimationTriggerEvent(string obj)
     {
         Animator.SetTrigger(obj);
     }
@@ -77,6 +79,11 @@ public class CharacterAnimationController : MonoBehaviour {
     {
         _WeaponController.MainWeaponDash(attackIndex);
     }
+
+    public void Direct()
+    {
+        var dir = _MovementController.Direct();
+    }
     
     public void PlayStepSound()
     {
@@ -87,10 +94,9 @@ public class CharacterAnimationController : MonoBehaviour {
     {
         if (_CharacterUnit != null)
             _CharacterUnit.OnKill -= DamageableOnOnKill;
-        if(_WeaponController == null)
-            return;
-        if(_WeaponController.MainWeapon == null)
-            return;
-        _WeaponController.MainWeapon.AnimationTriggerEvent -= MainWeaponOnAnimationTriggerEvent;
+        if(_WeaponController != null && _WeaponController.MainWeapon != null)
+            _WeaponController.MainWeapon.AnimationTriggerEvent -= OnAnimationTriggerEvent;
+        if (_MovementController != null)
+            _MovementController.RollAnimationEvent -= OnAnimationTriggerEvent;
     }
 }

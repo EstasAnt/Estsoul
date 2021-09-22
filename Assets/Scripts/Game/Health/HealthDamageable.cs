@@ -31,7 +31,8 @@ namespace Character.Health {
 
         public event Action<IDamageable, Damage> OnKill;
         public event Action<IDamageable, Damage> OnDamage;
-        
+        public bool InvulnerableToAttacks { get; set; }
+
         private void Awake() {
             Collider = GetComponentInChildren<Collider2D>();
             Health = MaxHealth;

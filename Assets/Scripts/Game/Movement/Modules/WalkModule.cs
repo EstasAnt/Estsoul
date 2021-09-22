@@ -66,19 +66,29 @@ namespace Game.Movement.Modules {
                 xVelocity += attachedRb.velocity.x;
             CommonData.ObjRigidbody.velocity = new Vector2(xVelocity, CommonData.ObjRigidbody.velocity.y);
         }
-
+                 
         public override void Update() {
-            SetDirection();
+
+            if (MovementController.CantChangeDirectionAnimatorStateNames == null ||
+                MovementController.CantChangeDirectionAnimatorStateNames.Count == 0 ||
+                !MovementController.CantChangeDirectionAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
+            {
+                Direct();
+            }
+            
             _TargetXVelocity = 0f;
 
+            _WalkData.Horizontal = _WalkData.HorizontalAxis;
+            _WalkData.Vertical = _WalkData.VerticalAxis;
+            
             if (MovementController.DontMoveAnimatorStateNames != null && MovementController.DontMoveAnimatorStateNames.Count > 0)
             {
                 if (MovementController.DontMoveAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
                 {
-                    SetHorizontal(0);
+                    _WalkData.Horizontal = 0;
                 }
             }
-            
+
             if (_WalkData.Horizontal > 0.15f) {
                 _TargetXVelocity = _Parameters.Speed * CommonData.MovementController.MovementSpeedBoostCoef;
                 // ProcessRunSound(true);
@@ -115,21 +125,22 @@ namespace Game.Movement.Modules {
             }
         }
 
-        public void SetHorizontal(float hor) {
-            _WalkData.Horizontal = hor;
-            Mathf.Clamp(_WalkData.Horizontal, -1f, 1f);
+        public void SetHorizontalAxis(float hor) {
+            _WalkData.HorizontalAxis = hor;
+            Mathf.Clamp(_WalkData.HorizontalAxis, -1f, 1f);
         }
 
-        public void SetVertical(float vert) {
-            _WalkData.Vertical = vert;
-            Mathf.Clamp(_WalkData.Vertical, -1f, 1f);
+        public void SetVerticalAxis(float vert) {
+            _WalkData.VerticalAxis = vert;
+            Mathf.Clamp(_WalkData.HorizontalAxis, -1f, 1f);
         }
 
-        private void SetDirection() {
-            if (_WalkData.Horizontal == 0)
-                return;
-            var newDir = _WalkData.Horizontal > 0 ? 1 : -1;
+        public float Direct() {
+            if (_WalkData.HorizontalAxis == 0)
+                return 0;
+            var newDir = _WalkData.HorizontalAxis > 0 ? 1 : -1;
             ChangeDirection(newDir);
+            return _WalkData.HorizontalAxis;
         }
         
         public void ChangeDirection(int newDir) {
