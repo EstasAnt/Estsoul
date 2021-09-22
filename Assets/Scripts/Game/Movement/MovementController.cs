@@ -139,7 +139,6 @@ namespace Game.Movement {
         public override float Direct()
         {
             var dir = _WalkModule.Direct();
-            Debug.LogError(dir);
             return dir;
         }
         
