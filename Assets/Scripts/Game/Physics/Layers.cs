@@ -14,6 +14,7 @@ public static class Layers {
         public const string MovingPlatform = "MovingPlatform";
         public const string OneWayPlatform = "OneWayPlatform";
         public const string Corpse = "Corpse";
+        public const string Drop = "Drop";
     }
 
     public static class Masks {
@@ -29,6 +30,8 @@ public static class Layers {
         public static int GroundAndPlatform { get; private set; }
         public static int ForProjectiles { get; private set; }
 
+        public static int Drop { get; private set; }
+        
         static Masks() {
             Damageable = LayerMask.GetMask(Names.Damageable);
             Walkable = LayerMask.GetMask(Names.Ground, Names.Platform, Names.Box, Names.MovingPlatform, Names.OneWayPlatform, Names.Corpse);
@@ -39,6 +42,7 @@ public static class Layers {
             Box = LayerMask.GetMask(Names.Box);
             Obstacle = LayerMask.GetMask(Names.Box, Names.Weapon);
             ForProjectiles = CreateLayerMask(true, LayerMask.NameToLayer(Names.OneWayPlatform));
+            Drop = CreateLayerMask(true, LayerMask.NameToLayer(Names.Drop));
         }
 
         public static int CreateLayerMask(bool aExclude, params int[] aLayers) {

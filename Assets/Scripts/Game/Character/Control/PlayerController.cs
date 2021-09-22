@@ -100,7 +100,7 @@ namespace Character.Control {
         {
             if (PlayerActions.Action.WasPressed)
             {
-                _signalBus.FireSignal(new PlayerActionWasPressedSignal());
+                _signalBus.FireSignal(new PlayerActionWasPressedSignal(PlayerActions.Action));
             }
         }
 
