@@ -12,6 +12,8 @@ namespace Game.Items
     {
         [SerializeField]
         private Collider2D _DropCollectTrigger;
+
+        [SerializeField] private bool _OneDropPerAction;
         [Dependency]
         private readonly SignalBus _SignalBus;
         private void Start()
@@ -46,6 +48,8 @@ namespace Game.Items
                 if (drop == null)
                     continue;
                 drop.Collect();
+                if(_OneDropPerAction)
+                    return;
             }
         }
     }
