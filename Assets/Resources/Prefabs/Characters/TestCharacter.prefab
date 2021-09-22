@@ -723,7 +723,7 @@ MonoBehaviour:
   rootMotionBoneName: skeleton_control
   transformPositionX: 1
   transformPositionY: 0
-  rootMotionScaleX: 3.2
+  rootMotionScaleX: 3
   rootMotionScaleY: 0
   rootMotionTranslateXPerY: 0
   rootMotionTranslateYPerX: 0
