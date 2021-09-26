@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
+  m_Name: ruins
+  m_EditorClassIdentifier: 
+  m_Angles:
+  - m_Start: -22.5
+    m_End: 22.5
+    m_Order: 7
+    m_Sprites:
+    - {fileID: 21300000, guid: 7fa7b1c0fff48984db0c487edd7bcb05, type: 3}
+  - m_Start: 22.5
+    m_End: 56
+    m_Order: 6
+    m_Sprites:
+    - {fileID: 21300000, guid: 7fa7b1c0fff48984db0c487edd7bcb05, type: 3}
+  - m_Start: 56
+    m_End: 124
+    m_Order: 4
+    m_Sprites:
+    - {fileID: 21300000, guid: 0a58aa22d2b49e44da668e0ec57bc207, type: 3}
+  - m_Start: 124
+    m_End: 157.5
+    m_Order: 2
+    m_Sprites:
+    - {fileID: 21300000, guid: 1edf3e2b3a528a141bb6169b60e3dc5c, type: 3}
+  - m_Start: 157.5
+    m_End: 202.5
+    m_Order: 8
+    m_Sprites:
+    - {fileID: 21300000, guid: 1edf3e2b3a528a141bb6169b60e3dc5c, type: 3}
+  - m_Start: -157.5
+    m_End: -125
+    m_Order: 1
+    m_Sprites:
+    - {fileID: 21300000, guid: 1edf3e2b3a528a141bb6169b60e3dc5c, type: 3}
+  - m_Start: -125
+    m_End: -56
+    m_Order: 3
+    m_Sprites:
+    - {fileID: 21300000, guid: e49740c667130e246b4df96f80f168b9, type: 3}
+  - m_Start: -56
+    m_End: -22.5
+    m_Order: 5
+    m_Sprites:
+    - {fileID: 21300000, guid: 7fa7b1c0fff48984db0c487edd7bcb05, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: 42269b924f4e8514a8ab48f8ae836fc6, type: 3}
+  m_CornerSprites:
+  - m_CornerType: 0
+    m_Sprites:
+    - {fileID: 21300000, guid: 2303681846368bd4a99b3c18cc179ce9, type: 3}
+  - m_CornerType: 1
+    m_Sprites:
+    - {fileID: 21300000, guid: a26f9070f66d4a947aa340324e050b83, type: 3}
+  - m_CornerType: 2
+    m_Sprites:
+    - {fileID: 21300000, guid: eaed7a391e818f34ab9d09b485b15f0f, type: 3}
+  - m_CornerType: 3
+    m_Sprites:
+    - {fileID: 21300000, guid: 4e5056628d40e0e41b674c74862fc7d7, type: 3}
+  - m_CornerType: 4
+    m_Sprites:
+    - {fileID: 21300000, guid: 0e7a690263d83e6418bffe283cde0c07, type: 3}
+  - m_CornerType: 5
+    m_Sprites:
+    - {fileID: 21300000, guid: 5b3919353fdc12245a84efde86abe0a7, type: 3}
+  - m_CornerType: 6
+    m_Sprites:
+    - {fileID: 21300000, guid: 71647b6907c2ac247af75c2b01418082, type: 3}
+  - m_CornerType: 7
+    m_Sprites:
+    - {fileID: 21300000, guid: a51e00483dee65242bc5b18f4da19375, type: 3}
+  m_FillOffset: -0.5
+  m_UseSpriteBorders: 1
