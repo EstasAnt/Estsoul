@@ -68,13 +68,25 @@ namespace Core.Audio {
             }
             return true;
         }
-
-        public void SetSFXMaxDistanceMultiplier(float mult) {
-            SFXMaxDistanceMultiplier = mult;
+        
+        public void SetSFXVolumeMultiplier(float mult) {
+            SFXVolumeMultiplier = mult;
+            _SignalBus.FireSignal(new VolumeChangedSignal(AudioGroup.Music, SFXVolumeMultiplier));
         }
 
-        public void ResetSFXMaxDistanceMultiplier() {
-            SFXMaxDistanceMultiplier = 1f;
+        public void ResetSFXVolumeMultiplier()
+        {
+            SetSFXVolumeMultiplier(1f);
+        }
+
+        public void SetMusicVolumeMultiplier(float mult) {
+            MusicVolumeMultiplier = mult;
+            _SignalBus.FireSignal(new VolumeChangedSignal(AudioGroup.Music, MusicVolumeMultiplier));
+        }
+
+        public void ResetMusicVolumeMultiplier()
+        {
+            SetMusicVolumeMultiplier(1f);
         }
 
         void ILoadableService.Load() {
