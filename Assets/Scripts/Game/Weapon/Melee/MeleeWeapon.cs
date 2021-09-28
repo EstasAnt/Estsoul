@@ -4,6 +4,7 @@ using System.Linq;
 using Character.Shooting;
 using Com.LuisPedroFonseca.ProCamera2D;
 using Game.Character.Shooting;
+using Game.Movement;
 using Game.Weapons;
 using KlimLib.SignalBus;
 using Spine.Unity;
@@ -38,7 +39,7 @@ namespace Game.Character.Melee
             if (pickedUp)
             {
                 owner.MovementController?.AddDontMoveAnimationStateNames(Attacks.Where(_ => _.StopWhileAttack)
-                    .Select(_ => _.AnimationStateName).ToList());
+                    .Select(_ => new DontMoveAnimationInfo(_.AnimationStateName, _.StopWhileAttackInAir)).ToList());
                 
                 owner.MovementController?.AddCantDirectAnimationStateNames(Attacks.Where(_ => _.CanDirectWhileAttack)
                     .Select(_ => _.AnimationStateName).ToList());

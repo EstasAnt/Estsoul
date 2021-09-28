@@ -28,8 +28,8 @@ public class CharacterAnimationController : MonoBehaviour {
         
         _CharacterUnit.OnKill += DamageableOnOnKill;
         
-        var animStopList = new List<string>();
-        animStopList.Add("Death");
+        var animStopList = new List<DontMoveAnimationInfo>();
+        animStopList.Add(new DontMoveAnimationInfo("Death", true));
         _MovementController?.AddDontMoveAnimationStateNames(animStopList);
         
     }

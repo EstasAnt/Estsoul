@@ -45,11 +45,11 @@ namespace Game.Movement
 
         public float MovementSpeedBoostCoef { get; set; } = 1f;
 
-        public IReadOnlyList<string> DontMoveAnimatorStateNames => _DontMoveAnimatorStateNames;
+        public IReadOnlyList<DontMoveAnimationInfo> DontMoveAnimatorStateNames => _DontMoveAnimatorStateNames;
 
         public IReadOnlyList<string> CantChangeDirectionAnimatorStateNames => _CantChangeDirectionAnimatorStateNames;
         
-        private List<string> _DontMoveAnimatorStateNames = new List<string>();
+        private List<DontMoveAnimationInfo> _DontMoveAnimatorStateNames = new List<DontMoveAnimationInfo>();
         
         private List<string> _CantChangeDirectionAnimatorStateNames = new List<string>();
         
@@ -101,27 +101,27 @@ namespace Game.Movement
             // }
         }
 
-        public void SetDontMoveAnimationStateNames(List<string> stateNames)
+        public void SetDontMoveAnimationStateNames(List<DontMoveAnimationInfo> stateNames)
         {
             _DontMoveAnimatorStateNames = stateNames;
         }
 
-        public void AddDontMoveAnimationStateNames(List<string> stateNames)
+        public void AddDontMoveAnimationStateNames(List<DontMoveAnimationInfo> stateNames)
         {
             if(stateNames.IsNullOrEmpty())
                 return;
             stateNames.ForEach(AddDontMoveAnimationStateName);
         }
         
-        public void AddDontMoveAnimationStateName(string stateName)
+        public void AddDontMoveAnimationStateName(DontMoveAnimationInfo stateName)
         {
             if(!_DontMoveAnimatorStateNames.Contains(stateName))
                 _DontMoveAnimatorStateNames.Add(stateName);
         }
 
-        public void RemoveDontMoveAnimationStateName(string stateName)
+        public void RemoveDontMoveAnimationStateName(DontMoveAnimationInfo stateName)
         {
-            if(_CantChangeDirectionAnimatorStateNames.Contains(stateName))
+            if(_DontMoveAnimatorStateNames.Contains(stateName))
                 _DontMoveAnimatorStateNames.Remove(stateName);
         }
         

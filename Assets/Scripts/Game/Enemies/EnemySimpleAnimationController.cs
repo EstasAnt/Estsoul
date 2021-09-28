@@ -32,9 +32,9 @@ namespace Game.Movement.Enemies
             _WeaponController.MainWeapon.AnimationTriggerEvent += MainWeaponOnAnimationTriggerEvent;
 
 
-            var animStopList = new List<string>();
-            animStopList.Add("Hit");
-            animStopList.Add("Death");
+            var animStopList = new List<DontMoveAnimationInfo>();
+            animStopList.Add(new DontMoveAnimationInfo("Hit", true));
+            animStopList.Add(new DontMoveAnimationInfo("Death", true));
             _MovementController?.SetDontMoveAnimationStateNames(animStopList);
         }
 
