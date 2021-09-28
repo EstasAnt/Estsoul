@@ -50,11 +50,11 @@ public class ChangeColorOnDamage : MonoBehaviour
         _Renderer.material.color = _DefaultColor;
     }
     
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            OnDamage(null, null);
-        }
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.P))
+    //     {
+    //         OnDamage(null, null);
+    //     }
+    // }
 }

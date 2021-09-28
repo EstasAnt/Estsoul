@@ -70,7 +70,7 @@ namespace Core.Audio {
         }
         
         public void SetSFXVolumeMultiplier(float mult) {
-            SFXVolumeMultiplier = mult;
+            SFXVolumeMultiplier = Mathf.Clamp01(mult);
             _SignalBus.FireSignal(new VolumeChangedSignal(AudioGroup.Music, SFXVolumeMultiplier));
         }
 
@@ -80,7 +80,7 @@ namespace Core.Audio {
         }
 
         public void SetMusicVolumeMultiplier(float mult) {
-            MusicVolumeMultiplier = mult;
+            MusicVolumeMultiplier = Mathf.Clamp01(mult);
             _SignalBus.FireSignal(new VolumeChangedSignal(AudioGroup.Music, MusicVolumeMultiplier));
         }
 

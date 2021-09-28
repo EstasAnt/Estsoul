@@ -10,7 +10,7 @@ namespace Core.Audio {
 
         private float _VolumeMult = 1f;
         
-        private float _CurrnetVolume => _OriginalVolume;
+        private float _CurrnetVolume => _OriginalVolume * _VolumeMult;
 
         public override bool IsPlaying => _AudioSource.isPlaying;
 
