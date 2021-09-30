@@ -2,6 +2,7 @@
 using System.Linq;
 using Character.Health;
 using Character.Shooting;
+using Game.Character.Melee;
 using Game.Movement;
 using UnityEngine;
 using UnityDI;
@@ -54,6 +55,14 @@ public class CharacterAnimationController : MonoBehaviour {
         Animator.SetFloat("DistanseToGround", _MovementController.MinDistanceToGround);
         Animator.SetBool("FallingDown", _MovementController.FallingDown);
         Animator.SetBool("DoubleJump", _MovementController.DoubleJump);
+        if (_WeaponController.MainWeapon is MeleeWeapon meleWeapon)
+        {
+            Animator.SetInteger("AttacksInCombo", meleWeapon.AttacksInCombo);
+        }
+        else
+        {
+            Animator.SetInteger("AttacksInCombo", 0);
+        }
         // Animator.SetBool("WallRun", _MovementController.WallRun);
         // Animator.SetBool("WallSliding", _MovementController.WallSliding);
         // Animator.SetBool("LedgeHang", _MovementController.LedgeHang);

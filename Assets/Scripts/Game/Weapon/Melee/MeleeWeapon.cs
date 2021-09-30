@@ -20,17 +20,55 @@ namespace Game.Character.Melee
 
         private WeaponInputProcessor _InputProcessor;
 
+        [SerializeField]
+        private Animator _Animator;
+        
         public List<Attack> Attacks;
 
-        public int ActiveAttackIndex { get; set; }
+        public int AttacksInCombo
+        {
+            get
+            {
+                return _attacksInCombo;
+            }
+            set
+            {
+                if(_attacksInCombo != value)
+                    CurrentAttackInComboChanged?.Invoke(_attacksInCombo);
+                _attacksInCombo = value;
+            }
+        }
+
+        private int _attacksInCombo;
+        
+        public bool CanReceiveInput { get; set; } = true;
         
         [SerializeField] private string _ShotCameraShakePresetName;
 
+        private List<string> _AttacksAnimationNames = new List<string>();
+
+        public event Action<int> CurrentAttackInComboChanged;
+        
         protected override void Awake()
         {
             base.Awake();
-            _InputProcessor = new SingleShotProcessor(this);
-            // GetComponentsInChildren(Attacks);
+            _InputProcessor = new AttackProcessor(this);
+            if(_Animator == null)
+                _Animator = GetComponentInParent<Animator>();
+            _AttacksAnimationNames = Attacks.Select(_ => _.AnimationStateName).ToList();
+        }
+
+        private bool _LastFrameAttackAnimation;
+        
+        protected void LateUpdate()
+        {
+            var currentFrameIsAttackAnim = _Animator.OneOfAnimationsIsPlaying(_AttacksAnimationNames);
+            if (_LastFrameAttackAnimation && !currentFrameIsAttackAnim)
+            {
+                AttacksInCombo = 0;
+                Debug.LogError($"Reset Combo");
+            }
+            _LastFrameAttackAnimation = currentFrameIsAttackAnim;
         }
 
         public override bool PickUp(IWeaponHolder owner)
@@ -50,10 +88,18 @@ namespace Game.Character.Melee
 
         public override void PerformShot()
         {
-            base.PerformShot();
-            if (ProCamera2DShake.Instance != null && !string.IsNullOrEmpty(_ShotCameraShakePresetName))
-                ProCamera2DShake.Instance.Shake(_ShotCameraShakePresetName);
-            // Debug.LogError("Attack signal sent!");
+            if (CanReceiveInput)
+            {
+                var attacksInCombo = AttacksInCombo;
+                attacksInCombo++;
+                if (attacksInCombo > Attacks.Count)
+                    attacksInCombo = 1;
+                AttacksInCombo = attacksInCombo;
+                if(AttacksInCombo == 1)
+                    ThrowAnimationTriggerEvent();
+                // CanReceiveInput = false;
+                Debug.LogError($"AttacksInCombo {AttacksInCombo}");
+            }
         }
 
         public override void Hit(int attackIndex)
@@ -69,9 +115,9 @@ namespace Game.Character.Melee
         }
 
 
-        protected override string GetAnimationTriggerName()
-        {
-            return Attacks[ActiveAttackIndex].AnimationTriggerName;
-        }
+        // protected override string GetAnimationTriggerName()
+        // {
+        //     return Attacks[AttacksInCombo].AnimationTriggerName;
+        // }
     }
 }

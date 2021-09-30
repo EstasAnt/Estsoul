@@ -47,11 +47,15 @@ namespace Game.Movement
 
         public IReadOnlyList<DontMoveAnimationInfo> DontMoveAnimatorStateNames => _DontMoveAnimatorStateNames;
 
-        public IReadOnlyList<string> CantChangeDirectionAnimatorStateNames => _CantChangeDirectionAnimatorStateNames;
-        
         private List<DontMoveAnimationInfo> _DontMoveAnimatorStateNames = new List<DontMoveAnimationInfo>();
         
+        public IReadOnlyList<string> CantChangeDirectionAnimatorStateNames => _CantChangeDirectionAnimatorStateNames;
+        
         private List<string> _CantChangeDirectionAnimatorStateNames = new List<string>();
+        
+        public IReadOnlyList<string> CantJumpAnimatorStateNames => _CantChangeDirectionAnimatorStateNames;
+        
+        private List<string> _CantJumpAnimatorStateNames = new List<string>();
         
         protected virtual void Awake()
         {
@@ -125,6 +129,7 @@ namespace Game.Movement
                 _DontMoveAnimatorStateNames.Remove(stateName);
         }
         
+        
         public void SetCantDirectAnimationStateNames(List<string> stateNames)
         {
             _CantChangeDirectionAnimatorStateNames = stateNames;
@@ -149,6 +154,31 @@ namespace Game.Movement
                 _CantChangeDirectionAnimatorStateNames.Remove(stateName);
         }
 
+        
+        public void SetCantJumpAnimationStateNames(List<string> stateNames)
+        {
+            _CantJumpAnimatorStateNames = stateNames;
+        }
+
+        public void AddCantJumpAnimationStateNames(List<string> stateNames)
+        {
+            if(stateNames.IsNullOrEmpty())
+                return;
+            stateNames.ForEach(AddCantJumpAnimationStateName);
+        }
+        
+        public void AddCantJumpAnimationStateName(string stateName)
+        {
+            if(!_CantJumpAnimatorStateNames.Contains(stateName))
+                _CantJumpAnimatorStateNames.Add(stateName);
+        }
+
+        public void RemoveCantJumpAnimationStateName(string stateName)
+        {
+            if(_CantJumpAnimatorStateNames.Contains(stateName))
+                _CantJumpAnimatorStateNames.Remove(stateName);
+        }
+        
         public abstract float Direct();
         
         protected virtual void OnCollisionExit2D(Collision2D collision) {

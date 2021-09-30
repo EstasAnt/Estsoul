@@ -69,9 +69,7 @@ namespace Game.Movement.Modules {
                  
         public override void Update() {
 
-            if (MovementController.CantChangeDirectionAnimatorStateNames == null ||
-                MovementController.CantChangeDirectionAnimatorStateNames.Count == 0 ||
-                !MovementController.CantChangeDirectionAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
+            if (!_characterAnimator.OneOfAnimationsIsPlaying(MovementController.CantChangeDirectionAnimatorStateNames))
             {
                 Direct();
             }
