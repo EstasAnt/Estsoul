@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Character.Health;
 using Character.Shooting;
+using Game.Character.Melee;
 using UnityDI;
 using UnityEngine;
 
@@ -53,14 +54,14 @@ namespace Game.Movement.Enemies
             Animator.SetTrigger("Death");
         }
 
-        public void MainWeaponHit(int attackIndex)
+        public void MainWeaponHit(AttackInfoConfig info)
         {
-            _WeaponController.MainWeaponHit(attackIndex);
+            _WeaponController.MainWeaponHit(info);
         }
 
-        public void MainWeaponDash(int attackIndex)
+        public void MainWeaponDash(AttackInfoConfig info)
         {
-            _WeaponController.MainWeaponDash(attackIndex);
+            _WeaponController.MainWeaponDash(info);
         }
 
         public void SetSeeTarget(bool val)

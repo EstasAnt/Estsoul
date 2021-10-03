@@ -79,14 +79,14 @@ public class CharacterAnimationController : MonoBehaviour {
         Animator.SetTrigger(triggerName);
     }
 
-    public void MainWeaponHit(int attackIndex)
+    public void MainWeaponHit(AttackInfoConfig info)
     {
-        _WeaponController.MainWeaponHit(attackIndex);
+        _WeaponController.MainWeaponHit(info);
     }
 
-    public void MainWeaponDash(int attackIndex)
+    public void MainWeaponDash(AttackInfoConfig info)
     {
-        _WeaponController.MainWeaponDash(attackIndex);
+        _WeaponController.MainWeaponDash(info);
     }
 
     public void Direct()

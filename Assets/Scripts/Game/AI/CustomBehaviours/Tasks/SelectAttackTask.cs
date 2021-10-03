@@ -36,16 +36,16 @@ namespace Game.AI.CustomBehaviours.Tasks
                 var sqrDistToTarget = Vector2.SqrMagnitude(vectorToTarget);
                 if (sqrDistToTarget <= _SelectAttackData.MinDistanceToJumpAttack * _SelectAttackData.MinDistanceToJumpAttack)
                 {
-                    _MeleeWeapon.AttacksInCombo = 0;
+                    _MeleeWeapon.SelectAttackGroup(0);
                 }
                 else
                 {
-                    _MeleeWeapon.AttacksInCombo = 1;
+                    _MeleeWeapon.SelectAttackGroup(1);
                 }
             }
             else
             {
-                _MeleeWeapon.AttacksInCombo = 0;
+                _MeleeWeapon.SelectAttackGroup(0);
             }
                 return TaskStatus.Running;
         }

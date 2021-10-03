@@ -23,15 +23,21 @@ namespace Game.Character.Melee
         [SerializeField]
         private Animator _Animator;
         
-        public List<Attack> Attacks;
+        public List<AttackGroup> AttackGroups;
 
+        public int SelectedAttackGroupIndex { get; private set; }
+
+        public AttackGroup SelectedAttackGroup => AttackGroups[SelectedAttackGroupIndex];
+        
+        [SerializeField] 
+        private bool _UseTriggerNameFromAttacks = true;
         public int AttacksInCombo
         {
             get
             {
                 return _attacksInCombo;
             }
-            set
+            protected set
             {
                 if(_attacksInCombo != value)
                     CurrentAttackInComboChanged?.Invoke(_attacksInCombo);
@@ -53,9 +59,8 @@ namespace Game.Character.Melee
         {
             base.Awake();
             _InputProcessor = new AttackProcessor(this);
-            if(_Animator == null)
-                _Animator = GetComponentInParent<Animator>();
-            _AttacksAnimationNames = Attacks.Select(_ => _.AnimationStateName).ToList();
+            _AttacksAnimationNames = AttackGroups.SelectMany(_=> _.Attacks).Select(_ => _.AnimationStateName).ToList();
+            _Animator = GetComponentInParent<WeaponController>().GetComponentInChildren<Animator>();
         }
 
         private bool _LastFrameAttackAnimation;
@@ -76,10 +81,10 @@ namespace Game.Character.Melee
             var pickedUp = base.PickUp(owner);
             if (pickedUp)
             {
-                owner.MovementController?.AddDontMoveAnimationStateNames(Attacks.Where(_ => _.StopWhileAttack)
+                owner.MovementController?.AddDontMoveAnimationStateNames(AttackGroups.SelectMany(_=>_.Attacks).Where(_ => _.StopWhileAttack)
                     .Select(_ => new DontMoveAnimationInfo(_.AnimationStateName, _.StopWhileAttackInAir)).ToList());
                 
-                owner.MovementController?.AddCantDirectAnimationStateNames(Attacks.Where(_ => _.CanDirectWhileAttack)
+                owner.MovementController?.AddCantDirectAnimationStateNames(AttackGroups.SelectMany(_=>_.Attacks).Where(_ => _.CanDirectWhileAttack)
                     .Select(_ => _.AnimationStateName).ToList());
             }
 
@@ -92,7 +97,7 @@ namespace Game.Character.Melee
             {
                 var attacksInCombo = AttacksInCombo;
                 attacksInCombo++;
-                if (attacksInCombo > Attacks.Count)
+                if (attacksInCombo > SelectedAttackGroup.Attacks.Count)
                     attacksInCombo = 1;
                 AttacksInCombo = attacksInCombo;
                 if(AttacksInCombo == 1)
@@ -102,22 +107,30 @@ namespace Game.Character.Melee
             }
         }
 
-        public override void Hit(int attackIndex)
+        public override void Hit(AttackInfoConfig info)
         {
-            base.Hit(attackIndex);
-            Attacks[attackIndex].Use();
+            base.Hit(info);
+            var currentAttack = AttackGroups[info.GroupNum].Attacks[info.AttackNum];
+            currentAttack.Use();
         }
 
-        public override void Dash(int attackIndex)
+        public override void Dash(AttackInfoConfig info)
         {
-            base.Dash(attackIndex);
-            Attacks[attackIndex].Dash();
+            base.Dash(info);
+            var currentAttack = AttackGroups[info.GroupNum].Attacks[info.AttackNum];
+            currentAttack.Dash();
         }
 
-
-        // protected override string GetAnimationTriggerName()
-        // {
-        //     return Attacks[AttacksInCombo].AnimationTriggerName;
-        // }
+        public void SelectAttackGroup(int index)
+        {
+            if(index >= AttackGroups.Count || index < 0)
+                return;
+            SelectedAttackGroupIndex = index;
+        }
+        
+        protected override string GetAnimationTriggerName()
+        {
+            return _UseTriggerNameFromAttacks ? SelectedAttackGroup.AnimationTriggerName : base.GetAnimationTriggerName();
+        }
     }
 }

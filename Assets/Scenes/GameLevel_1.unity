@@ -117871,11 +117871,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ZombieFrog
       objectReference: {fileID: 0}
-    - target: {fileID: 7739881347762320053, guid: e0c133a45a9006849be85304d7aced34,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7739881348917893946, guid: e0c133a45a9006849be85304d7aced34,
         type: 3}
       propertyPath: m_Mesh

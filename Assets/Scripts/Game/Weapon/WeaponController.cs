@@ -5,6 +5,7 @@ using System.Linq;
 using Assets.Scripts.Tools;
 //using Character.CloseCombat;
 using Core.Audio;
+using Game.Character.Melee;
 using Game.Weapons;
 using UnityDI;
 using UnityEngine;
@@ -81,14 +82,14 @@ namespace Character.Shooting {
             OnReleaseFire?.Invoke();
         }
 
-        public virtual void MainWeaponHit(int attackIndex)
+        public virtual void MainWeaponHit(AttackInfoConfig info)
         {
-            MainWeapon.Hit(attackIndex);
+            MainWeapon.Hit(info);
         }
 
-        public virtual void MainWeaponDash(int attackIndex)
+        public virtual void MainWeaponDash(AttackInfoConfig info)
         {
-            MainWeapon.Dash(attackIndex);
+            MainWeapon.Dash(info);
         }
         
         public void ThrowOutMainWeapon() {

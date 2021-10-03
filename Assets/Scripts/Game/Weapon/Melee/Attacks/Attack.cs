@@ -13,7 +13,6 @@ namespace Game.Character.Melee
         
         public List<Collider2D> AttackTriggers;
         public LayerMask LayerMask;
-        public string AnimationTriggerName;
         public string AnimationStateName;
         public float Duration;
         public float Delay;

@@ -2,6 +2,7 @@
 using Com.LuisPedroFonseca.ProCamera2D;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Character.Melee;
 using Tools.VisualEffects;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -49,9 +50,9 @@ namespace Character.Shooting {
             _AudioService.PlayRandomSound(ShotSoundEffects, false, false, transform.position);
         }
 
-        public override void Hit(int attackIndex)
+        public override void Hit(AttackInfoConfig info)
         {
-            base.Hit(attackIndex);
+            base.Hit(info);
             FireProjectile();
         }
 

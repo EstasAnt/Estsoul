@@ -1753,7 +1753,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: MainWeaponDash
+    functionName: MainWeaponOnAnimationTriggerEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

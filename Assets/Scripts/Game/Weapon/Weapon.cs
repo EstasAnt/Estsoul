@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using Character.CloseCombat;
 using Character.Health;
 using Core.Audio;
+using Game.Character.Melee;
 using Game.Weapons;
 using Items;
 using UnityDI;
@@ -107,12 +108,12 @@ namespace Character.Shooting {
 
         protected virtual void OnLose() { }
 
-        public virtual void Hit(int attackIndex)
+        public virtual void Hit(AttackInfoConfig info)
         {
             _AudioService.PlayRandomSound(HitAudioEffects, false, false, transform.position);
         }
         
-        public virtual void Dash(int attackIndex)
+        public virtual void Dash(AttackInfoConfig info)
         {
             
         }
