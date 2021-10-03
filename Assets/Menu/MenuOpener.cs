@@ -10,8 +10,8 @@ public class MenuOpener : BaseMenu
 
     public override void SwitchTo(BaseMenu menu)
     {
-        Instantiate(menu.gameObject, transform);
         enabled = false;
+        Instantiate(menu.gameObject, transform);
         image.enabled = true;
         lastTimeScale = Time.timeScale;
         Time.timeScale = 0;
