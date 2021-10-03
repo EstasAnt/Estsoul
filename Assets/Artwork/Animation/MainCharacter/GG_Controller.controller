@@ -445,7 +445,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.3333
-    functionName: MainWeaponDash
+    functionName: MainWeaponHit
     data: 
     objectReferenceParameter: {fileID: 11400000, guid: a112615df02853d4387aeada85697c91,
       type: 2}
@@ -3339,7 +3339,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.3
-    functionName: MainWeaponDash
+    functionName: MainWeaponHit
     data: 
     objectReferenceParameter: {fileID: 11400000, guid: 011eb4d68d702e142847973c3b5f44c4,
       type: 2}
