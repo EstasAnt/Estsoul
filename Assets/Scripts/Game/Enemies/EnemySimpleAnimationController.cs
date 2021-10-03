@@ -54,6 +54,11 @@ namespace Game.Movement.Enemies
             Animator.SetTrigger("Death");
         }
 
+        public void Direct()
+        {
+            var dir = _MovementController.Direct();
+        }
+        
         public void MainWeaponHit(AttackInfoConfig info)
         {
             _WeaponController.MainWeaponHit(info);

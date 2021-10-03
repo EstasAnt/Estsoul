@@ -51,7 +51,7 @@ namespace Game.Character.Melee
                     {
                         mc.Rigidbody.velocity = new Vector2(0f, mc.Rigidbody.velocity.y);
                     }
-                    mc.Rigidbody.AddForce(new Vector2(CharacterAddForce.x * mc.Direction, CharacterAddForce.y));
+                    mc.Rigidbody.AddForce(new Vector2(CharacterAddForce.x * mc.Direction, CharacterAddForce.y)); 
                 }
             }
         }
