@@ -7,6 +7,7 @@ namespace Game.Movement.RootMotion
 {
     public class AnimationMoveRigidbody : MonoBehaviour
     {
+        public Transform Root;
         public List<string> AnimationNames;
         
         private Animator _Animator;
@@ -20,20 +21,20 @@ namespace Game.Movement.RootMotion
 
         private bool _LastFrameAnimation;
         
-        public void Update()
+        public void LateUpdate()
         {
             var isAnim = AnimationNames.Any(_ => _Animator.GetCurrentAnimatorStateInfo(0).IsName(_));
             if(isAnim)
             {
-                var pos = _Animator.transform.position;
+                var pos = Root.transform.position;
                 _Rigidbody.MovePosition(pos);
-                _Animator.transform.localPosition = Vector3.zero;
+                Root.transform.localPosition = Vector3.zero;
             }
             else
             {
                 if (_LastFrameAnimation)
                 {
-                    _Animator.transform.localPosition = Vector3.zero;
+                    Root.transform.localPosition = Vector3.zero;
                 }
             }
 

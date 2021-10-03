@@ -2,6 +2,7 @@
 using System.Linq;
 using Character.Health;
 using Character.Shooting;
+using Game.Character.Melee;
 using Game.Movement;
 using UnityEngine;
 using UnityDI;
@@ -28,8 +29,8 @@ public class CharacterAnimationController : MonoBehaviour {
         
         _CharacterUnit.OnKill += DamageableOnOnKill;
         
-        var animStopList = new List<string>();
-        animStopList.Add("Death");
+        var animStopList = new List<DontMoveAnimationInfo>();
+        animStopList.Add(new DontMoveAnimationInfo("Death", true));
         _MovementController?.AddDontMoveAnimationStateNames(animStopList);
         
     }
@@ -54,6 +55,14 @@ public class CharacterAnimationController : MonoBehaviour {
         Animator.SetFloat("DistanseToGround", _MovementController.MinDistanceToGround);
         Animator.SetBool("FallingDown", _MovementController.FallingDown);
         Animator.SetBool("DoubleJump", _MovementController.DoubleJump);
+        if (_WeaponController.MainWeapon is MeleeWeapon meleWeapon)
+        {
+            Animator.SetInteger("AttacksInCombo", meleWeapon.AttacksInCombo);
+        }
+        else
+        {
+            Animator.SetInteger("AttacksInCombo", 0);
+        }
         // Animator.SetBool("WallRun", _MovementController.WallRun);
         // Animator.SetBool("WallSliding", _MovementController.WallSliding);
         // Animator.SetBool("LedgeHang", _MovementController.LedgeHang);
@@ -70,14 +79,14 @@ public class CharacterAnimationController : MonoBehaviour {
         Animator.SetTrigger(triggerName);
     }
 
-    public void MainWeaponHit(int attackIndex)
+    public void MainWeaponHit(AttackInfoConfig info)
     {
-        _WeaponController.MainWeaponHit(attackIndex);
+        _WeaponController.MainWeaponHit(info);
     }
 
-    public void MainWeaponDash(int attackIndex)
+    public void MainWeaponDash(AttackInfoConfig info)
     {
-        _WeaponController.MainWeaponDash(attackIndex);
+        _WeaponController.MainWeaponDash(info);
     }
 
     public void Direct()

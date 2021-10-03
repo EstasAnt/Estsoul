@@ -69,9 +69,7 @@ namespace Game.Movement.Modules {
                  
         public override void Update() {
 
-            if (MovementController.CantChangeDirectionAnimatorStateNames == null ||
-                MovementController.CantChangeDirectionAnimatorStateNames.Count == 0 ||
-                !MovementController.CantChangeDirectionAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
+            if (!_characterAnimator.OneOfAnimationsIsPlaying(MovementController.CantChangeDirectionAnimatorStateNames))
             {
                 Direct();
             }
@@ -83,9 +81,17 @@ namespace Game.Movement.Modules {
             
             if (MovementController.DontMoveAnimatorStateNames != null && MovementController.DontMoveAnimatorStateNames.Count > 0)
             {
-                if (MovementController.DontMoveAnimatorStateNames.Any(_ => _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_)))
+                var dontMoveAnimatonInfo = MovementController.DontMoveAnimatorStateNames.FirstOrDefault(_ =>
+                    _characterAnimator.GetCurrentAnimatorStateInfo(0).IsName(_.AnimationName));
+                if (dontMoveAnimatonInfo != null)
                 {
-                    _WalkData.Horizontal = 0;
+                    if(_GroundedData.Grounded)
+                        _WalkData.Horizontal = 0;
+                    else
+                    {
+                        if (dontMoveAnimatonInfo.DontMoveInAir)
+                            _WalkData.Horizontal = 0;
+                    }
                 }
             }
 

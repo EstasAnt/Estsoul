@@ -150,7 +150,8 @@ AnimationClip:
   - time: 0.4667
     functionName: MainWeaponHit
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11400000, guid: 042d14da15135e94b8eed5e042af7781,
+      type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 1
@@ -1755,14 +1756,16 @@ AnimationClip:
   - time: 0
     functionName: MainWeaponDash
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11400000, guid: c4a2f1a517620524fa42b1716c794d2a,
+      type: 2}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
   - time: 0.5333
     functionName: MainWeaponHit
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11400000, guid: c4a2f1a517620524fa42b1716c794d2a,
+      type: 2}
     floatParameter: 0
     intParameter: 1
     messageOptions: 1

@@ -482,7 +482,8 @@ AnimationClip:
   - time: 0.6333
     functionName: MainWeaponHit
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11400000, guid: 515014ffc864201419da74137d131397,
+      type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 1

@@ -35,7 +35,8 @@ namespace Game.Movement.Modules
                 .GetComponentInChildren<Animator>();
             _startLayer = CommonData.BodyCollider.gameObject.layer;
             CommonData.MovementController.AddCantDirectAnimationStateName(_Parameters.AnimationStateName);
-            CommonData.MovementController.AddDontMoveAnimationStateName(_Parameters.AnimationStateName);
+            CommonData.MovementController.AddCantJumpAnimationStateName(_Parameters.AnimationStateName);
+            CommonData.MovementController.AddDontMoveAnimationStateName(new DontMoveAnimationInfo(_Parameters.AnimationStateName, true));
         }
         
         public void Roll()

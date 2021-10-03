@@ -1,8 +1,11 @@
-﻿using Com.LuisPedroFonseca.ProCamera2D;
+﻿using System;
+using Com.LuisPedroFonseca.ProCamera2D;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Character.Melee;
 using Tools.VisualEffects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Character.Shooting {
     public abstract class LongRangeWeapon<P, D> : Weapon where P : Projectile<D> where D : ProjectileDataBase, new() {
@@ -10,6 +13,8 @@ namespace Character.Shooting {
         public string ProjectileName;
         public string ShotCameraShakePresetName;
 
+        public event Action OnNoAmmo;
+        
         protected float RandomDispersionAngle => Random.Range(-_Stats.DispersionAngle / 2, _Stats.DispersionAngle / 2);
 
         public virtual P GetProjectile() {
@@ -39,12 +44,15 @@ namespace Character.Shooting {
         }
         
         public override void PerformShot() {
-            base.PerformShot();
+            if (InputProcessor.CurrentMagazine <= 0)
+                OnNoAmmo?.Invoke();
+            ThrowAnimationTriggerEvent();
+            _AudioService.PlayRandomSound(ShotSoundEffects, false, false, transform.position);
         }
 
-        public override void Hit(int attackIndex)
+        public override void Hit(AttackInfoConfig info)
         {
-            base.Hit(attackIndex);
+            base.Hit(info);
             FireProjectile();
         }
 

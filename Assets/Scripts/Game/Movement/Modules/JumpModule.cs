@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Tools.BehaviourTree;
 using Tools.VisualEffects;
 using UnityDI;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace Game.Movement.Modules {
         private GroundedData _GroundedData;
         private JumpData _JumpData;
         private WalkData _WalkData;
+        
+        private Animator _characterAnimator;
         
         private Coroutine _WallJumpWaitingRoutine;
 
@@ -37,6 +40,13 @@ namespace Game.Movement.Modules {
             _WalkData = BB.Get<WalkData>();
         }
 
+        public override void Initialize(Blackboard bb)
+        {
+            base.Initialize(bb);
+            _characterAnimator = CommonData.MovementController
+                .GetComponentInChildren<Animator>();
+        }
+        
         public override void LateUpdate() {
             _JumpData.Jump = false;
         }
@@ -95,6 +105,7 @@ namespace Game.Movement.Modules {
 
         private IEnumerator GroundJumpRoutine()
         {
+            yield return new WaitWhile(() => _characterAnimator.OneOfAnimationsIsPlaying(CommonData.MovementController.CantJumpAnimatorStateNames));
             _GroundJumping = true;
             yield return JumpRoutine(_Parameters.GroundJumpSpeed, _Parameters.GroundJumpFixedUpdates);
             _GroundJumping = false;

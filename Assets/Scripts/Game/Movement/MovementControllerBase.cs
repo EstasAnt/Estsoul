@@ -45,13 +45,17 @@ namespace Game.Movement
 
         public float MovementSpeedBoostCoef { get; set; } = 1f;
 
-        public IReadOnlyList<string> DontMoveAnimatorStateNames => _DontMoveAnimatorStateNames;
+        public IReadOnlyList<DontMoveAnimationInfo> DontMoveAnimatorStateNames => _DontMoveAnimatorStateNames;
 
+        private List<DontMoveAnimationInfo> _DontMoveAnimatorStateNames = new List<DontMoveAnimationInfo>();
+        
         public IReadOnlyList<string> CantChangeDirectionAnimatorStateNames => _CantChangeDirectionAnimatorStateNames;
         
-        private List<string> _DontMoveAnimatorStateNames = new List<string>();
-        
         private List<string> _CantChangeDirectionAnimatorStateNames = new List<string>();
+        
+        public IReadOnlyList<string> CantJumpAnimatorStateNames => _CantChangeDirectionAnimatorStateNames;
+        
+        private List<string> _CantJumpAnimatorStateNames = new List<string>();
         
         protected virtual void Awake()
         {
@@ -101,29 +105,30 @@ namespace Game.Movement
             // }
         }
 
-        public void SetDontMoveAnimationStateNames(List<string> stateNames)
+        public void SetDontMoveAnimationStateNames(List<DontMoveAnimationInfo> stateNames)
         {
             _DontMoveAnimatorStateNames = stateNames;
         }
 
-        public void AddDontMoveAnimationStateNames(List<string> stateNames)
+        public void AddDontMoveAnimationStateNames(List<DontMoveAnimationInfo> stateNames)
         {
             if(stateNames.IsNullOrEmpty())
                 return;
             stateNames.ForEach(AddDontMoveAnimationStateName);
         }
         
-        public void AddDontMoveAnimationStateName(string stateName)
+        public void AddDontMoveAnimationStateName(DontMoveAnimationInfo stateName)
         {
             if(!_DontMoveAnimatorStateNames.Contains(stateName))
                 _DontMoveAnimatorStateNames.Add(stateName);
         }
 
-        public void RemoveDontMoveAnimationStateName(string stateName)
+        public void RemoveDontMoveAnimationStateName(DontMoveAnimationInfo stateName)
         {
-            if(_CantChangeDirectionAnimatorStateNames.Contains(stateName))
+            if(_DontMoveAnimatorStateNames.Contains(stateName))
                 _DontMoveAnimatorStateNames.Remove(stateName);
         }
+        
         
         public void SetCantDirectAnimationStateNames(List<string> stateNames)
         {
@@ -149,6 +154,31 @@ namespace Game.Movement
                 _CantChangeDirectionAnimatorStateNames.Remove(stateName);
         }
 
+        
+        public void SetCantJumpAnimationStateNames(List<string> stateNames)
+        {
+            _CantJumpAnimatorStateNames = stateNames;
+        }
+
+        public void AddCantJumpAnimationStateNames(List<string> stateNames)
+        {
+            if(stateNames.IsNullOrEmpty())
+                return;
+            stateNames.ForEach(AddCantJumpAnimationStateName);
+        }
+        
+        public void AddCantJumpAnimationStateName(string stateName)
+        {
+            if(!_CantJumpAnimatorStateNames.Contains(stateName))
+                _CantJumpAnimatorStateNames.Add(stateName);
+        }
+
+        public void RemoveCantJumpAnimationStateName(string stateName)
+        {
+            if(_CantJumpAnimatorStateNames.Contains(stateName))
+                _CantJumpAnimatorStateNames.Remove(stateName);
+        }
+        
         public abstract float Direct();
         
         protected virtual void OnCollisionExit2D(Collision2D collision) {

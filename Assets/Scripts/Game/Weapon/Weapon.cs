@@ -4,6 +4,7 @@ using System.Collections.Generic;
 //using Character.CloseCombat;
 using Character.Health;
 using Core.Audio;
+using Game.Character.Melee;
 using Game.Weapons;
 using Items;
 using UnityDI;
@@ -15,7 +16,6 @@ namespace Character.Shooting {
         public virtual WeaponReactionType WeaponReaction => WeaponReactionType.Fire;
 
         public WeaponView WeaponView { get; protected set; }
-        // public PickableItem PickableItem { get; protected set; }
 
         public IWeaponHolder Owner { get; protected set; }
         
@@ -33,8 +33,6 @@ namespace Character.Shooting {
         public List<string> ShotSoundEffects;
         public List<string> HitAudioEffects;
 
-        public event Action OnNoAmmo;
-
         [SerializeField] private string _AnimationTrigger;
         public string AnimationTrigger => _AnimationTrigger;
         public event Action<string> AnimationTriggerEvent;
@@ -42,14 +40,7 @@ namespace Character.Shooting {
         [Dependency]
         protected readonly AudioService _AudioService;
 
-        public virtual void PerformShot() {
-            if (InputProcessor.CurrentMagazine <= 0)
-                OnNoAmmo?.Invoke();
-            var animTrigger = GetAnimationTriggerName();
-            if(!string.IsNullOrEmpty(animTrigger))
-                AnimationTriggerEvent?.Invoke(GetAnimationTriggerName());
-            _AudioService.PlayRandomSound(ShotSoundEffects, false, false, transform.position);
-        }
+        public abstract void PerformShot();
 
         protected virtual string GetAnimationTriggerName()
         {
@@ -61,7 +52,6 @@ namespace Character.Shooting {
         protected virtual void Awake()
         {
             WeaponView = GetComponent<WeaponView>();
-            // PickableItem = GetComponent<PickableItem>();
         }
 
         protected virtual void Start() {
@@ -71,12 +61,6 @@ namespace Character.Shooting {
 
         public virtual bool PickUp(IWeaponHolder owner)
         {
-            // var pickedUp = false;
-            // if (PickableItem != null)
-            //     pickedUp = PickableItem.PickUp(owner);
-            // else
-            //     pickedUp = this is MeleeAttack;
-            // if (pickedUp) {
             if (WeaponReaction == WeaponReactionType.Fire)
                 owner?.WeaponController?.SubscribeWeaponOnEvents(this);
             else if (WeaponReaction == WeaponReactionType.Jump)
@@ -84,8 +68,6 @@ namespace Character.Shooting {
             OnEquip();
             Owner = owner;
             return true;
-            // }
-            // return pickedUp;
         }
 
         public virtual void ThrowOut(IWeaponHolder owner) {
@@ -99,9 +81,16 @@ namespace Character.Shooting {
             }
             Owner = null;
             OnLose();
-            // PickableItem.ThrowOut(startVelocity, angularVel);
         }
 
+        protected virtual void ThrowAnimationTriggerEvent()
+        {
+            var animTrigger = GetAnimationTriggerName();
+            if(!string.IsNullOrEmpty(animTrigger))
+                AnimationTriggerEvent?.Invoke(GetAnimationTriggerName());
+            // Debug.LogError($"Throw trigger event - {animTrigger}");
+        }
+        
         protected virtual Damage GetDamage() {
             return new Damage(Owner?.Id, null, _Stats.Damage);
         }
@@ -119,12 +108,12 @@ namespace Character.Shooting {
 
         protected virtual void OnLose() { }
 
-        public virtual void Hit(int attackIndex)
+        public virtual void Hit(AttackInfoConfig info)
         {
             _AudioService.PlayRandomSound(HitAudioEffects, false, false, transform.position);
         }
         
-        public virtual void Dash(int attackIndex)
+        public virtual void Dash(AttackInfoConfig info)
         {
             
         }

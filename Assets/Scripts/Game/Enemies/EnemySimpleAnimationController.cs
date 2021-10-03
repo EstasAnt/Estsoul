@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Character.Health;
 using Character.Shooting;
+using Game.Character.Melee;
 using UnityDI;
 using UnityEngine;
 
@@ -32,9 +33,9 @@ namespace Game.Movement.Enemies
             _WeaponController.MainWeapon.AnimationTriggerEvent += MainWeaponOnAnimationTriggerEvent;
 
 
-            var animStopList = new List<string>();
-            animStopList.Add("Hit");
-            animStopList.Add("Death");
+            var animStopList = new List<DontMoveAnimationInfo>();
+            animStopList.Add(new DontMoveAnimationInfo("Hit", true));
+            animStopList.Add(new DontMoveAnimationInfo("Death", true));
             _MovementController?.SetDontMoveAnimationStateNames(animStopList);
         }
 
@@ -53,14 +54,19 @@ namespace Game.Movement.Enemies
             Animator.SetTrigger("Death");
         }
 
-        public void MainWeaponHit(int attackIndex)
+        public void Direct()
         {
-            _WeaponController.MainWeaponHit(attackIndex);
+            var dir = _MovementController.Direct();
+        }
+        
+        public void MainWeaponHit(AttackInfoConfig info)
+        {
+            _WeaponController.MainWeaponHit(info);
         }
 
-        public void MainWeaponDash(int attackIndex)
+        public void MainWeaponDash(AttackInfoConfig info)
         {
-            _WeaponController.MainWeaponDash(attackIndex);
+            _WeaponController.MainWeaponDash(info);
         }
 
         public void SetSeeTarget(bool val)
