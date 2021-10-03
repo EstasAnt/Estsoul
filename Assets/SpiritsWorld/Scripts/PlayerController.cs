@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using InControl;
 using KlimLib.SignalBus;
 using SceneManagement.SpiritWorld;
 using UnityDI;
@@ -10,7 +11,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Dependency] private readonly SignalBus _signalBus;
-    
+
+    public PlayerActions CurrentPlayerActions
+    {
+        get
+        {
+            if (_GamepadActions == null)
+                return _KeyboardActions;
+
+            if (_GamepadActions.Device == null)
+                _GamepadActions.Device =
+                    InputManager.Devices.FirstOrDefault(_ => _.DeviceClass == InputDeviceClass.Controller); //ToDo: Remove from here
+            if (_KeyboardActions == null)
+                return _GamepadActions;
+            if (_GamepadActions.Device == null)
+                return _KeyboardActions;
+            if (_KeyboardActions.Device == null)
+                return _GamepadActions;
+            return _KeyboardActions.Device.LastInputTick > _GamepadActions.Device.LastInputTick
+                ? _KeyboardActions
+                : _GamepadActions;
+        }
+    }
+
     [Header("Skin")]
     [SerializeField] Sprite White;
     [SerializeField] Sprite Black;
@@ -35,8 +58,12 @@ public class PlayerController : MonoBehaviour
     Vector3 aimPos;
     Vector3 initPos;
 
+    private PlayerActions _KeyboardActions;
+    private PlayerActions _GamepadActions;
+
     private void Start()
     {
+        (_KeyboardActions, _GamepadActions) = (PlayerActions.CreateWithKeyboardBindings(), PlayerActions.CreateWithJoystickBindings());
         ContainerHolder.Container.BuildUp(this);
         initPos = transform.position;
         Reset();
@@ -61,16 +88,14 @@ public class PlayerController : MonoBehaviour
 
         var target = CheckPoints[targetIndex];
 
-        if (Input.GetKeyDown(KeyBindings.Back)
-        || Input.GetKeyDown(KeyBindings.BackAlt1)
-        || Input.GetKeyDown(KeyBindings.BackAlt2))
+        if (CurrentPlayerActions.Left.WasPressed)
         {
             AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
             aimPos = transform.position + Vector3.left;
             currentSpeed = speed * jumpSpeed;
         }
         else
-        if (Input.anyKeyDown)
+        if (CurrentPlayerActions.Right.WasPressed)
         {
             AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
             aimPos = target.position;
