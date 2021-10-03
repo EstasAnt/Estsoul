@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SpiritWorldShort.unity
     guid: 6412cb594c88c264f98c8f4e29da6819
+  - enabled: 1
+    path: Assets/Scenes/BossFight_AncientToad.unity
+    guid: e467fd39240e4f847b1dd0b3338b03ba
   m_configObjects: {}

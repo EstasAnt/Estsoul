@@ -30,6 +30,9 @@ namespace Core.Services.SceneManagement {
             },
             {
                 SceneType.SpiritWorldLong, new SpiritWorldLoadingParameters()
+            },
+            {
+                SceneType.BossFight_AncientToad, new GameLevelLoadingParameters()
             }
         };
 
@@ -102,5 +105,6 @@ namespace Core.Services.SceneManagement {
         LevelTemplate,
         SpiritWorldShort,
         SpiritWorldLong,
+        BossFight_AncientToad,
     }
 }

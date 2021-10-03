@@ -36,6 +36,7 @@ namespace Core.Initialization {
                 new RegisterAndLoadServiceTask<CharacterCreationService>(),
                 new RegisterAndLoadServiceTask<HealthService>(),
                 new GameCameraSpawnTask(),
+                new RegisterAndLoadServiceTask<SceneLoadingService>(),
             };
         
         public static List<Task> BaseGameUnloadTasks =>
