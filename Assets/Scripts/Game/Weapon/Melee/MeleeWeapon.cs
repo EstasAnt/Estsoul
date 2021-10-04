@@ -72,7 +72,7 @@ namespace Game.Character.Melee
             {
                 CanReceiveInput = true;
                 AttacksInCombo = 0;
-                Debug.LogError($"Reset Combo");
+                // Debug.LogError($"Reset Combo");
             }
             _LastFrameAttackAnimation = currentFrameIsAttackAnim;
         }
@@ -104,7 +104,7 @@ namespace Game.Character.Melee
                 if(AttacksInCombo == 1)
                     ThrowAnimationTriggerEvent();
                 CanReceiveInput = false;
-                Debug.LogError($"AttacksInCombo {AttacksInCombo}");
+                // Debug.LogError($"AttacksInCombo {AttacksInCombo}");
             }
         }
 
