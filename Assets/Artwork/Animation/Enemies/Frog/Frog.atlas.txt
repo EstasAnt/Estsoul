@@ -1,0 +1,120 @@
+Frog.png
+size:1365,205
+filter:Linear,Linear
+pma:true
+scale:0.2
+Layer2
+bounds:1020,112,91,66
+rotate:90
+body r1
+bounds:556,84,84,119
+body r2
+bounds:461,83,93,120
+body r3
+bounds:709,98,86,105
+body r4
+bounds:679,2,85,91
+rotate:90
+eye 1
+bounds:500,68,20,13
+eye 2
+bounds:1231,2,25,22
+rotate:90
+eye3
+bounds:522,68,15,13
+gills
+bounds:325,2,76,62
+hand1
+bounds:1020,21,89,85
+rotate:90
+hand2
+bounds:539,6,75,97
+rotate:90
+hand3
+bounds:1200,143,60,57
+rotate:90
+head ap
+bounds:379,67,136,80
+rotate:90
+head open
+bounds:179,54,149,141
+rotate:90
+head shadow
+bounds:243,7,80,45
+head ship
+bounds:1088,115,88,72
+rotate:90
+jaw
+bounds:642,89,114,65
+rotate:90
+jaw back
+bounds:638,9,73,39
+rotate:90
+l1_l1
+bounds:1335,78,30,26
+rotate:90
+l1_l2
+bounds:1162,131,72,36
+rotate:90
+l1_l3
+bounds:179,5,62,47
+l1_t1
+bounds:1335,42,34,18
+rotate:90
+l1_t2
+bounds:1292,7,41,20
+l1_t3
+bounds:461,68,37,13
+l2_l1
+bounds:1335,110,28,24
+l2_l2
+bounds:1335,136,67,28
+rotate:90
+l2_l3
+bounds:1259,161,59,42
+l2_t1
+bounds:1335,6,34,12
+rotate:90
+l2_t2
+bounds:1162,119,42,10
+l2_t3
+bounds:84,2,36,9
+tongue1
+bounds:1020,2,209,17
+tongue2
+bounds:1255,4,35,23
+w1_t1_1
+bounds:2,2,5,4
+w2_t1_1
+bounds:2,2,5,4
+w1_t2_1
+bounds:132,4,7,7
+w2_t2_1
+bounds:132,4,7,7
+w1_t3_1
+bounds:122,3,8,8
+w2_t3_1
+bounds:122,3,8,8
+w1_w1
+bounds:1292,115,44,30
+rotate:90
+w1_w2
+bounds:322,66,137,55
+rotate:90
+w1_w3
+bounds:1107,29,226,84
+w1_w4
+bounds:2,8,195,80
+rotate:90
+w2_w1
+bounds:1259,115,44,31
+rotate:90
+w2_w2
+bounds:403,2,134,63
+w2_w3
+bounds:797,105,221,98
+w2_w4
+bounds:84,13,190,93
+rotate:90
+wing 2
+bounds:772,2,246,94
