@@ -182,7 +182,6 @@ GameObject:
   - component: {fileID: 4182569788032959873}
   - component: {fileID: 3188061410016032232}
   - component: {fileID: 8863141940391949838}
-  - component: {fileID: 597011070908419475}
   m_Layer: 6
   m_Name: TestCharacter
   m_TagString: Player
@@ -327,6 +326,12 @@ MonoBehaviour:
     AnimationStateName: Roll
     InvulnerableToAttacks: 1
     InvulnerableToProjectiles: 0
+    Curve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   OneWayPlatformParameters:
     PlatformIgnoreCollisionTime: 1
 --- !u!114 &2425413470185177000
@@ -572,29 +577,6 @@ MonoBehaviour:
   flipBy180DegreeRotation: 0
   skeletonRenderer: {fileID: 7832511614708943222}
   skeletonGraphic: {fileID: 0}
---- !u!114 &597011070908419475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2425413470185176995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95813afe390494344a6ce2cbc8bfb7d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rootMotionBoneName: skeleton_control
-  transformPositionX: 1
-  transformPositionY: 0
-  rootMotionScaleX: 1
-  rootMotionScaleY: 0
-  rootMotionTranslateXPerY: 0
-  rootMotionTranslateYPerX: 0
-  rigidBody2D: {fileID: 0}
-  applyRigidbody2DGravity: 0
-  rigidBody: {fileID: 0}
-  mecanimLayerFlags: 1
 --- !u!1 &3428054648560367688
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +633,7 @@ MonoBehaviour:
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
   CharacterAddForce: {x: 1500, y: 0}
+  HitAddForce: {x: 0, y: 0}
 --- !u!61 &9090261847346830764
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -913,6 +896,7 @@ MonoBehaviour:
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
   CharacterAddForce: {x: 3000, y: 0}
+  HitAddForce: {x: 0, y: 0}
 --- !u!61 &241315789780160450
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1104,6 +1088,7 @@ MonoBehaviour:
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
   CharacterAddForce: {x: 3000, y: 0}
+  HitAddForce: {x: 0, y: 0}
 --- !u!61 &1131455358470948283
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1186,6 +1171,7 @@ MonoBehaviour:
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
   CharacterAddForce: {x: 1500, y: 0}
+  HitAddForce: {x: 0, y: 0}
 --- !u!61 &8625940879786321272
 BoxCollider2D:
   m_ObjectHideFlags: 0

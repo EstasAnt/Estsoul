@@ -7,7 +7,6 @@ using UnityEngine;
 public class GG_Attack_StateBehavioir : StateMachineBehaviour
 {
     private MeleeWeapon _meleeWeapon;
-    private Animator _animator;
 
     private bool _InputReceived = false;
     
