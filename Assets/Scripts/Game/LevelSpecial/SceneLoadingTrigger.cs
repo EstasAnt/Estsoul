@@ -13,11 +13,18 @@ public class SceneLoadingTrigger : TriggerSignalBroadcaster<CharacterUnit, Scene
     public SceneType SceneType;
     public float Delay;
     public string EnterSound;
+
+    private bool _CheckedIn = false;
     
     protected override SceneLoadingTriggerInSignal CreateSignal(CharacterUnit unit, bool inTrigger)
     {
-        if (!string.IsNullOrEmpty(EnterSound))
-            _AudioService.PlaySound3D(EnterSound, false, false, transform.position);
+        if (!_CheckedIn)
+        {
+            if (!string.IsNullOrEmpty(EnterSound))
+                _AudioService.PlaySound3D(EnterSound, false, false, transform.position);
+            _CheckedIn = true;
+        }
+
         return new SceneLoadingTriggerInSignal(unit, SceneType, Delay);
-    }
+        }
 }
