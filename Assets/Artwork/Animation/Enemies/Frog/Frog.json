@@ -1,10 +1,10 @@
 {
 "skeleton": {
-	"hash": "76JWGDXFEg0",
+	"hash": "mk1IZTE3pxc",
 	"spine": "4.0.38",
-	"x": -1407.89,
+	"x": -733.89,
 	"y": -164.66,
-	"width": 2189.54,
+	"width": 1515.54,
 	"height": 878.33,
 	"images": "./images/Frog/",
 	"audio": ""
@@ -123,7 +123,6 @@
 	{ "name": "w2_t3_2", "bone": "w2_t3_2", "attachment": "w2_t3_1" },
 	{ "name": "w2_t3_3", "bone": "w2_t3_3", "attachment": "w2_t3_1" },
 	{ "name": "w2_t3_4", "bone": "w2_t3_4", "attachment": "w2_t3_1" },
-	{ "name": "wing 2", "bone": "bone", "attachment": "wing 2" },
 	{ "name": "l2_t2", "bone": "l2_t2", "attachment": "l2_t2" },
 	{ "name": "l2_t3", "bone": "l2_t3", "attachment": "l2_t3" },
 	{ "name": "l2_t1", "bone": "l2_t1", "attachment": "l2_t1" },
@@ -143,8 +142,8 @@
 	{ "name": "l1_t2", "bone": "l1_t2", "attachment": "l1_t2" },
 	{ "name": "l1_t1", "bone": "l1_t1", "attachment": "l1_t1" },
 	{ "name": "jaw back", "bone": "jaw back", "attachment": "jaw back" },
-	{ "name": "tongue1", "bone": "tongue1", "attachment": "tongue1" },
-	{ "name": "tongue2", "bone": "tongue3", "attachment": "tongue2" },
+	{ "name": "tongue1", "bone": "tongue1" },
+	{ "name": "tongue2", "bone": "tongue3" },
 	{ "name": "jaw", "bone": "jaw", "attachment": "jaw" },
 	{ "name": "hand3", "bone": "hand2", "attachment": "hand3" },
 	{ "name": "gills", "bone": "head ap", "attachment": "gills" },
@@ -154,7 +153,6 @@
 	{ "name": "eye 2", "bone": "eye 2", "attachment": "eye 2" },
 	{ "name": "eye 1", "bone": "head ap", "attachment": "eye 1" },
 	{ "name": "hand2", "bone": "hand5", "attachment": "hand2" },
-	{ "name": "head open", "bone": "bone", "attachment": "head open" },
 	{ "name": "w1_w4", "bone": "w1_w4", "attachment": "w1_w4" },
 	{ "name": "w1_w3", "bone": "w1_w3", "attachment": "w1_w3" },
 	{ "name": "w1_w2", "bone": "w1_w13", "attachment": "w1_w2" },
@@ -348,9 +346,6 @@
 					"width": 678,
 					"height": 399
 				}
-			},
-			"head open": {
-				"head open": { "x": -467.17, "y": 558.88, "width": 746, "height": 705 }
 			},
 			"head shadow": {
 				"head shadow": {
@@ -747,9 +742,6 @@
 					"width": 948,
 					"height": 466
 				}
-			},
-			"wing 2": {
-				"wing 2": { "x": -722.67, "y": 212.38, "width": 1229, "height": 468 }
 			}
 		}
 	}
@@ -765,12 +757,18 @@
 			"tongue1": {
 				"rgba": [
 					{ "color": "8b6161ff" },
-					{ "time": 1.4667, "color": "ffffffff" }
+					{ "time": 1.6, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "tongue1" }
 				]
 			},
 			"tongue2": {
 				"rgba": [
 					{ "color": "555555ff" }
+				],
+				"attachment": [
+					{ "name": "tongue2" }
 				]
 			},
 			"w1_t1_1": {
@@ -1270,6 +1268,7 @@
 			},
 			"tongue3": {
 				"scale": [
+					{},
 					{ "time": 0.7667, "x": 0.838, "y": 1.28 },
 					{ "time": 1.2667 }
 				]
@@ -1337,16 +1336,6 @@
 				]
 			},
 			"eye3": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"tongue1": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"tongue2": {
 				"attachment": [
 					{ "name": null }
 				]
@@ -2414,6 +2403,7 @@
 				},
 				"tongue2": {
 					"tongue2": [
+						{},
 						{
 							"time": 0.6333,
 							"vertices": [ -23.86304, 7.52954, -23.86304, 7.52954, -23.86304, 7.52954, -23.86304, 7.52954 ]
@@ -2444,11 +2434,17 @@
 				"rgba": [
 					{ "color": "8b6161ff" },
 					{ "time": 1.4667, "color": "ffffffff" }
+				],
+				"attachment": [
+					{ "name": "tongue1" }
 				]
 			},
 			"tongue2": {
 				"rgba": [
 					{ "color": "555555ff" }
+				],
+				"attachment": [
+					{ "name": "tongue2" }
 				]
 			},
 			"w1_t1_1": {
@@ -2948,6 +2944,7 @@
 			},
 			"tongue3": {
 				"scale": [
+					{},
 					{ "time": 0.7667, "x": 0.838, "y": 1.28 },
 					{ "time": 1.2667 }
 				]
@@ -3040,16 +3037,6 @@
 			"eye3": {
 				"attachment": [
 					{ "time": 2.5, "name": null }
-				]
-			},
-			"tongue1": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"tongue2": {
-				"attachment": [
-					{ "name": null }
 				]
 			},
 			"w1_t1_1": {
@@ -4184,16 +4171,6 @@
 					{ "time": 0.4, "name": "eye3" }
 				]
 			},
-			"tongue1": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"tongue2": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
 			"w1_t1_1": {
 				"attachment": [
 					{ "name": null }
@@ -4537,16 +4514,6 @@
 				"attachment": [
 					{ "name": null },
 					{ "time": 0.1333, "name": "eye3" }
-				]
-			},
-			"tongue1": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"tongue2": {
-				"attachment": [
-					{ "name": null }
 				]
 			},
 			"w1_t1_1": {
@@ -5224,16 +5191,6 @@
 					{ "name": null },
 					{ "time": 0.5333, "name": "eye3" },
 					{ "time": 1.2, "name": null }
-				]
-			},
-			"tongue1": {
-				"attachment": [
-					{ "name": null }
-				]
-			},
-			"tongue2": {
-				"attachment": [
-					{ "name": null }
 				]
 			},
 			"w1_t1_1": {
