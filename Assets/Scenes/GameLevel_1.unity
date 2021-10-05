@@ -31073,9 +31073,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 416618126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07ad77add56d401b8e7321db3bcbc0e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0994ea6ca09e2b4459dbe758b5e39ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SceneType: 0
+  Delay: 1
   EnterSound: Audio_Gate_Complete
 --- !u!1 &421426575
 GameObject:
