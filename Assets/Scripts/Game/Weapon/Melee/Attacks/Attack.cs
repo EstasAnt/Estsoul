@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Tools;
 using Character.Health;
 using Character.Shooting;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace Game.Character.Melee
         public bool CanDirectWhileAttack = true;
         public bool CanHitRolledTarget;
         public Vector2 CharacterAddForce;
+        public Vector2 HitAddForce;
 
         private List<IDamageable> _HittedDmgbls = new List<IDamageable>();
 
@@ -92,6 +94,19 @@ namespace Game.Character.Melee
                         continue;
                     _HittedDmgbls.Add(dmgbl);
                     dmgbl.ApplyDamage(GetDamage(dmgbl));
+                    if (HitAddForce != Vector2.zero)
+                    {
+                        var rb = dmgbl.Collider.GetComponentInParent<Rigidbody2D>();
+                        if (rb != null)
+                        {
+                            var pos = Weapon.transform.position.ToVector2();
+                            var dirX = (pos - rb.position).x > 0
+                                ? -1f
+                                : 1f;
+                            var totalForce = new Vector2(HitAddForce.x * dirX, HitAddForce.y);
+                            rb.AddForce(totalForce);
+                        }
+                    }
                 }
             }
         }

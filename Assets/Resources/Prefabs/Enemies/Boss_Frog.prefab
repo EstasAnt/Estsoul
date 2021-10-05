@@ -129,13 +129,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   AnimationStateName: Attack
-  Duration: 0.1
+  Duration: 0.01
   Delay: 0
   StopWhileAttack: 1
   StopWhileAttackInAir: 0
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
   CharacterAddForce: {x: 0, y: 0}
+  HitAddForce: {x: 80000, y: 8000}
 --- !u!61 &3821651755282267897
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 5.4218326, y: 2.3252547}
+  m_Offset: {x: 1.7544689, y: 3.4327939}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -160,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.9436655, y: 4.6505094}
+  m_Size: {x: 10.411247, y: 6.8655877}
   m_EdgeRadius: 0
 --- !u!1 &5232854569436066072
 GameObject:
@@ -346,6 +347,7 @@ GameObject:
   - component: {fileID: 3332483387068189373}
   - component: {fileID: 4782568548466738363}
   - component: {fileID: 6667562828101366247}
+  - component: {fileID: 7958611985899723194}
   m_Layer: 8
   m_Name: Boss_Frog
   m_TagString: Untagged
@@ -382,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartHealth: 20
-  UseHealth: 1
+  UseHealth: 0
   _TeamIndex: 2
   DestroyAfterKillTime: 3
 --- !u!114 &8449450247363551780
@@ -548,6 +550,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd1c70d2b634e25b2dd8b259a60469c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &7958611985899723194
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6330293743376677875}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.4932337, y: 1.8304081}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 7.957117, y: 5.9659405}
+  m_EdgeRadius: 0
 --- !u!1 &7592581594768338116
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0be6de71a71542e2b1fd545fa8d3f609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Stats: {fileID: 11400000, guid: 872a70890046d6c4eab17eaac0a899e7, type: 2}
+  _Stats: {fileID: 11400000, guid: 66d5c2dc18b35644ea7f94692cd5fea4, type: 2}
   PickupType: 2
   _Id: KusakaWeapon
   ShotSoundEffects: []

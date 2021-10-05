@@ -14,6 +14,8 @@ namespace Game.Movement.Enemies
         private IDamageable _Damageable;
         
         private bool _Awake;
+
+        private float _AwakeTimer;
         
         private void Awake() {
             ContainerHolder.Container.BuildUp(this);
@@ -32,6 +34,7 @@ namespace Game.Movement.Enemies
 
         private void DamageableOnOnDamage(IDamageable arg1, Damage arg2)
         {
+            StopAllCoroutines();
             StartCoroutine(WakeUpRoutine());
         }
 
@@ -43,7 +46,13 @@ namespace Game.Movement.Enemies
         private IEnumerator WakeUpRoutine()
         {
             _Awake = true;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
+            _AwakeTimer = 0f;
+            while (_AwakeTimer < 3f)
+            {
+                _AwakeTimer += Time.deltaTime;
+                yield return null;
+            }
             _Awake = false;
         }
         
