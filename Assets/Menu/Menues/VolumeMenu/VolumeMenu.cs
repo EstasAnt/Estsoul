@@ -17,6 +17,8 @@ public class VolumeMenu : BaseMenu
         ContainerHolder.Container.BuildUp(this);
         volumeSlider.value = audioService.SFXVolumeMultiplier;
         musicVolumeSlider.value = audioService.MusicVolumeMultiplier;
+        volumeSlider.onValueChanged.AddListener(delegate { ApplyVolume(); });
+        musicVolumeSlider.onValueChanged.AddListener(delegate { ApplyVolume(); });
     }
 
     public void ApplyVolume()

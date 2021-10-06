@@ -37,7 +37,7 @@ public class BaseMenu : MonoBehaviour
 
     public virtual void SwitchTo(BaseMenu menu)
     {
-        Instantiate(menu.gameObject, transform.parent);
-        Destroy(gameObject);
+        menu.gameObject.SetActive(true);
+        gameObject.SetActive(false);
     }
 }

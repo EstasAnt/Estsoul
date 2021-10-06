@@ -16,7 +16,7 @@ public class PauseMenu : BaseMenu
         opener.enabled=true;
         Time.timeScale = opener.lastTimeScale;
         opener.image.enabled = false;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void Exit()
