@@ -70706,50 +70706,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2668974085373366618, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: Duration
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668974085373366618, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: HitAddForce.x
-      value: 80000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668974085373366618, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: HitAddForce.y
-      value: 8000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3821651755282267897, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 10.411247
-      objectReference: {fileID: 0}
-    - target: {fileID: 3821651755282267897, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 6.8655877
-      objectReference: {fileID: 0}
-    - target: {fileID: 3821651755282267897, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 1.7544689
-      objectReference: {fileID: 0}
-    - target: {fileID: 3821651755282267897, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 3.4327939
-      objectReference: {fileID: 0}
     - target: {fileID: 4782568548466738363, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6330293743376677646, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: UseHealth
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6330293743376677873, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
         type: 3}
@@ -70811,12 +70771,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss_Frog
       objectReference: {fileID: 0}
-    - target: {fileID: 8906198275746488130, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-        type: 3}
-      propertyPath: _Stats
-      value: 
-      objectReference: {fileID: 11400000, guid: 66d5c2dc18b35644ea7f94692cd5fea4,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e646b82aae3bdd4a9dfd96853613b9d, type: 3}
 --- !u!1001 &5231032200623247948
@@ -70893,35 +70847,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a41994e2f85091e488cc1cc69215636f, type: 3}
---- !u!1 &7958611985899723187 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6330293743376677875, guid: 3e646b82aae3bdd4a9dfd96853613b9d,
-    type: 3}
-  m_PrefabInstance: {fileID: 4155437009359348288}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &7958611985899723194
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7958611985899723187}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.4932337, y: 1.8304081}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7.957117, y: 5.9659405}
-  m_EdgeRadius: 0
