@@ -34,7 +34,9 @@ public class CopyComponentsTool : MonoBehaviour
     
     private void CopyComponent(Component original, GameObject destination)
     {
+#if UNITY_EDITOR
         UnityEditorInternal.ComponentUtility.CopyComponent(original);
         UnityEditorInternal.ComponentUtility.PasteComponentAsNew(destination);
+#endif
     }
 }
