@@ -783,6 +783,7 @@ GameObject:
   - component: {fileID: 2786028667606861016}
   - component: {fileID: 5084037397266890042}
   - component: {fileID: 8725296462965069017}
+  - component: {fileID: 2297226675640367380}
   m_Layer: 8
   m_Name: Balto
   m_TagString: Untagged
@@ -1083,6 +1084,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7322053493979064117}
   m_Mesh: {fileID: 0}
+--- !u!114 &2297226675640367380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7322053493979064117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomDropInfos:
+  - ItemId: SoulStone
+    AmountRandom: {x: 1, y: 3}
+    Chance: 0.3
 --- !u!1 &7470398465633949249
 GameObject:
   m_ObjectHideFlags: 0

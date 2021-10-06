@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 1669578433}
   - component: {fileID: 1669578430}
   - component: {fileID: 1669578431}
-  - component: {fileID: 1669578434}
+  - component: {fileID: 8097088068150438951}
   m_Layer: 8
   m_Name: ZombieFrog
   m_TagString: Untagged
@@ -865,7 +865,7 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
---- !u!114 &1669578434
+--- !u!114 &8097088068150438951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -874,11 +874,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7739881348041998098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8483cdb1c111a4c46938343bc9a7adfd, type: 3}
+  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FromObject: {fileID: 0}
-  Copy: 0
+  RandomDropInfos:
+  - ItemId: SoulStone
+    AmountRandom: {x: 1, y: 3}
+    Chance: 0.3
 --- !u!1 &7739881348839839173
 GameObject:
   m_ObjectHideFlags: 0

@@ -176,7 +176,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2121506709
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &4661140701000112051
@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 7076404476134500553}
   - component: {fileID: 7076404476134500550}
   - component: {fileID: 4661140701656117533}
+  - component: {fileID: 1141548934841437537}
   m_Layer: 8
   m_Name: Plyvaka
   m_TagString: Untagged
@@ -316,6 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 20
   UseHealth: 1
+  _TeamIndex: 2
   DestroyAfterKillTime: 3
 --- !u!114 &7076404476134500553
 MonoBehaviour:
@@ -365,6 +367,22 @@ MonoBehaviour:
     LastTimeSawTargetTime: 0
   AimToPointData:
     Point: {fileID: 559063485}
+--- !u!114 &1141548934841437537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4661140701656117534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomDropInfos:
+  - ItemId: SoulStone
+    AmountRandom: {x: 1, y: 3}
+    Chance: 0.3
 --- !u!1 &4661140702812146914
 GameObject:
   m_ObjectHideFlags: 0

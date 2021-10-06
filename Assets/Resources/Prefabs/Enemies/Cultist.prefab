@@ -386,6 +386,7 @@ GameObject:
   - component: {fileID: 3051230428917666874}
   - component: {fileID: 6170486302628069359}
   - component: {fileID: 1446537920734418415}
+  - component: {fileID: 3985451532486236261}
   m_Layer: 8
   m_Name: Cultist
   m_TagString: Untagged
@@ -684,6 +685,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5678680488251778553}
   m_Mesh: {fileID: 0}
+--- !u!114 &3985451532486236261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5678680488251778553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomDropInfos:
+  - ItemId: SoulStone
+    AmountRandom: {x: 1, y: 3}
+    Chance: 0.3
 --- !u!1 &5678680488526342238
 GameObject:
   m_ObjectHideFlags: 0

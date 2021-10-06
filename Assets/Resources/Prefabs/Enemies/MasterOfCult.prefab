@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 874304662603651522}
   - component: {fileID: 874304662603651533}
   - component: {fileID: 3366974878008573974}
+  - component: {fileID: 5454630355690660592}
   m_Layer: 8
   m_Name: MasterOfCult
   m_TagString: Untagged
@@ -199,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 50
   UseHealth: 1
+  _TeamIndex: 2
   DestroyAfterKillTime: 3
 --- !u!114 &874304662603651522
 MonoBehaviour:
@@ -252,6 +254,22 @@ MonoBehaviour:
     DirectCooldown: 1
   AimToTargetData:
     OffsetY: 1
+--- !u!114 &5454630355690660592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366974878008573973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomDropInfos:
+  - ItemId: SoulStone
+    AmountRandom: {x: 1, y: 3}
+    Chance: 0.3
 --- !u!1 &3366974879130058217
 GameObject:
   m_ObjectHideFlags: 0

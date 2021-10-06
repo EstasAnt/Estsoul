@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 6387709636399395467}
   - component: {fileID: 299243770271472802}
   - component: {fileID: 5852332181387829531}
+  - component: {fileID: 1675754208612431649}
   m_Layer: 8
   m_Name: Kusaka
   m_TagString: Untagged
@@ -363,6 +364,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3394220129683175174}
   m_Mesh: {fileID: 0}
+--- !u!114 &1675754208612431649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394220129683175174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomDropInfos:
+  - ItemId: SoulStone
+    AmountRandom: {x: 1, y: 3}
+    Chance: 0.3
 --- !u!1 &3485183743401065965
 GameObject:
   m_ObjectHideFlags: 0

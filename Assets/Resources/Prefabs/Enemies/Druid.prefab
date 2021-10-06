@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 8806859993696877297}
   - component: {fileID: 8806859993696877310}
   - component: {fileID: 6387091794958377765}
+  - component: {fileID: 1426122287196838198}
   m_Layer: 8
   m_Name: Druid
   m_TagString: Untagged
@@ -343,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 60
   UseHealth: 1
+  _TeamIndex: 2
   DestroyAfterKillTime: 3
 --- !u!114 &8806859993696877297
 MonoBehaviour:
@@ -396,6 +398,22 @@ MonoBehaviour:
     Root: {fileID: 5765766067789561773}
     DirectSign: 1
     DirectCooldown: 1
+--- !u!114 &1426122287196838198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6387091794958377766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RandomDropInfos:
+  - ItemId: SoulStone
+    AmountRandom: {x: 1, y: 3}
+    Chance: 0.3
 --- !u!1 &6387091796113366746
 GameObject:
   m_ObjectHideFlags: 0

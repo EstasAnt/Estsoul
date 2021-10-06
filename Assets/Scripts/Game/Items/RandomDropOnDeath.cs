@@ -50,6 +50,9 @@ namespace Game.Items
             var dropInfos = new List<DropInfo>();
             foreach (var randomDropInfo in RandomDropInfos)
             {
+                var chanceValue = Random.value;
+                if(chanceValue > randomDropInfo.Chance)
+                    continue;
                 var amount = Random.Range(randomDropInfo.AmountRandom.x, randomDropInfo.AmountRandom.y);
                 if(amount <= 0 )
                     continue;
@@ -72,5 +75,6 @@ namespace Game.Items
     {
         public string ItemId;
         public Vector2Int AmountRandom;
+        public float Chance;
     }
 }

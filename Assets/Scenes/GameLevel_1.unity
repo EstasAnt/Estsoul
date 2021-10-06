@@ -76029,6 +76029,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8158069934781393582, guid: 184be11fb97605b408113ede43d5b1a4,
+        type: 3}
+      propertyPath: Drop.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158069934781393582, guid: 184be11fb97605b408113ede43d5b1a4,
+        type: 3}
+      propertyPath: Drop.Array.data[0].Amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8158069934781393582, guid: 184be11fb97605b408113ede43d5b1a4,
+        type: 3}
+      propertyPath: Drop.Array.data[0].ItemId
+      value: SoulStone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184be11fb97605b408113ede43d5b1a4, type: 3}
 --- !u!1 &930985025
