@@ -10,7 +10,7 @@ using UnityEngine;
 namespace Game.Movement {
     public class MovementController : MovementControllerBase, IVelocityInheritor {
         [SerializeField]
-        private WalkParameters WalkParameters;
+        public WalkParameters WalkParameters;
         [SerializeField]
         private GroundCheckParameters GroundCheckParameters;
         [SerializeField]

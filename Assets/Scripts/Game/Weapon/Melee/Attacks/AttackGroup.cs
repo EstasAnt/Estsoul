@@ -7,5 +7,8 @@ namespace Game.Character.Melee
     {
         public List<Attack> Attacks;
         public string AnimationTriggerName;
+        public float CoolDown;
+        
+        public float LastUseTime = float.NegativeInfinity;
     }
 }

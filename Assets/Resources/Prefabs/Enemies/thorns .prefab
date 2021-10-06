@@ -56,11 +56,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2183296007098432870}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: -0, z: 0}
-  m_LocalScale: {x: 0.91, y: 0.91, z: 0.91}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.18999857, y: 0, z: 0}
+  m_LocalScale: {x: 0.9100001, y: 0.91, z: 0.91}
   m_Children: []
-  m_Father: {fileID: 7992876355118292847}
+  m_Father: {fileID: 8481691168611385575}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2939430833363187071
@@ -80,12 +80,15 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 64
-  AnimationTriggerName: Attack
   AnimationStateName: Attack
   Duration: 0.1
   Delay: 0
   StopWhileAttack: 1
+  StopWhileAttackInAir: 0
+  CanDirectWhileAttack: 1
+  CanHitRolledTarget: 0
   CharacterAddForce: {x: 0, y: 0}
+  HitAddForce: {x: 0, y: 0}
 --- !u!61 &2929387547602694900
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -272,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartHealth: 20
   UseHealth: 1
+  _TeamIndex: 2
   DestroyAfterKillTime: 3
 --- !u!114 &8683669286560368129
 MonoBehaviour:
@@ -401,7 +405,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2121506709
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &6492314415118934514
@@ -506,6 +510,55 @@ Transform:
   m_Father: {fileID: 1030587995212506491}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7135262294096270352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8481691168611385575}
+  - component: {fileID: 4663079219479884170}
+  m_Layer: 0
+  m_Name: Combo1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8481691168611385575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135262294096270352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5304179187448773579}
+  m_Father: {fileID: 7992876355118292847}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4663079219479884170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7135262294096270352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83d83d66c7c46feb0163020d7716bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attacks:
+  - {fileID: 2939430833363187071}
+  AnimationTriggerName: 
+  CoolDown: 0
+  LastUseTime: -Infinity
 --- !u!1 &7250419046800394465
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +587,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5304179187448773579}
+  - {fileID: 8481691168611385575}
   m_Father: {fileID: 8234116361988498011}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -554,7 +607,10 @@ MonoBehaviour:
   PickupType: 2
   _Id: CactusWeapon
   ShotSoundEffects: []
+  HitAudioEffects: []
   _AnimationTrigger: 
-  Attacks:
-  - {fileID: 2939430833363187071}
+  _Animator: {fileID: 0}
+  AttackGroups:
+  - {fileID: 4663079219479884170}
+  _UseTriggerNameFromAttacks: 1
   _ShotCameraShakePresetName: 

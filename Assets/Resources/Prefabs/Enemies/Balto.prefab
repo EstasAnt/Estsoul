@@ -142,6 +142,7 @@ MonoBehaviour:
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
   CharacterAddForce: {x: 15000, y: 8500}
+  HitAddForce: {x: 0, y: 0}
 --- !u!61 &1471843730555024506
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,6 +226,7 @@ MonoBehaviour:
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
   CharacterAddForce: {x: 0, y: 0}
+  HitAddForce: {x: 0, y: 0}
 --- !u!61 &6069220787977826144
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -406,6 +408,8 @@ MonoBehaviour:
   Attacks:
   - {fileID: 1471843730555024507}
   AnimationTriggerName: AttackJump
+  CoolDown: 3
+  LastUseTime: -Infinity
 --- !u!1 &4987921168838234444
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +457,8 @@ MonoBehaviour:
   Attacks:
   - {fileID: 3168408380642356191}
   AnimationTriggerName: Attack
+  CoolDown: 1
+  LastUseTime: -Infinity
 --- !u!1 &5749531913607187787
 GameObject:
   m_ObjectHideFlags: 0

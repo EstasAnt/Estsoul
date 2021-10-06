@@ -46,7 +46,7 @@ namespace Game.Character.Melee
         }
 
         private int _attacksInCombo;
-        
+
         public bool CanReceiveInput { get; set; } = true;
         
         [SerializeField] private string _ShotCameraShakePresetName;
@@ -100,12 +100,27 @@ namespace Game.Character.Melee
                 attacksInCombo++;
                 if (attacksInCombo > SelectedAttackGroup.Attacks.Count)
                     attacksInCombo = 1;
-                AttacksInCombo = attacksInCombo;
-                if(AttacksInCombo == 1)
+
+                var newComboReady = Time.timeSinceLevelLoad - SelectedAttackGroup.LastUseTime >
+                                 SelectedAttackGroup.CoolDown;
+                var firstAttack = attacksInCombo == 1;
+
+                if (newComboReady && firstAttack)
+                {
                     ThrowAnimationTriggerEvent();
-                CanReceiveInput = false;
+                    SelectedAttackGroup.LastUseTime = Time.timeSinceLevelLoad;
+                    AttacksInCombo = attacksInCombo;
+                    CanReceiveInput = false;
+                }
+                else if (!firstAttack)
+                {
+                    AttacksInCombo = attacksInCombo;
+                    CanReceiveInput = false;
+                }
                 // Debug.LogError($"AttacksInCombo {AttacksInCombo}");
             }
+
+            if (Time.timeSinceLevelLoad - SelectedAttackGroup.LastUseTime > SelectedAttackGroup.CoolDown) { }
         }
 
         public override void Hit(AttackInfoConfig info)
@@ -125,6 +140,8 @@ namespace Game.Character.Melee
         public void SelectAttackGroup(int index)
         {
             if(index >= AttackGroups.Count || index < 0)
+                return;
+            if(index == SelectedAttackGroupIndex)
                 return;
             SelectedAttackGroupIndex = index;
         }

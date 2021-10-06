@@ -1144,3 +1144,5 @@ MonoBehaviour:
   Attacks:
   - {fileID: 48382533585938707}
   AnimationTriggerName: Attack
+  CoolDown: 2
+  LastUseTime: -Infinity
