@@ -33,16 +33,17 @@ namespace Core.Initialization {
         public static List<Task> BaseGameLoadTasks =>
             new List<Task> {
                  new WaitForAwakesTask(),
-                new RegisterAndLoadServiceTask<CharacterCreationService>(),
-                new RegisterAndLoadServiceTask<HealthService>(),
-                new GameCameraSpawnTask(),
+                 new GameCameraSpawnTask(),
                 new RegisterAndLoadServiceTask<SceneLoadingService>(),
+                new RegisterAndLoadServiceTask<HealthService>(),
+                new RegisterAndLoadServiceTask<CharacterCreationService>(),
             };
         
         public static List<Task> BaseGameUnloadTasks =>
             new List<Task> {
                 new UnregisterAndUnloadServiceTask<HealthService>(),
                 new UnregisterAndUnloadServiceTask<CharacterCreationService>(),
+                new UnregisterAndUnloadServiceTask<SceneLoadingService>(),
             };
 
         public static List<Task> GameLoadTasks => new List<Task> {
