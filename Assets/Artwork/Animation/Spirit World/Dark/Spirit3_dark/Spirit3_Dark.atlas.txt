@@ -1,0 +1,19 @@
+Spirit3_Dark.png
+size:785,421
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:432,4,129,128
+glow 1
+bounds:2,2,428,417
+glow 2
+bounds:432,134,285,269
+rotate:90
+tentacle 1
+bounds:563,44,88,115
+rotate:90
+tentacle 2
+bounds:680,8,83,124
+tentacle 3
+bounds:703,314,80,105

@@ -1,0 +1,31 @@
+GG_White.png
+size:1260,346
+filter:Linear,Linear
+pma:true
+scale:0.2
+body1
+bounds:878,167,177,276
+rotate:90
+face1
+bounds:1156,235,99,109
+fin 1
+bounds:1156,181,102,52
+fin 2
+bounds:1220,2,22,50
+fin 3
+bounds:1220,54,31,53
+fin 4
+bounds:1220,109,70,35
+rotate:90
+glow 1
+bounds:2,5,339,434
+rotate:90
+glow 2
+bounds:438,28,316,438
+rotate:90
+ll
+bounds:1084,47,118,134
+rotate:90
+rl
+bounds:878,41,124,204
+rotate:90

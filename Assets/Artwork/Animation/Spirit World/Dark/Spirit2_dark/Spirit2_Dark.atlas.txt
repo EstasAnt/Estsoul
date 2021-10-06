@@ -1,0 +1,34 @@
+Spirit2_Dark.png
+size:676,401
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:379,17,176,139
+glow 1
+bounds:2,2,397,375
+rotate:90
+glow 2
+bounds:379,158,267,241
+tentacle 1
+bounds:600,4,36,38
+tentacle 2
+bounds:607,78,52,40
+tentacle 3
+bounds:557,8,38,28
+tentacle 4
+bounds:557,74,45,33
+tentacle 5
+bounds:648,348,51,26
+rotate:90
+tentacle 6
+bounds:557,109,47,48
+rotate:90
+tentacle 7
+bounds:607,120,36,61
+rotate:90
+tentacle 8
+bounds:604,44,32,45
+rotate:90
+tentacle 9
+bounds:557,38,41,34

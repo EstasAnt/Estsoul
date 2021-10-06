@@ -1,0 +1,33 @@
+GG_Dark.png
+size:1263,345
+filter:Linear,Linear
+pma:true
+scale:0.2
+body1
+bounds:880,155,188,277
+rotate:90
+face 1
+bounds:1159,241,101,102
+fin 1
+bounds:1159,187,102,52
+fin 2
+bounds:1159,163,22,50
+rotate:90
+fin 3
+bounds:1086,2,31,53
+rotate:90
+fin 4
+bounds:1222,115,70,35
+rotate:90
+glow 1
+bounds:2,4,339,435
+rotate:90
+glow 2
+bounds:439,27,316,439
+rotate:90
+ll
+bounds:1086,35,118,134
+rotate:90
+rl
+bounds:880,29,124,204
+rotate:90

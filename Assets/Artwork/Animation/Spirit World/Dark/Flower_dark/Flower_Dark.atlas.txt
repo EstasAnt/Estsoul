@@ -1,0 +1,28 @@
+Flower_Dark.png
+size:1035,549
+filter:Linear,Linear
+pma:true
+scale:0.2
+flower
+bounds:870,177,170,163
+rotate:90
+glow 1
+bounds:604,78,469,264
+rotate:90
+glow 2
+bounds:2,129,600,418
+leaf 1
+bounds:870,87,88,151
+rotate:90
+leaf 2
+bounds:423,20,138,107
+leaf 3
+bounds:870,349,157,198
+leaf_down 1
+bounds:779,15,211,61
+leaf_down 2
+bounds:563,2,214,74
+leaf_down 3
+bounds:2,9,200,118
+leaf_down 4
+bounds:204,27,217,100

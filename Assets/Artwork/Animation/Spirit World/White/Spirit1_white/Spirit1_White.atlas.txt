@@ -1,0 +1,32 @@
+Spirit1_White.png
+size:765,506
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:456,40,167,155
+glow 1
+bounds:2,67,437,452
+rotate:90
+glow 2
+bounds:456,197,295,307
+tentacle 1
+bounds:625,37,123,51
+tentacle 2
+bounds:625,90,105,79
+rotate:90
+tentacle 3
+bounds:88,4,83,61
+tentacle 4
+bounds:2,2,63,84
+rotate:90
+tentacle 5
+bounds:173,8,57,57
+tentacle 6
+bounds:299,13,52,55
+rotate:90
+tentacle 7
+bounds:706,103,57,92
+tentacle 8
+bounds:232,13,52,65
+rotate:90

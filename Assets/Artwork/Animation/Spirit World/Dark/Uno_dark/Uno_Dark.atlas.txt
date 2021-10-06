@@ -1,0 +1,24 @@
+Uno_Dark.png
+size:1087,259
+filter:Linear,Linear
+pma:true
+scale:0.2
+body
+bounds:953,2,132,116
+fin
+bounds:434,4,59,80
+rotate:90
+fin 2
+bounds:789,4,86,155
+rotate:90
+glow 1
+bounds:2,2,255,430
+rotate:90
+glow 2
+bounds:434,65,192,353
+rotate:90
+layer 1
+bounds:789,92,165,162
+rotate:90
+layer 2
+bounds:953,120,115,137

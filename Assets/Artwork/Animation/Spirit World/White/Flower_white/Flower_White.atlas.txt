@@ -1,0 +1,28 @@
+Flower_White.png
+size:1034,548
+filter:Linear,Linear
+pma:true
+scale:0.2
+flower
+bounds:869,176,170,163
+rotate:90
+glow 1
+bounds:603,78,468,264
+rotate:90
+glow 2
+bounds:2,129,599,417
+leaf 1
+bounds:869,86,88,151
+rotate:90
+leaf 2
+bounds:423,20,138,107
+leaf 3
+bounds:869,348,157,198
+leaf_down1
+bounds:779,15,211,61
+leaf_down2
+bounds:563,2,214,74
+leaf_down3
+bounds:2,9,200,118
+leaf_down4
+bounds:204,27,217,100
