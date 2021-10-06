@@ -571,9 +571,9 @@ MonoBehaviour:
   _Stats: {fileID: 11400000, guid: ba18c0f2ef7f01744bd06f051e4cb701, type: 2}
   PickupType: 2
   _Id: AlienWeapon
-  ShotSoundEffects:
+  ShotSoundEffects: []
+  HitAudioEffects:
   - Audio_Alien_Attack
-  HitAudioEffects: []
   _AnimationTrigger: 
   _Animator: {fileID: 0}
   AttackGroups:

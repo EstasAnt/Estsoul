@@ -778,7 +778,6 @@ GameObject:
   - component: {fileID: 2379951416864411338}
   - component: {fileID: 4962998472780088137}
   - component: {fileID: 7322053493979064114}
-  - component: {fileID: 5605881351450753964}
   - component: {fileID: 483620302667042946}
   - component: {fileID: 8118733704487561360}
   - component: {fileID: 2786028667606861016}
@@ -963,21 +962,6 @@ MonoBehaviour:
     LastTimeSawTargetTime: 0
   SelectAttackData:
     MinDistanceToJumpAttack: 3
---- !u!114 &5605881351450753964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7322053493979064117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0e6c1cc8fe84ae4aaa5cb768a98fc11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RandomDropInfos:
-  - ItemId: SoulStone
-    AmountRandom: {x: 1, y: 10}
 --- !u!95 &483620302667042946
 Animator:
   serializedVersion: 3
@@ -1147,9 +1131,9 @@ MonoBehaviour:
   _Stats: {fileID: 11400000, guid: 9100177a71c4f2d4ea2d5b34422c4b3b, type: 2}
   PickupType: 2
   _Id: BaltoWeapon
-  ShotSoundEffects:
+  ShotSoundEffects: []
+  HitAudioEffects:
   - Audio_Balto_Attack
-  HitAudioEffects: []
   _AnimationTrigger: 
   _Animator: {fileID: 0}
   AttackGroups:

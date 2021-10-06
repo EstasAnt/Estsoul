@@ -326,12 +326,6 @@ MonoBehaviour:
     AnimationStateName: Roll
     InvulnerableToAttacks: 1
     InvulnerableToProjectiles: 0
-    Curve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
   OneWayPlatformParameters:
     PlatformIgnoreCollisionTime: 1
 --- !u!114 &2425413470185177000
@@ -840,6 +834,8 @@ MonoBehaviour:
   - {fileID: 4149277643755326986}
   - {fileID: 8729951895574894173}
   AnimationTriggerName: Attack
+  CoolDown: 0
+  LastUseTime: 0
 --- !u!1 &5369216625107110082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,9 +1019,9 @@ MonoBehaviour:
   _Stats: {fileID: 11400000, guid: fdd964bd9fac4d940bdfb3e136139c32, type: 2}
   PickupType: 2
   _Id: Sword
-  ShotSoundEffects:
+  ShotSoundEffects: []
+  HitAudioEffects:
   - Audio_GG_Attack
-  HitAudioEffects: []
   _AnimationTrigger: Attack
   _Animator: {fileID: 0}
   AttackGroups:
