@@ -1166,7 +1166,7 @@ MonoBehaviour:
   StopWhileAttackInAir: 0
   CanDirectWhileAttack: 1
   CanHitRolledTarget: 0
-  CharacterAddForce: {x: 1500, y: 0}
+  CharacterAddForce: {x: 700, y: 0}
   HitAddForce: {x: 0, y: 0}
 --- !u!61 &8625940879786321272
 BoxCollider2D:
