@@ -87,5 +87,10 @@ namespace Game.Items
             _SignalBus.FireSignal(new ItemAmountChangedSignal(itemId, ItemsAmount(itemId)));
             return true;
         }
+
+        public void ClearAllItems()
+        {
+            LoadItemsStorage();
+        }
     }
 }

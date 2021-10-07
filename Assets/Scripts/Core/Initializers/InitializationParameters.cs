@@ -7,6 +7,7 @@ using Core.Initialization.Items;
 using Core.Services.Controllers;
 using Core.Services.Game;
 using Core.Services.SceneManagement;
+using Game.GameManagement;
 using Game.Items;
 using KlimLib.ResourceLoader;
 using KlimLib.SignalBus;
@@ -28,6 +29,7 @@ namespace Core.Initialization {
                 new RegisterAndLoadServiceTask<MarkerService>(),
                 new RegisterAndLoadServiceTask<AudioService>(),
                 new ItemsInitializeTask(),
+                new RegisterAndLoadServiceTask<GameManagementService>(),
             };
 
         public static List<Task> BaseGameLoadTasks =>

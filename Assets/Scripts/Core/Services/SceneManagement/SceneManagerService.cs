@@ -54,9 +54,9 @@ namespace Core.Services.SceneManagement {
 
         }
 
-        public void LoadScene(SceneType scene) {
+        public void LoadScene(SceneType scene, bool enableReload = false) {
             var activeScene = ActiveScene;
-            if (activeScene == scene)
+            if (!enableReload && activeScene == scene)
                 return;
             var oldSceneParameters = _SceneLoadingParametersMap[activeScene];
             var newParameters = _SceneLoadingParametersMap[scene];
