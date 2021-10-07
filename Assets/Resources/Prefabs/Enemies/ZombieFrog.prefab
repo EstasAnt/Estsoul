@@ -880,7 +880,7 @@ MonoBehaviour:
   RandomDropInfos:
   - ItemId: SoulStone
     AmountRandom: {x: 1, y: 3}
-    Chance: 0.3
+    Chance: 0.8
 --- !u!1 &7739881348839839173
 GameObject:
   m_ObjectHideFlags: 0

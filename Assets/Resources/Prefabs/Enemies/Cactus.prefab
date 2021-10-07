@@ -527,7 +527,7 @@ MonoBehaviour:
   Attacks:
   - {fileID: 30877244311321718}
   AnimationTriggerName: Attack
-  CoolDown: 0
+  CoolDown: 2
   LastUseTime: 0
 --- !u!1 &8425473375805041113
 GameObject:
