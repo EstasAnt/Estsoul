@@ -24,6 +24,7 @@ namespace Game.AI.CustomBehaviours.Tasks
 
         public override TaskStatus Run()
         {
+            //Debug.LogError(Time.timeSinceLevelLoad - _LastChangeDirectionTime);
             _CurrentDirection = _movementController.Direction;
             if (!_MovementData.TargetPos.HasValue)
             {
@@ -32,23 +33,25 @@ namespace Game.AI.CustomBehaviours.Tasks
             }
             var vectorToTarget = _MovementData.TargetPos.Value - _movementController.transform.position.ToVector2();
             var sqrDistToTarget = Vector2.SqrMagnitude(vectorToTarget);
-            if (sqrDistToTarget <= _MovementData.ReachDistance * _MovementData.ReachDistance)
-            {
-                _movementController.SetHorizontal(0);
-                return TaskStatus.Success;
-            }
+            
             var directSign = Mathf.Sign(vectorToTarget.x);
-
+            var dirShouldChange = false;
             if (_CurrentDirection != directSign && Time.timeSinceLevelLoad - _LastChangeDirectionTime >= _MovementData.DirectChangeCD)
             {
                 _movementController.SetHorizontal(directSign);
                 _LastChangeDirectionTime = Time.timeSinceLevelLoad;
+                dirShouldChange = true;
             }
             else
             {
                 _movementController.SetHorizontal(_CurrentDirection);
             }
-
+            
+            if (sqrDistToTarget <= _MovementData.ReachDistance * _MovementData.ReachDistance && !dirShouldChange)
+            {
+                _movementController.SetHorizontal(0);
+                return TaskStatus.Success;
+            }
             return TaskStatus.Running;
         }
     }
