@@ -12,8 +12,9 @@ public class VolumeMenu : BaseMenu
 
     public Slider volumeSlider, musicVolumeSlider;
 
-    public void Start()
+    protected override void Start()
     {
+        base.Start();
         ContainerHolder.Container.BuildUp(this);
         volumeSlider.value = audioService.SFXVolumeMultiplier;
         musicVolumeSlider.value = audioService.MusicVolumeMultiplier;

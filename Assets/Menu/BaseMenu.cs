@@ -2,6 +2,7 @@ using InControl;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityDI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,11 +16,14 @@ public class BaseMenu : MonoBehaviour
         public List<KeyCode> playerActions;
     }
 
-
-
     [SerializeField] List<MenuBind> binds = new List<MenuBind>();
 
-    private void Update()
+    protected virtual void Start()
+    {
+        ContainerHolder.Container.BuildUp(GetType(), this);
+    }
+    
+    protected virtual void Update()
     {
         foreach (MenuBind bind in binds)
         {
@@ -40,4 +44,6 @@ public class BaseMenu : MonoBehaviour
         menu.gameObject.SetActive(true);
         gameObject.SetActive(false);
     }
+
+    protected virtual void OnDestroy() { }
 }
