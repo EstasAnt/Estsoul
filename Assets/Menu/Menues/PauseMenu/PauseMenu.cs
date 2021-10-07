@@ -15,7 +15,7 @@ public class PauseMenu : BaseMenu
     {
         opener.enabled=true;
         Time.timeScale = opener.lastTimeScale;
-        opener.image.enabled = false;
+        foreach (GameObject image in opener.backGrounds) image.SetActive(false);
         gameObject.SetActive(false);
     }
 
