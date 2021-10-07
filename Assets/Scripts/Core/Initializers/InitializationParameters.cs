@@ -59,10 +59,12 @@ namespace Core.Initialization {
         public static List<Task> SpiritWorldLoadTasks => new List<Task>()
         {
             new RegisterAndLoadServiceTask<UsualWorldLoaderService>(),
+            new RegisterAndLoadServiceTask<SceneLoadingService>(),
         };
         
         public static List<Task> SpiritWorldUnloadTasks => new List<Task>() {
             new UnregisterAndUnloadServiceTask<UsualWorldLoaderService>(),
+            new UnregisterAndUnloadServiceTask<SceneLoadingService>(),
         };
         
     }

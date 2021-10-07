@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.LevelSpecial
 {
-    public abstract class Trigger<T> : MonoBehaviour where T : Component
+    public abstract class Trigger<T> : MonoBehaviour
     {
         protected  List<T> _UnitsInscide = new List<T>();
 
@@ -26,7 +26,7 @@ namespace Game.LevelSpecial
             if(!UseTriggerEnter)
                 return;
             var unit = col.gameObject.GetComponent<T>();
-            if (!unit || _UnitsInscide.Contains(unit))
+            if (unit == null || _UnitsInscide.Contains(unit))
                 return;
             OnUnitEnterTheTrigger(unit);
         }
@@ -35,7 +35,7 @@ namespace Game.LevelSpecial
             if(!UseTriggerExit)
                 return;
             var unit = col.gameObject.GetComponent<T>();
-            if (!unit || !_UnitsInscide.Contains(unit))
+            if (unit == null || !_UnitsInscide.Contains(unit))
                 return;
             OnUnitExitTheTrigger(unit);
         }
@@ -45,7 +45,7 @@ namespace Game.LevelSpecial
             if(!UseTriggerStay)
                 return;
             var unit = col.gameObject.GetComponent<T>();
-            if (!unit)
+            if (unit == null)
                 return;
             OnUnitStayInTrigger(unit);
         }

@@ -13,12 +13,13 @@ using Core.Services.Game;
 using System;
 using Core.Audio;
 using Game.AI.CustomBehaviours.Behaviours;
+using Game.LevelSpecial;
 using Game.Movement;
 using Game.Weapons;
 using KlimLib.ResourceLoader;
 using Tools.VisualEffects;
 
-public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder
+public class CharacterUnit : MonoBehaviour, IDamageable, ICameraTarget, IWeaponHolder, ISceneLoadingRecation
 {
 
     [Dependency]

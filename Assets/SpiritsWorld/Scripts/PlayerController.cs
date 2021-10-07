@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using Game.LevelSpecial;
 using InControl;
 using KlimLib.SignalBus;
 using SceneManagement.SpiritWorld;
 using UnityDI;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ISceneLoadingRecation
 {
     [Dependency] private readonly SignalBus _signalBus;
 
@@ -137,10 +138,11 @@ public class PlayerController : MonoBehaviour
             case ObjectType.Gate:
                 AudioSource.PlayClipAtPoint(FailSound, transform.position, AudioSettings.SFXVolume);
                 PlayCollisionSFX();
-                _signalBus.FireSignal(new SpiritWorldGateInSignal(true));
+                // _signalBus.FireSignal(new SpiritWorldGateInSignal(true));
                 _loadingUsualWorld = true;
                 break;
         }
+        
     }
 
     private bool _loadingUsualWorld;

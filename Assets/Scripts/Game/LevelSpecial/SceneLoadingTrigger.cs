@@ -6,7 +6,7 @@ using Game.LevelSpecial;
 using UnityDI;
 using UnityEngine;
 
-public class SceneLoadingTrigger : TriggerSignalBroadcaster<CharacterUnit, SceneLoadingTriggerInSignal>
+public class SceneLoadingTrigger : TriggerSignalBroadcaster<ISceneLoadingRecation, SceneLoadingTriggerInSignal>
 {
     [Dependency] private readonly AudioService _AudioService;
 
@@ -16,7 +16,7 @@ public class SceneLoadingTrigger : TriggerSignalBroadcaster<CharacterUnit, Scene
 
     private bool _CheckedIn = false;
     
-    protected override SceneLoadingTriggerInSignal CreateSignal(CharacterUnit unit, bool inTrigger)
+    protected override SceneLoadingTriggerInSignal CreateSignal(ISceneLoadingRecation unit, bool inTrigger)
     {
         if (!_CheckedIn)
         {
@@ -26,5 +26,5 @@ public class SceneLoadingTrigger : TriggerSignalBroadcaster<CharacterUnit, Scene
         }
 
         return new SceneLoadingTriggerInSignal(unit, SceneType, Delay);
-        }
+    }
 }

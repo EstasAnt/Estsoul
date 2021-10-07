@@ -31200,7 +31200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0994ea6ca09e2b4459dbe758b5e39ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneType: 5
+  SceneType: 4
   Delay: 1
   EnterSound: Audio_Gate_Complete
 --- !u!1 &421426575

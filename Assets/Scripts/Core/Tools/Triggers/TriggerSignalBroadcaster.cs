@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.LevelSpecial
 {
-    public abstract class TriggerSignalBroadcaster<T, S> : Trigger<T> where T : Component
+    public abstract class TriggerSignalBroadcaster<T, S> : Trigger<T>
     {
         [Dependency]
         protected readonly SignalBus _SignalBus;
