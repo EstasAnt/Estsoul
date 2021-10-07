@@ -46,13 +46,13 @@ namespace Game.Movement.Enemies
         private IEnumerator WakeUpRoutine()
         {
             _Awake = true;
-            yield return new WaitForSeconds(2f);
-            _AwakeTimer = 0f;
-            while (_AwakeTimer < 3f)
-            {
-                _AwakeTimer += Time.deltaTime;
-                yield return null;
-            }
+            yield return new WaitForSeconds(1f);
+            // _AwakeTimer = 0f;
+            // while (_AwakeTimer < 3f)
+            // {
+            //     _AwakeTimer += Time.deltaTime;
+            //     yield return null;
+            // }
             _Awake = false;
         }
         
