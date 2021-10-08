@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpiritController : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer body;
+    [SerializeField] GameObject body;
     [SerializeField] float speed = 1;
     [SerializeField] float moveRadius = 2;
 
@@ -32,6 +32,6 @@ public class SpiritController : MonoBehaviour
         if (Vector3.SqrMagnitude(transform.position - target) < 0.01f)
             GoToNextTarget();
 
-        body.flipX = aim.x < transform.position.x;
+        transform.localScale = new Vector3(aim.x < transform.position.x?-1:1, transform.localScale.y, transform.localScale.z);
     }
 }
