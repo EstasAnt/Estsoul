@@ -32,7 +32,7 @@ namespace Game.GameManagement
 
         public void Unload()
         {
-            
+            unityEventProvider.OnUpdate -= CheckForPauseButton;
         }
 
         public void RestartGame()
