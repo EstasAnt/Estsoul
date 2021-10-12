@@ -10,6 +10,7 @@ using Game.Movement;
 using InControl;
 using KlimLib.SignalBus;
 using UnityDI;
+using UI;
 
 namespace Character.Control {
     public class PlayerController : MonoBehaviour
@@ -78,6 +79,7 @@ namespace Character.Control {
             Roll();
             Attack();
             Action();
+            Pause();
         }
         
 
@@ -138,6 +140,14 @@ namespace Character.Control {
             if (CurrentPlayerActions.Action.WasPressed)
             {
                 _signalBus.FireSignal(new PlayerActionWasPressedSignal(CurrentPlayerActions.Action));
+            }
+        }
+
+        private void Pause()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) | Input.GetKeyDown(KeyCode.JoystickButton7))
+            {
+                _signalBus.FireSignal(new PauseSwitchedSignal());
             }
         }
 

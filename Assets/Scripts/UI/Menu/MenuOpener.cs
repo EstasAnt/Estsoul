@@ -1,18 +1,28 @@
+using KlimLib.SignalBus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityDI;
 using UnityEngine;
 using UnityEngine.UI;
+using UI;
 
 public class MenuOpener : BaseMenu
 {
+    [Dependency] private readonly SignalBus _signalBus;
     public float lastTimeScale = 1;
     public List<GameObject> backGrounds;
 
     void Awake()
     {
+        ContainerHolder.Container.BuildUp(this);
         ContainerHolder.Container.RegisterInstance(this);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         gameObject.SetActive(false);
+        _signalBus.Subscribe<PauseSwitchedSignal>(Pause, this);
     }
 
     public override void SwitchTo(BaseMenu menu)
@@ -23,9 +33,10 @@ public class MenuOpener : BaseMenu
         Time.timeScale = 0;
     }
 
-    public void Pause()
+    public void Pause(PauseSwitchedSignal signal)
     {
-        if (!enabled) return;
+        _signalBus.UnSubscribe<PauseSwitchedSignal>(this);
+        _signalBus.Subscribe<PauseSwitchedSignal>(Continue, this);
         enabled = false;
         gameObject.SetActive(true);
         GetComponentInChildren<PauseMenu>(true).gameObject.SetActive(true);
@@ -34,8 +45,10 @@ public class MenuOpener : BaseMenu
         Time.timeScale = 0;
     }
 
-    public void Continue()
+    public void Continue(PauseSwitchedSignal signal)
     {
+        _signalBus.UnSubscribe<PauseSwitchedSignal>(this);
+        _signalBus.Subscribe<PauseSwitchedSignal>(Pause, this);
         enabled = true;
         gameObject.SetActive(true);
         GetComponentInChildren<PauseMenu>(true).gameObject.SetActive(false);
@@ -46,5 +59,6 @@ public class MenuOpener : BaseMenu
     new private void OnDestroy()
     {
         ContainerHolder.Container.Unregister<MenuOpener>();
+        _signalBus.UnSubscribe<PauseSwitchedSignal>(this);
     }
 }
