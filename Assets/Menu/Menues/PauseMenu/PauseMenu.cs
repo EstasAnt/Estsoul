@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Game.GameManagement;
+using UI;
 using UnityDI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,17 +24,15 @@ public class PauseMenu : BaseMenu
         opener = transform.parent.gameObject.GetComponent<MenuOpener>();
     }
 
-    public void Leave()
+    public override void Return(MenuActionSignal signal)
     {
-        opener.enabled = true;
-        Time.timeScale = opener.lastTimeScale;
-        foreach (GameObject image in opener.backGrounds) image.SetActive(false);
-        gameObject.SetActive(false);
+        _signalBus.UnSubscribe<MenuActionSignal>(this);
+        opener.Continue();
     }
 
     private void RestartGame()
     {
-        Leave();
+        Return(new MenuActionSignal());
         _GameManagementService.RestartGame();
     }
 

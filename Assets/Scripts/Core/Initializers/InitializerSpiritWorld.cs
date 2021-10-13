@@ -6,7 +6,6 @@ namespace Core.Initialization
 {
     public class InitializerSpiritWorld : InitializerBase
     {
-        protected override List<Task> SpecialTasks => InitializationParameters.BaseTasks
-            .Concat(InitializationParameters.SpiritWorldLoadTasks).ToList();
+        protected override List<Task> SpecialTasks => InitializationParameters.SpiritWorldLoadTasks.ToList();
     }
 }
