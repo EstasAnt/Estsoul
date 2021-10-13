@@ -9,6 +9,7 @@ public class PlayerActions : PlayerActionSet {
     public readonly PlayerAction Confirm;
     public readonly PlayerAction Action;
     public readonly PlayerAction Roll;
+    public readonly PlayerAction Return;
 
     public readonly PlayerAction Left;
     public readonly PlayerAction Right;
@@ -30,6 +31,7 @@ public class PlayerActions : PlayerActionSet {
         Roll = CreatePlayerAction("Roll");
         Confirm = CreatePlayerAction("Confirm");
         Action = CreatePlayerAction("Action");
+        Return = CreatePlayerAction("Return");
 
         Left = CreatePlayerAction("Move Left");
         Right = CreatePlayerAction("Move Right");
@@ -56,6 +58,8 @@ public class PlayerActions : PlayerActionSet {
         playerActions.Confirm.AddDefaultBinding(Key.Space);
         
         playerActions.Action.AddDefaultBinding(Key.F);
+
+        playerActions.Return.AddDefaultBinding(Key.Escape); //Added
 
         playerActions.Up.AddDefaultBinding(Key.UpArrow);
         playerActions.Down.AddDefaultBinding(Key.DownArrow);
@@ -94,7 +98,9 @@ public class PlayerActions : PlayerActionSet {
         playerActions.Confirm.AddDefaultBinding(InputControlType.Action1);
 
         playerActions.Action.AddDefaultBinding(InputControlType.Action4); //ToDo: correct button
-        
+
+        playerActions.Return.AddDefaultBinding(InputControlType.Options); //Added
+
         playerActions.Left.AddDefaultBinding(InputControlType.LeftStickLeft);
         playerActions.Right.AddDefaultBinding(InputControlType.LeftStickRight);
         playerActions.Up.AddDefaultBinding(InputControlType.LeftStickUp);

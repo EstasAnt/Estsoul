@@ -5,44 +5,31 @@ using System.Collections.Generic;
 using UnityDI;
 using UnityEngine;
 using UnityEngine.Events;
+using UI;
+using KlimLib.SignalBus;
 
 public class BaseMenu : MonoBehaviour
 {
-    [Serializable]
-    private class MenuBind
-    {
-        public UnityEvent unityEvent;
+    [Dependency] protected readonly SignalBus _signalBus;
 
-        public List<KeyCode> playerActions;
-    }
-
-    [SerializeField] List<MenuBind> binds = new List<MenuBind>();
+    public BaseMenu parent;
 
     protected virtual void Start()
     {
         ContainerHolder.Container.BuildUp(GetType(), this);
     }
-    
-    protected virtual void Update()
+
+    public virtual void Return(MenuActionSignal signal)
     {
-        foreach (MenuBind bind in binds)
-        {
-            foreach(KeyCode key in bind.playerActions)
-            {
-                if (Input.GetKeyDown(key))
-                {
-                    print("bind acted in " + gameObject);
-                    bind.unityEvent.Invoke();
-                    break;
-                }
-            }
-        }
+        SwitchTo(parent);
     }
 
     public virtual void SwitchTo(BaseMenu menu)
     {
         menu.gameObject.SetActive(true);
         gameObject.SetActive(false);
+        _signalBus.UnSubscribe<MenuActionSignal>(this);
+        _signalBus.Subscribe<MenuActionSignal>(menu.Return, menu);
     }
 
     protected virtual void OnDestroy() { }

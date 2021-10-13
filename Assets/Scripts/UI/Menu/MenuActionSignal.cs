@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public struct PauseSwitchedSignal
+    public struct MenuActionSignal
     {
 
     }

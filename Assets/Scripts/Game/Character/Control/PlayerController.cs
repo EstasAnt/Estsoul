@@ -145,9 +145,9 @@ namespace Character.Control {
 
         private void Pause()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) | Input.GetKeyDown(KeyCode.JoystickButton7))
+            if (CurrentPlayerActions.Return.WasPressed)
             {
-                _signalBus.FireSignal(new PauseSwitchedSignal());
+                _signalBus.FireSignal(new MenuActionSignal());
             }
         }
 
