@@ -101,6 +101,7 @@ namespace Character.Control {
                     }
                     _MovementController.PressJump();
                 }
+                _signalBus.FireSignal(new PlayerActionWasPressedSignal(CurrentPlayerActions.Jump));
             }
 
             if (CurrentPlayerActions.Jump) {

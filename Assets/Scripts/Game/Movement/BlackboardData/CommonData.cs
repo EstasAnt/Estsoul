@@ -13,5 +13,6 @@ namespace Character.Movement.Modules
         public Collider2D GroundCollider;
         public MovementControllerBase MovementController;
         public IDamageable IDamageable;
+        public Animator Animator;
     }
 }

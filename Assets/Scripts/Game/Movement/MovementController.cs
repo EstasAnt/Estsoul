@@ -82,6 +82,7 @@ namespace Game.Movement {
         {
             base.Start();
             _RollModule.AnimationTriggerEvent += RollModuleOnAnimationTriggerEvent;
+            SetCanLegeHang(true);
         }
 
         private void RollModuleOnAnimationTriggerEvent(string obj)
@@ -123,6 +124,7 @@ namespace Game.Movement {
             commonData.GroundCollider = GroundCollider;
             commonData.MovementController = this;
             commonData.IDamageable = GetComponent<IDamageable>();
+            commonData.Animator = GetComponentInChildren<Animator>();
             _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
         }
 
@@ -141,7 +143,12 @@ namespace Game.Movement {
             var dir = _WalkModule.Direct();
             return dir;
         }
-        
+
+        public override void ChangeDirection(int newDir)
+        {
+            _WalkModule.ChangeDirection(newDir);
+        }
+
         protected override void OnDestroy()
         {
             base.OnDestroy();
