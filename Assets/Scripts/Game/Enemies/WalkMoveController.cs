@@ -40,7 +40,12 @@ namespace Game.Movement.Enemies
         {
             return _WalkModule.Direct();
         }
-        
+
+        public override void ChangeDirection(int newDir)
+        {
+            _WalkModule.ChangeDirection(newDir);
+        }
+
         protected override void OnDestroy()
         {
             base.OnDestroy();
@@ -73,6 +78,7 @@ namespace Game.Movement.Enemies
             commonData.BodyCollider = BodyCollider;
             commonData.GroundCollider = GroundCollider;
             commonData.MovementController = this;
+            commonData.Animator = GetComponentInChildren<Animator>();
             _MovementModules.ForEach(_ => _.Initialize(_Blackboard));
         }
 

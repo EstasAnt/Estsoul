@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Character.Shooting;
 using Game.Character.Melee;
 using Game.LevelSpecial;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class GG_Attack_StateBehavioir : StateMachineBehaviour
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(_meleeWeapon == null)
-            _meleeWeapon = animator.GetComponentInChildren<MeleeWeapon>();
+            _meleeWeapon = animator.GetComponentInParent<WeaponController>().GetComponentInChildren<MeleeWeapon>();
         _meleeWeapon.CanReceiveInput = true;
         _meleeWeapon.CurrentAttackInComboChanged += MeleeWeaponOnCurrentAttackInComboChanged;
     }

@@ -12,6 +12,7 @@ public abstract class MovementModule : IMovementModule
     public virtual void Initialize(Blackboard bb) {
         BB = bb;
         CommonData = BB.Get<CommonData>();
+        ContainerHolder.Container.BuildUp(GetType(), this);
     }
 
     public virtual void Awake() { }

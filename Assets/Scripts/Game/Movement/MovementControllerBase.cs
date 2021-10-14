@@ -180,6 +180,8 @@ namespace Game.Movement
         }
         
         public abstract float Direct();
+
+        public abstract void ChangeDirection(int newDir);
         
         protected virtual void OnCollisionExit2D(Collision2D collision) {
             _MovementModules.ForEach(_ => _.OnCollisionExit2D(collision));

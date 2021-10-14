@@ -59,8 +59,8 @@ namespace Game.Movement.Modules {
 
         private bool _GroundJumping = false;
         
-        public bool Jump(MonoBehaviour behaviour) {
-            if (!_GroundedData.Grounded || !(_GroundedData.TimeSinceMainGrounded < 0.3f)) 
+        public bool Jump(MonoBehaviour behaviour, bool evenNotGroundeed = false) {
+            if (!evenNotGroundeed && (!_GroundedData.Grounded || !(_GroundedData.TimeSinceMainGrounded < 0.3f))) 
                 return false;
             behaviour.StopCoroutine(GroundJumpRoutine());
             behaviour.StartCoroutine(GroundJumpRoutine());

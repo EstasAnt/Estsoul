@@ -25,9 +25,11 @@ public class PlayerActions : PlayerActionSet {
     public readonly PlayerTwoAxisAction Move;
     public readonly PlayerTwoAxisAction Aim;
 
+    public static string JumpName = "Jump";
+    
     public PlayerActions() {
         Fire = CreatePlayerAction("Fire");
-        Jump = CreatePlayerAction("Jump");
+        Jump = CreatePlayerAction(JumpName);
         Roll = CreatePlayerAction("Roll");
         Confirm = CreatePlayerAction("Confirm");
         Action = CreatePlayerAction("Action");

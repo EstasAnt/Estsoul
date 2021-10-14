@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Character.Control;
 using Character.Health;
 using Character.Shooting;
 using Game.Character.Melee;
 using Game.Movement;
+using KlimLib.SignalBus;
 using UnityEngine;
 using UnityDI;
 
-public class CharacterAnimationController : MonoBehaviour {
-
+public class CharacterAnimationController : MonoBehaviour
+{
+    [Dependency] private readonly SignalBus _SignalBus;
+    
     private Animator Animator;
     private MovementController _MovementController;
     private CharacterUnit _CharacterUnit;
@@ -25,14 +29,13 @@ public class CharacterAnimationController : MonoBehaviour {
     private void Start()
     {
         _WeaponController.MainWeapon.AnimationTriggerEvent += OnAnimationTriggerEvent;
-        _MovementController.RollAnimationEvent += OnAnimationTriggerEvent;
+        _MovementController.TriggerAnimationEvent += OnAnimationTriggerEvent;
         
         _CharacterUnit.OnKill += DamageableOnOnKill;
         
         var animStopList = new List<DontMoveAnimationInfo>();
         animStopList.Add(new DontMoveAnimationInfo("Death", true));
         _MovementController?.AddDontMoveAnimationStateNames(animStopList);
-        
     }
 
     private void OnAnimationTriggerEvent(string obj)
@@ -46,7 +49,7 @@ public class CharacterAnimationController : MonoBehaviour {
     {
         Animator.SetTrigger("Death");
     }
-    
+
     private void Update()
     {
         if (_MovementController == null || Animator == null) return;
@@ -65,7 +68,7 @@ public class CharacterAnimationController : MonoBehaviour {
         }
         // Animator.SetBool("WallRun", _MovementController.WallRun);
         // Animator.SetBool("WallSliding", _MovementController.WallSliding);
-        // Animator.SetBool("LedgeHang", _MovementController.LedgeHang);
+        Animator.SetBool("LedgeHang", _MovementController.LedgeHang);
         Animator.SetFloat("Speed", Mathf.Abs(_MovementController.Velocity.x));
         Animator.SetFloat("SpeedForWalkAnimation", SpeedForAnimator);
         // Animator.SetBool("Pushing", _MovementController.Pushing);
@@ -106,6 +109,7 @@ public class CharacterAnimationController : MonoBehaviour {
         if(_WeaponController != null && _WeaponController.MainWeapon != null)
             _WeaponController.MainWeapon.AnimationTriggerEvent -= OnAnimationTriggerEvent;
         if (_MovementController != null)
-            _MovementController.RollAnimationEvent -= OnAnimationTriggerEvent;
+            _MovementController.TriggerAnimationEvent -= OnAnimationTriggerEvent;
+        _SignalBus.UnSubscribeFromAll(this);
     }
 }

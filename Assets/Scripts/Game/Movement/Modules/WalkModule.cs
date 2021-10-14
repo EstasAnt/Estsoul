@@ -32,12 +32,15 @@ namespace Game.Movement.Modules {
             this._Parameters = parameters;
         }
 
+        private float _StartGravityScale;
+        
         public override void Start() {
             ContainerHolder.Container.BuildUp(this);
             _GroundedData = BB.Get<GroundedData>();
             _WallSlideData = BB.Get<WallSlideData>();
             _WalkData = BB.Get<WalkData>();
             _WalkData.Direction = 1;
+            _StartGravityScale = CommonData.ObjRigidbody.gravityScale;
         }
 
         public override void Initialize(Blackboard bb)
@@ -51,6 +54,11 @@ namespace Game.Movement.Modules {
         {
             if(CommonData.MovementController.MovementBlock)
                 return;
+            if (_WallSlideData.LedgeHanging)
+            {
+                CommonData.ObjRigidbody.velocity = Vector2.zero;
+                return;
+            }
             var xVelocity = CommonData.ObjRigidbody.velocity.x;
             var xLocalvelocity = xVelocity;
             var attachedRb = CommonData.MovementController.AttachedToRB;
@@ -69,6 +77,13 @@ namespace Game.Movement.Modules {
                  
         public override void Update() {
 
+            if (_WallSlideData.LedgeHanging)
+            {
+                _WalkData.Horizontal = 0;
+                _WalkData.Vertical = 0;
+                //ToDo: Set direction to wall
+                return;
+            }
             if (!_characterAnimator.OneOfAnimationsIsPlaying(MovementController.CantChangeDirectionAnimatorStateNames))
             {
                 Direct();
