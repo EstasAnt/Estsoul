@@ -65,7 +65,7 @@ namespace Character.Movement.Modules {
                 }
                 CommonData.ObjRigidbody.gravityScale = 0;
                 CommonData.ObjRigidbody.velocity = Vector2.zero;
-                SetDirection();
+                // SetDirection();
             }
             else {
                 CommonData.ObjRigidbody.gravityScale = _StartGravityScale;
@@ -99,15 +99,6 @@ namespace Character.Movement.Modules {
                     }
                 }
             }
-        }
-        
-        private void SetDirection() {
-            var newDir = 1;
-            if (_WallSlideData.LeftTouch)
-                newDir = -1;
-            else if (_WallSlideData.RightTouch)
-                newDir = 1;
-            CommonData.MovementController.ChangeDirection(newDir);
         }
     }
 
