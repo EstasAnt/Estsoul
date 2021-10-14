@@ -4,8 +4,8 @@ namespace Character.Control
 {
     public struct PlayerActionWasPressedSignal
     {
-        public PlayerAction PlayerAction;
-        public PlayerActionWasPressedSignal(PlayerAction playerAction)
+        public UniversalPlayerActions PlayerAction;
+        public PlayerActionWasPressedSignal(UniversalPlayerActions playerAction)
         {
             PlayerAction = playerAction;
         }

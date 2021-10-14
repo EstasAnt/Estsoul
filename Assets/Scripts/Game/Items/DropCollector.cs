@@ -24,7 +24,7 @@ namespace Game.Items
 
         private void OnPlayerActionWasPressedSignal(PlayerActionWasPressedSignal signal)
         {
-            if(signal.PlayerAction.Name != "Action")
+            if(signal.PlayerAction != UniversalPlayerActions.Action)
                 return;
             TryToCollectItems();
         }

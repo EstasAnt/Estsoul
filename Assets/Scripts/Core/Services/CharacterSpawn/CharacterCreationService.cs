@@ -26,28 +26,34 @@ namespace Core.Services.Game {
             //ToDo: remove from here
             var playerData = new PlayerData(0, "MainCharacter", false, 0, "TestCharacter");
 
-            var keyboard = PlayerActions.CreateWithKeyboardBindings();
-            var gamepad = PlayerActions.CreateWithJoystickBindings();
-            
             var spawnPoint = _PlayersSpawnSettings.PlayerSpawnPoints[0].Point;
-            CreateCharacter(playerData, keyboard, gamepad, spawnPoint.position);
+            CreateCharacter(playerData, spawnPoint.position);
         }
 
         public void Unload() {
             _SignalBus.UnSubscribeFromAll(this);
         }
 
-        public CharacterUnit CreateCharacter(PlayerData playerData, PlayerActions keyboardActions, PlayerActions gamepadActions, Vector3 pos) {
+        public CharacterUnit CreateCharacter(PlayerData playerData, Vector3 pos) {
             var path = Path.Resources.CharacterPath(playerData.CharacterId);
             var unit = _ResourceLoader.LoadResourceOnScene<CharacterUnit>(path, pos, Quaternion.identity);
             var playerController = unit.gameObject.AddComponent<Character.Control.PlayerController>();
-            playerController.InitializeActions(keyboardActions, gamepadActions);
+
+#if UNITY_STANDALONE
+            InitializeStationaryInput(unit);
+#endif
+            
             unit.Initialize(playerData.PlayerId, playerData.CharacterId);
             _SignalBus.FireSignal(new CharacterSpawnedSignal(unit));
             if(Camera2D != null) {
                 Camera2D.AddCameraTarget(unit.transform);
             }
             return unit;
+        }
+
+        private void InitializeStationaryInput(CharacterUnit character)
+        {
+            character.gameObject.AddComponent<StationaryInputController>();
         }
     }
 }

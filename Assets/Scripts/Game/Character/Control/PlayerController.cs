@@ -15,32 +15,8 @@ using UI;
 namespace Character.Control {
     public class PlayerController : MonoBehaviour
     {
-
         [Dependency] private readonly SignalBus _signalBus;
-        
-        public int Id;
-        public PlayerActions CurrentPlayerActions
-        {
-            get
-            {
-                if (_GamepadActions == null)
-                    return _KeyboardActions;
 
-                if (_GamepadActions.Device == null)
-                    _GamepadActions.Device =
-                        InputManager.Devices.FirstOrDefault(_ => _.DeviceClass == InputDeviceClass.Controller); //ToDo: Remove from here
-                if (_KeyboardActions == null)
-                    return _GamepadActions;
-                if (_GamepadActions.Device == null)
-                    return _KeyboardActions;
-                if (_KeyboardActions.Device == null)
-                    return _GamepadActions;
-                return _KeyboardActions.Device.LastInputTick > _GamepadActions.Device.LastInputTick
-                    ? _KeyboardActions
-                    : _GamepadActions;
-            }
-        }
-        //public const float PressTime2HighJump = 0.12f;
         private WeaponController _WeaponController;
         private MovementController _MovementController;
         private IAimProvider _AimProvider;
@@ -50,9 +26,6 @@ namespace Character.Control {
         private bool _WallJump;
         private bool _IsWallJumping;
 
-        private PlayerActions _KeyboardActions;
-        private PlayerActions _GamepadActions;
-        
         private void Awake() {
             _MovementController = GetComponent<MovementController>();
             _WeaponController = GetComponent<WeaponController>();
@@ -66,103 +39,85 @@ namespace Character.Control {
             //     : new JoystickAim(_WeaponController.Owner.MovementController.transform, _MovementController, CurrentPlayerActions);
         }
 
-
-        public void InitializeActions(PlayerActions keyboard, PlayerActions gamepad)
+        public void SetHorizontal(float hor)
         {
-            _KeyboardActions = keyboard;
-            _GamepadActions = gamepad;
-        }
-        
-        public void Update() {
-            Move();
-            Jump();
-            Roll();
-            Attack();
-            Action();
-            Pause();
-        }
-        
-
-        private void Move() {
-            var hor = CurrentPlayerActions.Move.Value.x;
-            var vert = CurrentPlayerActions.Move.Value.y;
             _MovementController.SetHorizontal(hor);
+        }
+
+        public void SetVertical(float vert)
+        {
             _MovementController.SetVertical(vert);
         }
 
-        private void Jump() {
-            if (CurrentPlayerActions.Jump.WasPressed) {
-                var fallDown = _MovementController.FallDownPlatform();
-                if (!fallDown) {
-                    _IsJumping = _MovementController.Jump();
-                    if (!_IsJumping) {
-                        _IsJumping = _MovementController.WallJump();
-                        _WallJump = _IsJumping;
-                    }
-                    _MovementController.PressJump();
+        public void Jump()
+        {
+            var fallDown = _MovementController.FallDownPlatform();
+            if (!fallDown)
+            {
+                _IsJumping = _MovementController.Jump();
+                if (!_IsJumping)
+                {
+                    _IsJumping = _MovementController.WallJump();
+                    _WallJump = _IsJumping;
                 }
-                _signalBus.FireSignal(new PlayerActionWasPressedSignal(CurrentPlayerActions.Jump));
-            }
 
-            if (CurrentPlayerActions.Jump) {
-                _MovementController.ProcessHoldJump();
+                _MovementController.PressJump();
             }
-
-            if (CurrentPlayerActions.Jump.WasReleased) {
-                _IsJumping = false;
-                _WallJump = false;
-                _MovementController.ReleaseJump();
-            }
+            _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Jump));
         }
 
-        private void Roll()
+        public void HoldJump()
         {
-            if (CurrentPlayerActions.Roll.WasPressed)
-            {
-                _MovementController.Roll();
-            }
+            _MovementController.ProcessHoldJump();
+        }
+
+        public void ReleaseJump()
+        {
+            _IsJumping = false;
+            _WallJump = false;
+            _MovementController.ReleaseJump();
         }
         
-        private void Attack() {
-            if (CurrentPlayerActions.Fire.WasPressed)
-            {
-                _WeaponController.PressFire();
-            }
-            if (CurrentPlayerActions.Fire) {
-                _WeaponController.HoldFire();
-            }
-            if (CurrentPlayerActions.Fire.WasReleased) {
-                _WeaponController.ReleaseFire();
-            }
-        }
-
-        private void Action()
+        public void Roll()
         {
-            if (CurrentPlayerActions.Action.WasPressed)
-            {
-                _signalBus.FireSignal(new PlayerActionWasPressedSignal(CurrentPlayerActions.Action));
-            }
+            _MovementController.Roll();
         }
 
-        private void Pause()
+        public void PressFire()
         {
-            if (CurrentPlayerActions.Return.WasPressed)
-            {
-                _signalBus.FireSignal(new MenuActionSignal());
-            }
+            _WeaponController.PressFire();
         }
 
-        public void LateUpdate() {
-            if(_AimProvider != null && _WeaponController.HasMainWeapon)
-                _WeaponController.SetAimPosition(_AimProvider.AimPoint);
+        public void HoldFire()
+        {
+            _WeaponController.HoldFire();
         }
 
-        private void OnDrawGizmosSelected() {
-            if (!Application.isPlaying)
-                return;
-            // Gizmos.color = _AimProvider is MouseAim ? Color.red : Color.yellow;
-            // Gizmos.DrawWireSphere(_AimProvider.AimPoint, 1f);
-            // Gizmos.DrawLine(_AimProvider.AimPoint, _WeaponController.NearArmShoulder.position);
+        public void ReleaseFire()
+        {
+            _WeaponController.ReleaseFire();
         }
+
+        public void Action()
+        {
+            _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Action));
+        }
+
+        public void Pause()
+        {
+            _signalBus.FireSignal(new MenuActionSignal());
+        }
+
+        // public void LateUpdate() {
+        //     if(_AimProvider != null && _WeaponController.HasMainWeapon)
+        //         _WeaponController.SetAimPosition(_AimProvider.AimPoint);
+        // }
+        
+    }
+
+    public enum UniversalPlayerActions
+    {
+        Jump,
+        Action,
     }
 }

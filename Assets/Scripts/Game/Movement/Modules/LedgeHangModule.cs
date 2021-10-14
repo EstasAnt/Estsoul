@@ -76,7 +76,7 @@ namespace Character.Movement.Modules {
         
         private void PlayerActionWasPressed(PlayerActionWasPressedSignal signal)
         {
-            if (signal.PlayerAction.Name.Equals(PlayerActions.JumpName))
+            if (signal.PlayerAction == UniversalPlayerActions.Jump)
             {
                 if (LedgeHang)
                 {
