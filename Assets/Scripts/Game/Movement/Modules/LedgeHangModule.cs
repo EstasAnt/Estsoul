@@ -13,6 +13,7 @@ using UnityEngine;
 namespace Character.Movement.Modules {
     public class LedgeHangModule : MovementModule
     {
+        [Dependency] private readonly SignalBus _SignalBus;
         public bool LedgeHang => _WallSlideData.LedgeHanging;
 
         private LedgeHangParameters _Parameters;
@@ -20,16 +21,21 @@ namespace Character.Movement.Modules {
         private WallSlideData _WallSlideData;
         private GroundedData _GroundedData;
         private JumpData _JumpData;
+        private WalkData _WalkData;
 
         private float _StartGravityScale;
 
         public bool CanLedgeHang { get; set; }
 
+        public event Action<string> AnimationTriggerEvent;
+        
         public LedgeHangModule(LedgeHangParameters parameters) {
             _Parameters = parameters;
         }
 
-        public override void Start() {
+        public override void Start()
+        {
+            _WalkData = BB.Get<WalkData>();
             _WallSlideData = BB.Get<WallSlideData>();
             _GroundedData = BB.Get<GroundedData>();
             _JumpData = BB.Get<JumpData>();
@@ -38,6 +44,7 @@ namespace Character.Movement.Modules {
             var dontMoveList = ledgeHangAnimNames.Select(_ => new DontMoveAnimationInfo(_, true)).ToList();
             CommonData.MovementController.AddCantDirectAnimationStateNames(ledgeHangAnimNames);
             CommonData.MovementController.AddDontMoveAnimationStateNames(dontMoveList);
+            _SignalBus.Subscribe<PlayerActionWasPressedSignal>(PlayerActionWasPressed, this);
         }
 
         public override void Update() {
@@ -46,23 +53,15 @@ namespace Character.Movement.Modules {
             var timeSinceLastJump = Time.time - _JumpData.LastWallJumpTime;
             _WallSlideData.LedgeHanging = !_GroundedData.MainGrounded &&
                 timeSinceLastJump > 0.2f &&
-                // (_WallSlideData.LeftTouch || _WallSlideData.RightTouch) &&
-                _Parameters.UpSensor.IsTouching;
+                _Parameters.UpSensor.IsTouching &&
+            Time.timeSinceLevelLoad - _JumpAwayTime > 0.5f;
             if (_WallSlideData.LedgeHanging) {
                 var firstTrigger = _Parameters.UpSensor.TouchedColliders.FirstOrDefault(_ => _.GetComponent(typeof(WallHangTrigger)));
                 if (firstTrigger != null) {
-                    var posY = firstTrigger.transform.position.y;
-                    var posX = firstTrigger.transform.position.x;
-                    var deltaY = _Parameters.UpSensor.transform.position.y - CommonData.ObjTransform.position.y;
-                    // CommonData.ObjRigidbody.MovePosition(new Vector2(posX, posY - deltaY));
-                    // _LedgeHangCoroutine ??= CommonData.MovementController.StartCoroutine(LedgeHangRoutine(firstTrigger));
-                    var ledgePointDelta = (_Parameters.LedgeHangPoint.position - CommonData.ObjRigidbody.transform.position).ToVector2();
                     var newLedgePos = Vector2.Lerp(_Parameters.LedgeHangPoint.position.ToVector2(),
-                        firstTrigger.transform.position.ToVector2(), Time.fixedDeltaTime * 10f);
+                        firstTrigger.transform.position.ToVector2(), Time.fixedDeltaTime * _Parameters.LerpToLedgeSpeed);
                     var moveDelta = newLedgePos - _Parameters.LedgeHangPoint.position.ToVector2();
                     CommonData.ObjRigidbody.MovePosition(CommonData.ObjRigidbody.position + moveDelta);
-                    // yield return new WaitForFixedUpdate();
-                    // delta = (_Parameters.LedgeHangPoint.position - firstTrigger.transform.position).ToVector2();
                 }
                 CommonData.ObjRigidbody.gravityScale = 0;
                 CommonData.ObjRigidbody.velocity = Vector2.zero;
@@ -73,23 +72,35 @@ namespace Character.Movement.Modules {
             }
         }
 
-        private Coroutine _LedgeHangCoroutine;
+        private float _JumpAwayTime = float.NegativeInfinity;
         
-        private IEnumerator LedgeHangRoutine(Collider2D targetCollider)
+        private void PlayerActionWasPressed(PlayerActionWasPressedSignal signal)
         {
-            var delta = (_Parameters.LedgeHangPoint.position - targetCollider.transform.position).ToVector2();
-            while (delta.sqrMagnitude > 0.01f)
+            if (signal.PlayerAction.Name.Equals(PlayerActions.JumpName))
             {
-                var ledgePointDelta = (_Parameters.LedgeHangPoint.position - CommonData.ObjRigidbody.transform.position).ToVector2();
-                var newLedgePos = Vector2.Lerp(_Parameters.LedgeHangPoint.position.ToVector2(),
-                    targetCollider.transform.position.ToVector2(), Time.fixedDeltaTime * 2f);
-                var moveDelta = newLedgePos - _Parameters.LedgeHangPoint.position.ToVector2();
-                CommonData.ObjRigidbody.MovePosition(CommonData.ObjRigidbody.position + moveDelta);
-                yield return new WaitForFixedUpdate();
-                delta = (_Parameters.LedgeHangPoint.position - targetCollider.transform.position).ToVector2();
+                if (LedgeHang)
+                {
+                    if (_WalkData.VerticalAxis < 0)
+                    {
+                        _JumpAwayTime = Time.timeSinceLevelLoad;
+                        return;
+                    }
+                    if (Mathf.Abs(_WalkData.HorizontalAxis) > 0 && Mathf.Sign(_WalkData.Direction) != _WalkData.HorizontalAxis)
+                    {
+                        if (CommonData.MovementController is MovementController controller)
+                        {
+                            _JumpAwayTime = Time.timeSinceLevelLoad;
+                            controller.Jump(true);
+                        }
+                    }
+                    else
+                    {
+                        AnimationTriggerEvent?.Invoke(_Parameters.PullUpAnimationTriggerName);
+                    }
+                }
             }
         }
-
+        
         private void SetDirection() {
             var newDir = 1;
             if (_WallSlideData.LeftTouch)
@@ -104,5 +115,7 @@ namespace Character.Movement.Modules {
     public class LedgeHangParameters {
         public Sensor UpSensor;
         public Transform LedgeHangPoint;
+        public string PullUpAnimationTriggerName;
+        public float LerpToLedgeSpeed = 10f;
     }
 }

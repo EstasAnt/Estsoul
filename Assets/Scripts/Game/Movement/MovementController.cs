@@ -31,7 +31,7 @@ namespace Game.Movement {
         private WalkModule _WalkModule;
         private GroundCheckModule _GroundCheckModule;
         private WallsCheckModule _WallsCheckModule;
-        private WallsSlideModule _WallsSlideModule;
+        // private WallsSlideModule _WallsSlideModule;
         private JumpModule _JumpModule;
         private RollModule _RollModule;
         
@@ -40,14 +40,14 @@ namespace Game.Movement {
         private OneWayPlatformModule _OneWayPlatformModule;
         public CharacterUnit Owner { get; private set; }
 
-        public event Action<string> RollAnimationEvent; 
-        
+        public event Action<string> TriggerAnimationEvent;
+
         public override bool IsGrounded => _GroundCheckModule.IsGrounded;
         public bool IsMainGrounded => _GroundCheckModule.IsMainGrounded;
         public float MinDistanceToGround => _GroundCheckModule.MinDistanceToGround;
         public bool FallingDown => _GroundCheckModule.FallingDown;
-        public bool WallSliding => _WallsSlideModule.WallSliding;
-        public bool WallRun => _WallsSlideModule.WallRun;
+        // public bool WallSliding => _WallsSlideModule.WallSliding;
+        // public bool WallRun => _WallsSlideModule.WallRun;
         public bool LedgeHang => _LedgeHangModule.LedgeHang;
         public bool Pushing => _PushingModule.Pushing;
         public float TimeFallingDown => _GroundCheckModule.TimeFallingDown;
@@ -81,14 +81,16 @@ namespace Game.Movement {
         protected override void Start()
         {
             base.Start();
-            _RollModule.AnimationTriggerEvent += RollModuleOnAnimationTriggerEvent;
+            _RollModule.AnimationTriggerEvent += FireAnimationTriggerEvent;
+            _LedgeHangModule.AnimationTriggerEvent += FireAnimationTriggerEvent;
             SetCanLegeHang(true);
         }
 
-        private void RollModuleOnAnimationTriggerEvent(string obj)
+        private void FireAnimationTriggerEvent(string obj)
         {
-            RollAnimationEvent?.Invoke(obj);
+            TriggerAnimationEvent?.Invoke(obj);
         }
+        
 
         protected override List<MovementModule> CreateModules() {
             var modules = new List<MovementModule>();
@@ -96,7 +98,7 @@ namespace Game.Movement {
             _WalkModule = new WalkModule(WalkParameters);
             _GroundCheckModule = new GroundCheckModule(GroundCheckParameters);
             _WallsCheckModule = new WallsCheckModule(WallCheckParameters);
-            _WallsSlideModule = new WallsSlideModule(WallSlideParameters);
+            // _WallsSlideModule = new WallsSlideModule(WallSlideParameters);
             _JumpModule = new JumpModule(JumpParameters);
             _RollModule = new RollModule(RollParameters);
             _LedgeHangModule = new LedgeHangModule(LedgeHangParameters);
@@ -107,7 +109,7 @@ namespace Game.Movement {
             modules.Add(_WallsCheckModule);
             modules.Add(_WalkModule);
             modules.Add(_LedgeHangModule);
-            modules.Add(_WallsSlideModule);
+            // modules.Add(_WallsSlideModule);
             modules.Add(_JumpModule);
             modules.Add(_RollModule);
             modules.Add(_PushingModule);
@@ -153,7 +155,9 @@ namespace Game.Movement {
         {
             base.OnDestroy();
             if(_RollModule != null)
-                _RollModule.AnimationTriggerEvent -= RollModuleOnAnimationTriggerEvent;
+                _RollModule.AnimationTriggerEvent -= FireAnimationTriggerEvent;
+            if(_LedgeHangModule != null)
+                _LedgeHangModule.AnimationTriggerEvent -= FireAnimationTriggerEvent;
         }
 
         public override void SetHorizontal(float hor) {
@@ -166,8 +170,8 @@ namespace Game.Movement {
 
         private bool _Jumping = false;
 
-        public bool Jump() {
-            _Jumping = _JumpModule.Jump(this);
+        public bool Jump(bool evenNotGroundeed = false) {
+            _Jumping = _JumpModule.Jump(this, evenNotGroundeed);
             if (!_Jumping)
                 _Jumping = _JumpModule.AirJump(this);
             return _Jumping;

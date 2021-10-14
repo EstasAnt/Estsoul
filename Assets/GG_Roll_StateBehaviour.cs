@@ -25,9 +25,9 @@ public class GG_Roll_StateBehaviour : StateMachineBehaviour
         if (_EventProvider == null)
             _EventProvider = ContainerHolder.Container.Resolve<UnityEventProvider>();
         if (_rigidbody == null)
-            _rigidbody = animator.GetComponent<Rigidbody2D>();
+            _rigidbody = animator.GetComponentInParent<Rigidbody2D>();
         if (_movementController == null)
-            _movementController = animator.GetComponent<MovementController>();
+            _movementController = animator.GetComponentInParent<MovementController>();
         if(_MoveRoutine != null)
             _EventProvider.StopCoroutine(_MoveRoutine);
         _MoveRoutine = _EventProvider.StartCoroutine(MoveRoutine());

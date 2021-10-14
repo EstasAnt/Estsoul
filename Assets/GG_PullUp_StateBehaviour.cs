@@ -25,9 +25,9 @@ public class GG_PullUp_StateBehaviour : StateMachineBehaviour
         if (_EventProvider == null)
             _EventProvider = ContainerHolder.Container.Resolve<UnityEventProvider>();
         if (_rigidbody == null)
-            _rigidbody = animator.GetComponent<Rigidbody2D>();
+            _rigidbody = animator.GetComponentInParent<Rigidbody2D>();
         if (_movementController == null)
-            _movementController = animator.GetComponent<MovementController>();
+            _movementController = animator.GetComponentInParent<MovementController>();
         _StartPos = _rigidbody.position;
         _StartGravityScale = _rigidbody.gravityScale;
     }
@@ -35,7 +35,7 @@ public class GG_PullUp_StateBehaviour : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         var normTime = stateInfo.normalizedTime;
-        var deltaPosX = MoveCurveX.Evaluate(normTime);
+        var deltaPosX = MoveCurveX.Evaluate(normTime) * _movementController.Direction;
         var deltaPosY = MoveCurveY.Evaluate(normTime);
         var newPos = new Vector2(deltaPosX, deltaPosY) + _StartPos;
         _rigidbody.MovePosition(newPos);

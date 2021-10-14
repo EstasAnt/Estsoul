@@ -29,14 +29,13 @@ public class CharacterAnimationController : MonoBehaviour
     private void Start()
     {
         _WeaponController.MainWeapon.AnimationTriggerEvent += OnAnimationTriggerEvent;
-        _MovementController.RollAnimationEvent += OnAnimationTriggerEvent;
+        _MovementController.TriggerAnimationEvent += OnAnimationTriggerEvent;
         
         _CharacterUnit.OnKill += DamageableOnOnKill;
         
         var animStopList = new List<DontMoveAnimationInfo>();
         animStopList.Add(new DontMoveAnimationInfo("Death", true));
         _MovementController?.AddDontMoveAnimationStateNames(animStopList);
-        _SignalBus.Subscribe<PlayerActionWasPressedSignal>(PlayerActionWasPressed, this);
     }
 
     private void OnAnimationTriggerEvent(string obj)
@@ -50,16 +49,7 @@ public class CharacterAnimationController : MonoBehaviour
     {
         Animator.SetTrigger("Death");
     }
-    
-    private void PlayerActionWasPressed(PlayerActionWasPressedSignal signal)
-    {
-        if (signal.PlayerAction.Name.Equals(PlayerActions.JumpName))
-        {
-            if(_MovementController.LedgeHang)
-                Animator.SetTrigger("PullUp");        
-        }
-    }
-    
+
     private void Update()
     {
         if (_MovementController == null || Animator == null) return;
@@ -119,7 +109,7 @@ public class CharacterAnimationController : MonoBehaviour
         if(_WeaponController != null && _WeaponController.MainWeapon != null)
             _WeaponController.MainWeapon.AnimationTriggerEvent -= OnAnimationTriggerEvent;
         if (_MovementController != null)
-            _MovementController.RollAnimationEvent -= OnAnimationTriggerEvent;
+            _MovementController.TriggerAnimationEvent -= OnAnimationTriggerEvent;
         _SignalBus.UnSubscribeFromAll(this);
     }
 }
