@@ -105,7 +105,7 @@ namespace Character.Control {
 
         public void Pause()
         {
-            _signalBus.FireSignal(new MenuActionSignal());
+            _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Return));
         }
 
         // public void LateUpdate() {
@@ -119,5 +119,6 @@ namespace Character.Control {
     {
         Jump,
         Action,
+        Return
     }
 }

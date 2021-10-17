@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityDI;
 using UnityEngine;
 using UnityEngine.Events;
-using UI;
+using Character.Control;
 using KlimLib.SignalBus;
 
 public class BaseMenu : MonoBehaviour
@@ -19,8 +19,9 @@ public class BaseMenu : MonoBehaviour
         ContainerHolder.Container.BuildUp(GetType(), this);
     }
 
-    public virtual void Return(MenuActionSignal signal)
+    public virtual void Return(PlayerActionWasPressedSignal signal)
     {
+        if (signal.PlayerAction != UniversalPlayerActions.Return) return;
         SwitchTo(parent);
     }
 
@@ -28,8 +29,8 @@ public class BaseMenu : MonoBehaviour
     {
         menu.gameObject.SetActive(true);
         gameObject.SetActive(false);
-        _signalBus.UnSubscribe<MenuActionSignal>(this);
-        _signalBus.Subscribe<MenuActionSignal>(menu.Return, menu);
+        _signalBus.UnSubscribe<PlayerActionWasPressedSignal>(this);
+        _signalBus.Subscribe<PlayerActionWasPressedSignal>(menu.Return, menu);
     }
 
     protected virtual void OnDestroy() { }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityDI;
 using UnityEngine;
 using UnityEngine.UI;
-using UI;
+using Character.Control;
 
 public class MenuOpener : BaseMenu
 {
@@ -22,8 +22,9 @@ public class MenuOpener : BaseMenu
     protected override void Start()
     {
         base.Start();
+        Debug.Log("here1");
         gameObject.SetActive(false);
-        _signalBus.Subscribe<MenuActionSignal>(Pause, this);
+        _signalBus.Subscribe<PlayerActionWasPressedSignal>(Pause, this);
     }
 
     public override void SwitchTo(BaseMenu menu)
@@ -32,13 +33,14 @@ public class MenuOpener : BaseMenu
         foreach(GameObject image in backGrounds) image.SetActive(true);
         lastTimeScale = Time.timeScale;
         Time.timeScale = 0;
-        _signalBus.UnSubscribe<MenuActionSignal>(this);
-        _signalBus.Subscribe<MenuActionSignal>(menu.Return, menu);
+        _signalBus.UnSubscribe<PlayerActionWasPressedSignal>(this);
+        _signalBus.Subscribe<PlayerActionWasPressedSignal>(menu.Return, menu);
     }
 
-    public void Pause(MenuActionSignal signal)
+    public void Pause(PlayerActionWasPressedSignal signal)
     {
-        _signalBus.UnSubscribe<MenuActionSignal>(this);
+        if (signal.PlayerAction != UniversalPlayerActions.Return) return;
+        _signalBus.UnSubscribe<PlayerActionWasPressedSignal>(this);
         enabled = false;
         gameObject.SetActive(true);
         SwitchTo(pauseMenu);
@@ -46,7 +48,7 @@ public class MenuOpener : BaseMenu
 
     public void Continue()
     {
-        _signalBus.Subscribe<MenuActionSignal>(Pause, this);
+        _signalBus.Subscribe<PlayerActionWasPressedSignal>(Pause, this);
         enabled = true;
         gameObject.SetActive(true);
         pauseMenu.gameObject.SetActive(false);
@@ -56,7 +58,8 @@ public class MenuOpener : BaseMenu
 
     new private void OnDestroy()
     {
+        Debug.Log("here");
         ContainerHolder.Container.Unregister<MenuOpener>();
-        _signalBus.UnSubscribe<MenuActionSignal>(this);
+        _signalBus.UnSubscribe<PlayerActionWasPressedSignal>(this);
     }
 }
