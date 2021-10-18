@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
+using Character.Control;
 using Game.LevelSpecial;
 using InControl;
 using KlimLib.SignalBus;
@@ -101,6 +102,10 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
             AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
             aimPos = target.position;
             currentSpeed = speed * jumpSpeed;
+        }
+        if (CurrentPlayerActions.Return.WasPressed)
+        {
+            _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Return));
         }
 
         
