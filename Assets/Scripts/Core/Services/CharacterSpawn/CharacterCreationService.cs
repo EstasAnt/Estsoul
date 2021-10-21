@@ -42,7 +42,9 @@ namespace Core.Services.Game {
 #if UNITY_STANDALONE
             InitializeStationaryInput(unit);
 #endif
-            
+#if UNITY_ANDROID
+            InitializeDeviceInput(unit);
+#endif
             unit.Initialize(playerData.PlayerId, playerData.CharacterId);
             _SignalBus.FireSignal(new CharacterSpawnedSignal(unit));
             if(Camera2D != null) {
@@ -54,6 +56,11 @@ namespace Core.Services.Game {
         private void InitializeStationaryInput(CharacterUnit character)
         {
             character.gameObject.AddComponent<StationaryInputController>();
+        }
+
+        private void InitializeDeviceInput(CharacterUnit character)
+        {
+            character.gameObject.AddComponent<DeviceInputController>();
         }
     }
 }

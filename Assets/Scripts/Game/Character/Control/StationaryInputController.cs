@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Character.Control
 {
-    public class StationaryInputController : MonoBehaviour
+    public class StationaryInputController : InputController
     {
         public PlayerActions CurrentPlayerActions
         {
@@ -31,11 +31,10 @@ namespace Character.Control
         private PlayerActions _KeyboardActions;
         private PlayerActions _GamepadActions;
         
-        private PlayerController _PlayerController;
         
-        private void Awake()
+        protected override void Awake()
         {
-            _PlayerController = GetComponent<PlayerController>();
+            base.Awake();
             InitializeActions();
         }
 
@@ -45,17 +44,7 @@ namespace Character.Control
             _GamepadActions = PlayerActions.CreateWithJoystickBindings();
         }
 
-        private void Update()
-        {
-            Move();
-            Jump();
-            Roll();
-            Attack();
-            Action();
-            Pause();
-        }
-        
-        private void Move()
+        protected override void Move()
         {
             var hor = CurrentPlayerActions.Move.Value.x;
             var vert = CurrentPlayerActions.Move.Value.y;
@@ -63,7 +52,7 @@ namespace Character.Control
             _PlayerController.SetVertical(vert);
         }
 
-        private void Jump()
+        protected override void Jump()
         {
             if (CurrentPlayerActions.Jump.WasPressed)
             {
@@ -79,7 +68,7 @@ namespace Character.Control
             }
         }
         
-        private void Roll()
+        protected override void Roll()
         {
             if (CurrentPlayerActions.Roll.WasPressed)
             {
@@ -87,7 +76,7 @@ namespace Character.Control
             }
         }
         
-        private void Attack() {
+        protected override void Attack() {
             if (CurrentPlayerActions.Fire.WasPressed)
             {
                 _PlayerController.PressFire();
@@ -100,7 +89,7 @@ namespace Character.Control
             }
         }
         
-        private void Action()
+        protected override void Action()
         {
             if (CurrentPlayerActions.Action.WasPressed)
             {
@@ -108,7 +97,7 @@ namespace Character.Control
             }
         }
 
-        private void Pause()
+        protected override void Pause()
         {
             if (CurrentPlayerActions.Return.WasPressed)
             {

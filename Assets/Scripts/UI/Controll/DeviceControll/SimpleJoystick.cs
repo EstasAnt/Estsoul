@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Tools;
+using Tools;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class SimpleJoystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class SimpleJoystick : SingletonBehaviour<SimpleJoystick>, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     public RectTransform BorderTransform;
     public RectTransform StickTransform;
@@ -24,31 +26,48 @@ public class SimpleJoystick : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         {
             var stickVector = StickTransform.position.ToVector2() - BorderTransform.position.ToVector2();
             var axis = stickVector / DistanceToBorder;
-            if (axis.x < DeathZone)
+            if (Mathf.Abs(axis.x) < DeathZone)
                 axis = new Vector2(0, axis.y);
-            if (axis.y < DeathZone)
+            if (Mathf.Abs(axis.y) < DeathZone)
                 axis = new Vector2(axis.x, 0);
-            if (axis.x > 1 - DeathZone)
-                axis = new Vector2(1, axis.y);
-            if (axis.y > 1 - DeathZone)
-                axis = new Vector2(axis.x, 1);
+            if (axis.x > 0)
+            {
+                if (axis.x > 1 - DeathZone)
+                    axis = new Vector2(1, axis.y);
+            }
+            else
+            {
+                if (axis.x < -1 + DeathZone)
+                    axis = new Vector2(-1, axis.y);
+            }
+            if (axis.y > 0)
+            {
+                if (axis.y > 1 - DeathZone)
+                    axis = new Vector2(axis.x, 1);
+            }
+            else
+            {
+                if (axis.y < -1 + DeathZone)
+                    axis = new Vector2(axis.x, -1);
+            }
             return axis;
         }
     }
 
     private IEnumerator Start()
     {
+        //var canvasScaler = FindObjectOfType<CanvasScaler>();
         DistanceToBorder = BorderTransform.rect.width / 2f;
         if (UseBorderSizeMaxDist)
         {
             MaxDistance = DistanceToBorder;
         }
-
-        while (true)
-        {
-            yield return new WaitForSeconds(0.5f);
-            Debug.LogError($"x:{Axis.x}, y:{Axis.y}");
-        }
+        yield return null;
+        // while (true)
+        // {
+        //     yield return new WaitForSeconds(0.5f);
+        //     Debug.LogError($"x:{Axis.x}, y:{Axis.y}");
+        // }
     }
     
     public void OnPointerDown(PointerEventData eventData)
