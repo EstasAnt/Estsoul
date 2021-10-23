@@ -27,6 +27,9 @@ namespace Character.Control {
         private bool _IsWallJumping;
 
         private void Awake() {
+#if FAST_SKIP_ENABLED
+            ContainerHolder.Container.Resolve<TPPointsList>().character = this;
+#endif
             _MovementController = GetComponent<MovementController>();
             _WeaponController = GetComponent<WeaponController>();
         }
@@ -108,17 +111,24 @@ namespace Character.Control {
             _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Return));
         }
 
+#if FAST_SKIP_ENABLED
+        public void FastSkip()
+        {
+            _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Teleport));
+        }
+#endif
         // public void LateUpdate() {
         //     if(_AimProvider != null && _WeaponController.HasMainWeapon)
         //         _WeaponController.SetAimPosition(_AimProvider.AimPoint);
         // }
-        
+
     }
 
     public enum UniversalPlayerActions
     {
         Jump,
         Action,
-        Return
+        Return,
+        Teleport // Awaiting discussion!
     }
 }

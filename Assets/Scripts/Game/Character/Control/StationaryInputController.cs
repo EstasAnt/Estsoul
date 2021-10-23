@@ -53,6 +53,9 @@ namespace Character.Control
             Attack();
             Action();
             Pause();
+#if FAST_SKIP_ENABLED
+            FastSkip();
+#endif
         }
         
         private void Move()
@@ -115,5 +118,14 @@ namespace Character.Control
                 _PlayerController.Pause();
             }
         }
+#if FAST_SKIP_ENABLED
+        private void FastSkip()
+        {
+            if (CurrentPlayerActions.FastSkip.WasPressed)
+            {
+                _PlayerController.FastSkip();
+            }
+        }
+#endif
     }
 }

@@ -9,6 +9,7 @@ using KlimLib.SignalBus;
 using SceneManagement.SpiritWorld;
 using UnityDI;
 using UnityEngine;
+using DebugTools;
 
 public class PlayerController : MonoBehaviour, ISceneLoadingRecation
 {
@@ -65,6 +66,9 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
 
     private void Start()
     {
+#if FAST_SKIP_ENABLED
+        ContainerHolder.Container.Resolve<TPPointsList>().character = this;
+#endif
         (_KeyboardActions, _GamepadActions) = (PlayerActions.CreateWithKeyboardBindings(), PlayerActions.CreateWithJoystickBindings());
         ContainerHolder.Container.BuildUp(this);
         initPos = transform.position;
@@ -107,8 +111,13 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
         {
             _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Return));
         }
+#if FAST_SKIP_ENABLED
+        if (CurrentPlayerActions.FastSkip.WasPressed)
+        {
+            _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Teleport));
+        }
+#endif
 
-        
         aimPos = Vector3.Lerp(aimPos, target.position, Time.deltaTime * aimDump);
         currentSpeed = Mathf.Lerp(currentSpeed, speed, Time.deltaTime * speedDump);
 

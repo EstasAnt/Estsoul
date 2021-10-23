@@ -9,7 +9,10 @@ public class PlayerActions : PlayerActionSet {
     public readonly PlayerAction Confirm;
     public readonly PlayerAction Action;
     public readonly PlayerAction Roll;
-    public readonly PlayerAction Return;
+    public readonly PlayerAction Return; //Added
+#if FAST_SKIP_ENABLED
+    public readonly PlayerAction FastSkip; //Added
+#endif
 
     public readonly PlayerAction Left;
     public readonly PlayerAction Right;
@@ -33,7 +36,10 @@ public class PlayerActions : PlayerActionSet {
         Roll = CreatePlayerAction("Roll");
         Confirm = CreatePlayerAction("Confirm");
         Action = CreatePlayerAction("Action");
-        Return = CreatePlayerAction("Return");
+        Return = CreatePlayerAction("Return"); //Added
+#if FAST_SKIP_ENABLED
+        FastSkip = CreatePlayerAction("FastSkip"); //Added
+#endif
 
         Left = CreatePlayerAction("Move Left");
         Right = CreatePlayerAction("Move Right");
@@ -62,7 +68,9 @@ public class PlayerActions : PlayerActionSet {
         playerActions.Action.AddDefaultBinding(Key.F);
 
         playerActions.Return.AddDefaultBinding(Key.Escape); //Added
-
+#if FAST_SKIP_ENABLED
+        playerActions.FastSkip.AddDefaultBinding(Key.LeftControl, Key.T); //Added
+#endif
         playerActions.Up.AddDefaultBinding(Key.UpArrow);
         playerActions.Down.AddDefaultBinding(Key.DownArrow);
         playerActions.Left.AddDefaultBinding(Key.LeftArrow);
