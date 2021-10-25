@@ -119,6 +119,7 @@ namespace Character.Control {
     {
         Jump,
         Action,
-        Return
+        Return,
+        Roll,
     }
 }

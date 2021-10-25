@@ -72,7 +72,8 @@ public class SimpleJoystick : SingletonBehaviour<SimpleJoystick>, IPointerDownHa
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        MoveStick(eventData.position);
+        var pos = eventData.position;
+        MoveStick(pos);
         SetAlpha(1f);
     }
     
@@ -84,7 +85,8 @@ public class SimpleJoystick : SingletonBehaviour<SimpleJoystick>, IPointerDownHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        MoveStick(eventData.position);
+        var pos = eventData.position;
+        MoveStick(pos);
     }
 
     private void MoveStick(Vector2 pointPosition)
