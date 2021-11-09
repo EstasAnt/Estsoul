@@ -39,7 +39,7 @@ namespace Core.Services.Game {
             var unit = _ResourceLoader.LoadResourceOnScene<CharacterUnit>(path, pos, Quaternion.identity);
             var playerController = unit.gameObject.AddComponent<Character.Control.PlayerController>();
 
-#if UNITY_STANDALONE
+#if UNITY_STANDALONE || UNITY_EDITOR
             InitializeStationaryInput(unit);
 #endif
 #if UNITY_ANDROID
