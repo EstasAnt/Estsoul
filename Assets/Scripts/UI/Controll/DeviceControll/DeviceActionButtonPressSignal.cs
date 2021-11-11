@@ -13,6 +13,8 @@
         Action,
         Roll,
         Attack,
+        JumpBackSW,
+        JumpForwardSW,
     }
 
     public enum ButtonEventType

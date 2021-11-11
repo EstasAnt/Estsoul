@@ -7,6 +7,7 @@ using Game.LevelSpecial;
 using InControl;
 using KlimLib.SignalBus;
 using SceneManagement.SpiritWorld;
+using UI.Controll.DeviceControll;
 using UnityDI;
 using UnityEngine;
 
@@ -69,6 +70,30 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
         ContainerHolder.Container.BuildUp(this);
         initPos = transform.position;
         Reset();
+        _signalBus.Subscribe<DeviceActionButtonPressSignal>(OnDeviceActionButtonPressSignal, this);
+    }
+
+    private void OnDeviceActionButtonPressSignal(DeviceActionButtonPressSignal signal)
+    {
+        switch (signal.DevicePlayerActionType)
+        {
+            case DevicePlayerActionType.JumpBackSW:
+                switch (signal.ButtonEventType)
+                {
+                    case ButtonEventType.Press:
+                        JumpBack();
+                        break;
+                }
+                break;
+            case DevicePlayerActionType.JumpForwardSW:
+                switch (signal.ButtonEventType)
+                {
+                    case ButtonEventType.Press:
+                        JumpForward();
+                        break;
+                }
+                break;
+        }
     }
 
     private void GoToNextTarget()
@@ -92,16 +117,12 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
 
         if (CurrentPlayerActions.Left.WasPressed)
         {
-            AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
-            aimPos = transform.position + Vector3.left;
-            currentSpeed = speed * jumpSpeed;
+            JumpBack();
         }
         else
         if (CurrentPlayerActions.Right.WasPressed)
         {
-            AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
-            aimPos = target.position;
-            currentSpeed = speed * jumpSpeed;
+            JumpForward();
         }
         if (CurrentPlayerActions.Return.WasPressed)
         {
@@ -118,6 +139,28 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
             GoToNextTarget();
     }
 
+    private void OnDestroy()
+    {
+        _signalBus.UnSubscribeFromAll(this);
+    }
+
+    private void JumpForward()
+    {
+        if (targetIndex < 0)
+            return;
+        var target = CheckPoints[targetIndex];
+        AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
+        aimPos = target.position;
+        currentSpeed = speed * jumpSpeed;
+    }
+
+    private void JumpBack()
+    {
+        AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
+        aimPos = transform.position + Vector3.left;
+        currentSpeed = speed * jumpSpeed;
+    }
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         var marker = other.GetComponent<Marker>();

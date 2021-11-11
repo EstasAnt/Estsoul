@@ -57,6 +57,7 @@ public class SimpleJoystick : SingletonBehaviour<SimpleJoystick>, IPointerDownHa
     private IEnumerator Start()
     {
         //var canvasScaler = FindObjectOfType<CanvasScaler>();
+        SetAlpha(0f);
         DistanceToBorder = BorderTransform.rect.width / 2f;
         if (UseBorderSizeMaxDist)
         {
