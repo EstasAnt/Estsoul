@@ -13,6 +13,7 @@
         Action,
         Roll,
         Attack,
+        Pause,
         JumpBackSW,
         JumpForwardSW,
     }

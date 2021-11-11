@@ -84,12 +84,22 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
                         JumpBack();
                         break;
                 }
+
                 break;
             case DevicePlayerActionType.JumpForwardSW:
                 switch (signal.ButtonEventType)
                 {
                     case ButtonEventType.Press:
                         JumpForward();
+                        break;
+                }
+
+                break;
+            case DevicePlayerActionType.Pause:
+                switch (signal.ButtonEventType)
+                {
+                    case ButtonEventType.Press:
+                        Pause();
                         break;
                 }
                 break;
@@ -126,7 +136,7 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
         }
         if (CurrentPlayerActions.Return.WasPressed)
         {
-            _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Return));
+            Pause();
         }
 
         
@@ -159,6 +169,11 @@ public class PlayerController : MonoBehaviour, ISceneLoadingRecation
         AudioSource.PlayClipAtPoint(SwipeSound, transform.position, AudioSettings.SFXVolume);
         aimPos = transform.position + Vector3.left;
         currentSpeed = speed * jumpSpeed;
+    }
+
+    private void Pause()
+    {
+        _signalBus.FireSignal(new PlayerActionWasPressedSignal(UniversalPlayerActions.Return));
     }
     
     private void OnTriggerEnter2D(Collider2D other)

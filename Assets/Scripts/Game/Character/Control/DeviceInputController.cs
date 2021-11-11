@@ -65,6 +65,14 @@ namespace Character.Control
                             break;
                     }
                     break;
+                case DevicePlayerActionType.Pause:
+                    switch (signal.ButtonEventType)
+                    {
+                        case ButtonEventType.Press:
+                            _PlayerController.Pause();
+                            break;
+                    }
+                    break;
             }
         }
         

@@ -44,6 +44,7 @@ public class MenuOpener : BaseMenu
         enabled = false;
         gameObject.SetActive(true);
         SwitchTo(pauseMenu);
+        _signalBus.FireSignal(new PauseGameSignal{Pause = true});
     }
 
     public void Continue()
@@ -54,6 +55,7 @@ public class MenuOpener : BaseMenu
         pauseMenu.gameObject.SetActive(false);
         foreach (GameObject image in backGrounds) image.SetActive(false);
         Time.timeScale = lastTimeScale;
+        _signalBus.FireSignal(new PauseGameSignal{Pause = false});
     }
 
     new private void OnDestroy()
